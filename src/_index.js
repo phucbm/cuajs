@@ -1,4 +1,3 @@
-import {uniqueId} from "./utils";
 import {initDragToScroll} from "./drag-to-sroll";
 
 
@@ -7,69 +6,29 @@ import {initDragToScroll} from "./drag-to-sroll";
  */
 class EasyHorizontalScrolling{
     constructor(options){
-        this.id = uniqueId();
         this.options = {
             el: undefined,
             ...options
         };
+        this.element = this.options.el;
 
-        document.querySelectorAll("[data-ehs]").forEach((wrapper) => {
-            wrapper.addEventListener("wheel", (evt) => {
-                //evt.preventDefault(); // no prevent default to keep native horizontal scroll
+        this.syncScroller();
 
-                const scroll = evt.deltaY;
-                wrapper.scrollLeft += scroll;
-            });
-            //lenisInit(wrapper);
+        initDragToScroll(this.element);
+    }
 
-            initDragToScroll(wrapper);
+    // sync vertical scroll with horizontal scroll
+    // ref: https://alvarotrigo.com/blog/scroll-horizontally-with-mouse-wheel-vanilla-java/
+    syncScroller(){
+        this.element.addEventListener("wheel", event => {
+            //evt.preventDefault(); // no prevent default to keep native horizontal scroll
+            const scroll = event.deltaY;
+
+            this.element.scrollLeft += scroll;
         });
     }
 }
 
-
-/**
- * Private class Controller
- * This class will hold instances of the library's objects
- */
-class Controller{
-    constructor(){
-        this.instances = [];
-    }
-
-    add(instance){
-        this.instances.push(instance);
-    }
-
-    get(id){
-        return this.instances.filter(instance => instance.id === id)[0];
-    }
-}
-
-
-/**
- * Public library data
- * access via window.EasyHorizontalScrollingController
- */
-window.EasyHorizontalScrollingController = new Controller();
-
-
-/**
- * Public library object
- * access via window.EasyHorizontalScrolling
- */
 window.EasyHorizontalScrolling = {
-    // init new instances
-    init: (options = {}) => {
-        const selector = options.selector || '[data-ehs]';
-
-        // init with selector
-        document.querySelectorAll(selector).forEach(el => {
-            window.EasyHorizontalScrollingController.add(new EasyHorizontalScrolling({el, ...options}));
-        });
-    },
-    // Get instance object by ID
-    get: id => window.EasyHorizontalScrollingController.get(id)
+    init: options => new EasyHorizontalScrolling(options)
 };
-
-window.EasyHorizontalScrolling.init();
