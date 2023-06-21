@@ -2,5 +2,42 @@
  * Easy Horizontal Scrolling
 ****************************/
 body {
-  background-color: red;
+  overflow: hidden; /* avoid elastic scroll on Mac devices */
+}
+
+[data-ehs] {
+  --hsp-scrollbar-size: 10px;
+
+  display: flex; /* force into one lines */
+  overflow: auto; /* allow scrolling */
+
+}
+
+section {
+  min-width: 100vw;
+  height: calc(100vh - var(--hsp-scrollbar-size));
+
+  text-align: center;
+  /*
+  * Created with https://www.css-gradient.com
+  * Gradient link: https://www.css-gradient.com/?c1=9cd4ff&c2=b4e137&gt=l&gd=dcr
+  */
+  background: #9CD4FF;
+  background: linear-gradient(270deg, #9CD4FF, #B4E137);
+}
+
+/* custom scrollbar */
+/* Works on Chrome, Edge, and Safari */
+/* scrollbar size should be controlled so we can manage the height of inner sections */
+[data-ehs]::-webkit-scrollbar {
+  width: var(--hsp-scrollbar-size);
+  height: var(--hsp-scrollbar-size);
+}
+
+[data-ehs]::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+[data-ehs]::-webkit-scrollbar-thumb {
+  background-color: #ccc;
 }

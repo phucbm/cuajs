@@ -12,7 +12,17 @@ class EasyHorizontalScrolling{
             ...options
         };
 
-        this.options.el.innerHTML = 'Hello!';
+        let prevDeltaY = 0;
+
+        document.querySelectorAll("[data-ehs]").forEach((wrapper) => {
+            wrapper.addEventListener("wheel", (evt) => {
+                //evt.preventDefault(); // no prevent default to keep native horizontal scroll
+
+                const scroll = evt.deltaY;
+                wrapper.scrollLeft += scroll;
+            });
+            //lenisInit(wrapper);
+        });
     }
 }
 
@@ -50,7 +60,7 @@ window.EasyHorizontalScrollingController = new Controller();
 window.EasyHorizontalScrolling = {
     // init new instances
     init: (options = {}) => {
-        const selector = options.selector || '[data-easy-horizontal-scrolling]';
+        const selector = options.selector || '[data-ehs]';
 
         // init with selector
         document.querySelectorAll(selector).forEach(el => {
