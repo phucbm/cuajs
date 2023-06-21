@@ -1,4 +1,5 @@
 import {uniqueId} from "./utils";
+import {initDragToScroll} from "./drag-to-sroll";
 
 
 /**
@@ -12,8 +13,6 @@ class EasyHorizontalScrolling{
             ...options
         };
 
-        let prevDeltaY = 0;
-
         document.querySelectorAll("[data-ehs]").forEach((wrapper) => {
             wrapper.addEventListener("wheel", (evt) => {
                 //evt.preventDefault(); // no prevent default to keep native horizontal scroll
@@ -22,6 +21,8 @@ class EasyHorizontalScrolling{
                 wrapper.scrollLeft += scroll;
             });
             //lenisInit(wrapper);
+
+            initDragToScroll(wrapper);
         });
     }
 }
