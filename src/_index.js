@@ -4,7 +4,7 @@ import {uniqueId} from "./utils";
 /**
  * Private class
  */
-class Wellii{
+class EasyHorizontalScrolling{
     constructor(options){
         this.id = uniqueId();
         this.options = {
@@ -38,27 +38,27 @@ class Controller{
 
 /**
  * Public library data
- * access via window.WelliiController
+ * access via window.EasyHorizontalScrollingController
  */
-window.WelliiController = new Controller();
+window.EasyHorizontalScrollingController = new Controller();
 
 
 /**
  * Public library object
- * access via window.Wellii
+ * access via window.EasyHorizontalScrolling
  */
-window.Wellii = {
+window.EasyHorizontalScrolling = {
     // init new instances
     init: (options = {}) => {
-        const selector = options.selector || '[data-wellii]';
+        const selector = options.selector || '[data-easy-horizontal-scrolling]';
 
         // init with selector
         document.querySelectorAll(selector).forEach(el => {
-            window.WelliiController.add(new Wellii({el, ...options}));
+            window.EasyHorizontalScrollingController.add(new EasyHorizontalScrolling({el, ...options}));
         });
     },
     // Get instance object by ID
-    get: id => window.WelliiController.get(id)
+    get: id => window.EasyHorizontalScrollingController.get(id)
 };
 
-window.Wellii.init();
+window.EasyHorizontalScrolling.init();

@@ -62,8 +62,8 @@ module.exports = merge(server, {
     // Spin up a server for quick development
     devServer: {
         historyApiFallback: true,
-        open: true,
-        compress: true,
+        //open: true,
+        //compress: true,
         hot: true,
         port: port,
     },

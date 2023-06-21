@@ -2,7 +2,10 @@
 import '@viivue/atomic-css';
 import 'honcau';
 
-// private style
+// core style
+import '@/_style.scss';
+
+// dev style
 import './style.scss';
 
 // source script
@@ -23,4 +26,4 @@ document.querySelector('[data-description]').innerHTML = packageInfo.description
 /**
  * Lib usage
  */
-Wellii.init();
+EasyHorizontalScrolling.init();

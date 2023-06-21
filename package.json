@@ -1,14 +1,14 @@
 {
-  "name": "wellii",
-  "outputFilename": "wellii",
-  "prettyName": "Wellii - Webpack Library Boilerplate",
-  "codeName": "Wellii",
-  "version": "0.0.2",
+  "name": "easy-horizontal-scrolling",
+  "outputFilename": "easy-horizontal-scrolling",
+  "prettyName": "Easy Horizontal Scrolling",
+  "codeName": "EasyHorizontalScrolling",
+  "version": "0.0.1",
   "description": "A boilerplate to build JavaScript library with ES6 module and UMD version.",
-  "homepage": "https://github.com/phucbm/wellii",
+  "homepage": "https://github.com/viivue/easy-horizontal-scrolling",
   "repository": {
     "type": "git",
-    "url": "git@github.com:phucbm/wellii"
+    "url": "git@github.com:viivue/easy-horizontal-scrolling"
   },
   "author": {
     "name": "phucbm",
@@ -19,14 +19,17 @@
     "javascript",
     "es6"
   ],
-  "main": "./dist/wellii.module.js",
+  "main": "./dist/easy-horizontal-scrolling.module.js",
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve --config config/webpack.dev.js",
-    "web": "cross-env ENTRY=web PORT=8081 webpack serve --config config/webpack.dev.js",
-    "build": "webpack --config config/webpack.build.js",
-    "build-dev": "cross-env ENTRY=dev webpack --config config/webpack.build.js",
-    "prod": "webpack --config config/webpack.prod.js && cross-env TARGET=module webpack --config config/webpack.prod.js",
+    "sass:compressed": "sass src/_style.scss:dist/easy-horizontal-scrolling.css --no-source-map",
+    "optimize": "csso dist/easy-horizontal-scrolling.css --output dist/easy-horizontal-scrolling.min.css --stat",
+    "output-css": "npm run sass:compressed && npm run optimize",
+    "build": "cross-env ENTRY=dev webpack --config config/webpack.build.js",
+    "prod-umd": "cross-env TARGET=umd webpack --config config/webpack.prod.js",
+    "prod-module": "cross-env TARGET=module webpack --config config/webpack.prod.js",
+    "prod": "npm run prod-umd && npm run output-css",
     "publish": "npm run prod & npm publish"
   },
   "devDependencies": {
@@ -41,6 +44,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.4.0",
     "css-minimizer-webpack-plugin": "^3.1.1",
+    "csso-cli": "^4.0.2",
     "honcau": "^0.0.2",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.3.2",
