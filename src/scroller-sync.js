@@ -25,6 +25,7 @@ export function initScrollerSync(element){
     /**
      * For vertical scrolling inside
      */
+        // todo: add vertical drag for smoothScroll
     const verticalScroller = element.querySelectorAll('[data-ehs-vertical-scroll]');
     verticalScroller.forEach(item => {
         // drag to scroll
