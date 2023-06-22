@@ -18,15 +18,29 @@ class EasyHorizontalScrolling{
             return;
         }
 
-        this.isSmoothScroll = typeof Lenis !== 'undefined';
 
+        // init scrolling
+        this.isSmoothScroll = typeof Lenis !== 'undefined';
         if(this.isSmoothScroll){
             initLenisSmoothScroll(this.wrapper);
         }else{
             initScrollerSync(this.wrapper);
         }
 
+        // init drag
+        this.verticalScroller = this.wrapper.querySelectorAll('[data-ehs-vertical-scroll]');
+
+        // drag wrapper
         initDragToScroll({element: this.wrapper});
+
+        // drag vertical content
+        this.verticalScroller.forEach(item => {
+            initDragToScroll({
+                element: item,
+                releaseCursor: 'ns-resize',
+                orientation: 'y'
+            });
+        });
     }
 }
 
