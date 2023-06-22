@@ -6,10 +6,7 @@
   padding: 5vw;
 }
 
-.long-section {
-
-}
-
+/* Grid */
 .sample-grid {
   gap: 20px;
 }
@@ -25,4 +22,11 @@
 .sample-grid div[tabindex]:focus-visible {
   background-color: #fff;
   color: #000;
+}
+
+/* Vertical scroll */
+.vertical-scroll {
+  width: 500px;
+  max-width: 100%;
+  height: 500px;
 }

@@ -8,7 +8,7 @@ body {
 [data-ehs] {
   --hsp-scrollbar-size: 10px;
   --hsp-scrollbar-track-color: #eee;
-  --hsp-scrollbar-thumb-color: #ccc;
+  --hsp-scrollbar-thumb-color: #7e7e7e;
 
   display: flex; /* force into one lines */
   overflow: auto; /* allow scrolling */
@@ -17,16 +17,16 @@ body {
 /* custom scrollbar */
 /* Works on Chrome, Edge, and Safari */
 /* scrollbar size should be controlled so we can manage the height of inner sections */
-[data-ehs]::-webkit-scrollbar {
+[data-ehs]::-webkit-scrollbar, [data-ehs] *::-webkit-scrollbar {
   width: var(--hsp-scrollbar-size);
   height: var(--hsp-scrollbar-size);
 }
 
-[data-ehs]::-webkit-scrollbar-track {
+[data-ehs]::-webkit-scrollbar-track, [data-ehs] *::-webkit-scrollbar-track {
   background: var(--hsp-scrollbar-track-color);
 }
 
-[data-ehs]::-webkit-scrollbar-thumb {
+[data-ehs]::-webkit-scrollbar-thumb, [data-ehs] *::-webkit-scrollbar-thumb {
   background-color: var(--hsp-scrollbar-thumb-color);
 }
 
@@ -38,4 +38,13 @@ body {
 
   overflow-y: hidden; /* avoid vertical overflow */
   flex-shrink: 0; /* remove shrink, allow section to extend its width based on the content inside */
+}
+
+/****************************
+ * Easy Horizontal Scrolling: vertical scroll
+****************************/
+[data-ehs-vertical-scroll] {
+  max-height: 100%; /* to allow overflow */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
