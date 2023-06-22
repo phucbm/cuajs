@@ -6,14 +6,14 @@ export function initDragToScroll(el){
 
     el.addEventListener('mousedown', mouseDownHandler);
 
-    function mouseDownHandler(e){
+    function mouseDownHandler(event){
         pos = {
             // The current scroll
             left: el.scrollLeft,
             top: el.scrollTop,
             // Get the current mouse position
-            x: e.clientX,
-            y: e.clientY,
+            x: event.clientX,
+            y: event.clientY,
         };
 
         el.addEventListener('mousemove', mouseGrabHandler);
@@ -25,17 +25,17 @@ export function initDragToScroll(el){
         el.style.userSelect = 'none';
     }
 
-    function mouseGrabHandler(e){
+    function mouseGrabHandler(event){
         // How far the mouse has been moved
-        const dx = e.clientX - pos.x;
-        const dy = e.clientY - pos.y;
+        const dx = event.clientX - pos.x;
+        const dy = event.clientY - pos.y;
 
         // Scroll the el
         el.scrollTop = pos.top - dy;
         el.scrollLeft = pos.left - dx;
     }
 
-    function mouseReleaseHandler(e){
+    function mouseReleaseHandler(event){
         el.removeEventListener('mousemove', mouseGrabHandler);
         el.removeEventListener('mouseup', mouseReleaseHandler);
         el.removeEventListener('mouseout', mouseReleaseHandler);

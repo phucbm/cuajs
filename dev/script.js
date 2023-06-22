@@ -26,8 +26,6 @@ document.querySelector('[data-description]').innerHTML = packageInfo.description
 /**
  * Lib usage
  */
-document.querySelectorAll("[data-ehs]").forEach(scrollElement => {
-    EasyHorizontalScrolling.init({
-        el: scrollElement
-    });
+document.querySelectorAll("[data-ehs]").forEach(wrapper => {
+    EHS.init({wrapper});
 });
