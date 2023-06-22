@@ -1,5 +1,5 @@
 /****************************
- * Easy Horizontal Scrolling
+ * Easy Horizontal Scrolling: Wrapper
 ****************************/
 body {
   overflow: hidden; /* avoid elastic scroll on Mac devices */
@@ -7,23 +7,11 @@ body {
 
 [data-ehs] {
   --hsp-scrollbar-size: 10px;
+  --hsp-scrollbar-track-color: #eee;
+  --hsp-scrollbar-thumb-color: #ccc;
 
   display: flex; /* force into one lines */
   overflow: auto; /* allow scrolling */
-
-}
-
-section {
-  min-width: 100vw;
-  height: calc(100vh - var(--hsp-scrollbar-size));
-
-  text-align: center;
-  /*
-  * Created with https://www.css-gradient.com
-  * Gradient link: https://www.css-gradient.com/?c1=9cd4ff&c2=b4e137&gt=l&gd=dcr
-  */
-  background: #9CD4FF;
-  background: linear-gradient(270deg, #9CD4FF, #B4E137);
 }
 
 /* custom scrollbar */
@@ -35,9 +23,19 @@ section {
 }
 
 [data-ehs]::-webkit-scrollbar-track {
-  background: #eee;
+  background: var(--hsp-scrollbar-track-color);
 }
 
 [data-ehs]::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+  background-color: var(--hsp-scrollbar-thumb-color);
+}
+
+/****************************
+ * Easy Horizontal Scrolling: Section
+****************************/
+[data-ehs-section] {
+  height: calc(100vh - var(--hsp-scrollbar-size)); /* always full-height */
+
+  overflow-y: hidden; /* avoid vertical overflow */
+  flex-shrink: 0; /* remove shrink, allow section to extend its width based on the content inside */
 }

@@ -1,1 +1,28 @@
 /* Stylesheet */
+[data-ehs-section] {
+  text-align: center;
+  background: #9CD4FF;
+  background: linear-gradient(270deg, #9CD4FF, #B4E137);
+  padding: 5vw;
+}
+
+.long-section {
+
+}
+
+.sample-grid {
+  gap: 20px;
+}
+
+.sample-grid div {
+  flex-shrink: 0;
+  width: 300px;
+  background-color: #000;
+  color: #fff;
+  aspect-ratio: 2/1;
+}
+
+.sample-grid div[tabindex]:focus-visible {
+  background-color: #fff;
+  color: #000;
+}

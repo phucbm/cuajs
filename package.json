@@ -4,7 +4,7 @@
   "prettyName": "Easy Horizontal Scrolling",
   "codeName": "EasyHorizontalScrolling",
   "version": "0.0.1",
-  "description": "A boilerplate to build JavaScript library with ES6 module and UMD version.",
+  "description": "Horizontal scrolling page",
   "homepage": "https://github.com/viivue/easy-horizontal-scrolling",
   "repository": {
     "type": "git",
