@@ -18,7 +18,9 @@ class EasyHorizontalScrolling{
         }
 
         initScrollerSync(this.wrapper);
-        initDragToScroll(this.wrapper);
+        initDragToScroll({
+            element: this.wrapper
+        });
     }
 }
 
