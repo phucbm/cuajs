@@ -11,7 +11,11 @@ class EasyHorizontalScrolling{
     constructor(options){
         this.options = {
             wrapper: undefined,
+
+            // responsive
             verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
+            smoothVerticalScroll: true, // smooth scroll for vertical mode
+
             ...options
         };
         this.wrapper = this.options.wrapper;

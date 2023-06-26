@@ -89,7 +89,9 @@ export class LenisSmoothScroll{
         this.instance?.destroy();
 
         // init vertical lenis
-        this.initVerticalScroll();
+        if(this.context.options.smoothVerticalScroll){
+            this.initVerticalScroll();
+        }
 
         // save status
         this.isInit = false;
