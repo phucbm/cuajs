@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta charset='utf-8'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'/>
 
     <title>Easy Horizontal Scrolling</title>
-    <script src="lenis.min.js"></script>
+    <script src='lenis.min.js'></script>
 </head>
 
 <body>
 <div data-ehs>
-    <section data-ehs-section style="min-width:100vw">
+
+    <section data-ehs-section style='min-width:100vw'>
         <div>
             <h1 data-title>Easy Horizontal Scrolling</h1>
             <p data-description></p>
         </div>
     </section>
 
-    <section data-ehs-section style="min-width:100vw">
-        <div class="ta-left">
+    <section data-ehs-section style='min-width:100vw'>
+        <div class='ta-left'>
             <h2>This is a section that can scroll vertically</h2>
-            <div class="vertical-scroll" data-ehs-vertical-scroll>
+            <div class='vertical-scroll' data-ehs-vertical-scroll>
                 <p>Ultricies lectus inceptos scelerisque ut amet quisque ex pretium. Taciti sollicitudin nullam eleifend
                     malesuada fusce montes letius. Tortor metus netus in sodales suspendisse. Suscipit class morbi
                     venenatis mi platea cras arcu nisi vivamus. Scelerisque hac felis sit ultrices cras dis himenaeos
@@ -53,45 +54,57 @@
                     Montes aliquet imperdiet interdum vivamus hendrerit velit. Himenaeos eros netus pulvinar consectetur
                     rutrum.</p>
                 <p>
-                    <button class="btn">Button</button>
+                    <button class='btn'>Button</button>
                 </p>
             </div>
         </div>
     </section>
 
-    <section data-ehs-section>
-        <div class="ta-left">
-            <h2>This is a very long section</h2>
-            <div class="sample-grid d-flex">
-                <div class="fl-center" tabindex="0">1</div>
-                <div class="fl-center" tabindex="0">2</div>
-                <div class="fl-center" tabindex="0">3</div>
-                <div class="fl-center" tabindex="0">4</div>
-                <div class="fl-center" tabindex="0">5</div>
-                <div class="fl-center" tabindex="0">6</div>
-                <div class="fl-center" tabindex="0">7</div>
-                <div class="fl-center" tabindex="0">8</div>
-            </div>
-            <p>
-                <button class="btn">Button</button>
+    <section data-ehs-section style='min-width:100vw'>
+        <div>
+            <h2>Navigate to any section with "Lenis.scrollTo()"</h2>
+            <p class="btn-group">
+                <button class='btn' data-ehs-to="start">To the start</button>
+                <button class='btn' data-ehs-to="end">To the end</button>
+                <button class='btn' data-ehs-to="#long-section">To the long-section</button>
+                <button class='btn' data-ehs-to="#short-section">To the short-section</button>
             </p>
         </div>
     </section>
 
-    <section data-ehs-section>
+    <section data-ehs-section id="long-section">
+        <div class='ta-left'>
+            <h2>This is a very long section</h2>
+            <div class='sample-grid d-flex'>
+                <div class='fl-center' tabindex='0'>1</div>
+                <div class='fl-center' tabindex='0'>2</div>
+                <div class='fl-center' tabindex='0'>3</div>
+                <div class='fl-center' tabindex='0'>4</div>
+                <div class='fl-center' tabindex='0'>5</div>
+                <div class='fl-center' tabindex='0'>6</div>
+                <div class='fl-center' tabindex='0'>7</div>
+                <div class='fl-center' tabindex='0'>8</div>
+            </div>
+            <p>
+                <button class='btn'>Button</button>
+            </p>
+        </div>
+    </section>
+
+    <section data-ehs-section id="short-section">
         <div>
             <h2>This is a short section</h2>
-            <div class="sample-grid d-flex">
-                <div class="fl-center" tabindex="0">1</div>
+            <div class='sample-grid d-flex'>
+                <div class='fl-center' tabindex='0'>1</div>
             </div>
         </div>
     </section>
 
-    <section data-ehs-section style="min-width:100vw">
+    <section data-ehs-section style='min-width:100vw'>
         <div>
             <h2>This is a full-screen section</h2>
-            <div class="sample-grid d-flex">
-                <div class="fl-center" tabindex="0">1</div>
+            <div class='sample-grid d-flex'>
+                <div class='fl-center' tabindex='0'>1</div>
             </div>
         </div>
     </section>

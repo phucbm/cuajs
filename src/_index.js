@@ -2,6 +2,7 @@ import {initDragToScroll} from "./drag-to-sroll";
 import {initScrollerSync} from "./scroller-sync";
 import {LenisSmoothScroll} from "./lenis-smooth-scroll";
 import {initResizeWatcher} from "./responsive";
+import {ScrollTo} from "./scroll-to";
 
 
 /**
@@ -11,6 +12,9 @@ class EasyHorizontalScrolling{
     constructor(options){
         this.options = {
             wrapper: undefined,
+
+            // smooth scroll
+            smoothScroll: true,
 
             // responsive
             verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
@@ -29,7 +33,7 @@ class EasyHorizontalScrolling{
 
 
         /** SCROLL **/
-        this.isSmoothScroll = typeof Lenis !== 'undefined';
+        this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined';
         if(this.isSmoothScroll){
             this.lenis = new LenisSmoothScroll(this);
         }else{
@@ -51,6 +55,10 @@ class EasyHorizontalScrolling{
 
         /** RESPONSIVE **/
         initResizeWatcher(this);
+
+
+        /** NAVIGATE **/
+        new ScrollTo(this);
     }
 }
 
