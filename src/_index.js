@@ -1,6 +1,6 @@
 import {initDragToScroll} from "./drag-to-sroll";
 import {initScrollerSync} from "./scroller-sync";
-import {initLenisSmoothScroll} from "./smooth-scroll";
+import {LenisSmoothScroll} from "./lenis-smooth-scroll";
 
 
 /**
@@ -22,7 +22,7 @@ class EasyHorizontalScrolling{
         // init scrolling
         this.isSmoothScroll = typeof Lenis !== 'undefined';
         if(this.isSmoothScroll){
-            initLenisSmoothScroll(this.wrapper);
+            this.lenis = new LenisSmoothScroll(this.wrapper);
         }else{
             initScrollerSync(this.wrapper);
         }
