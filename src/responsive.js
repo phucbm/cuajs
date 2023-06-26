@@ -1,17 +1,18 @@
 import {debounce} from "./utils";
+import {CLASS} from "./constant";
 
 
 export function initResizeWatcher(context){
     const handle = () => {
         if(isDestroy(context.options.verticalBreakpoint)){
             // add destroy class to wrapper
-            document.body.classList.add('ehs-destroyed');
+            document.body.classList.add(CLASS.verticalEnabled);
 
             // destroy smooth scroll
             context.lenis?.destroy();
         }else{
             // remove class
-            document.body.classList.remove('ehs-destroyed');
+            document.body.classList.remove(CLASS.verticalEnabled);
 
             // init smooth scroll
             context.lenis?.init();

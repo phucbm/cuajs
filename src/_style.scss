@@ -1,7 +1,7 @@
 /****************************
  * Easy Horizontal Scrolling: Wrapper
 ****************************/
-body {
+body:not(.ehs-vertical) {
   overflow: hidden; /* avoid elastic scroll on Mac devices */
 }
 
@@ -12,6 +12,11 @@ body {
 
   display: flex; /* force into one lines */
   overflow: auto; /* allow scrolling */
+}
+
+/* vertical */
+body.ehs-vertical [data-ehs] {
+  display: block;
 }
 
 /* custom scrollbar */
@@ -33,7 +38,7 @@ body {
 /****************************
  * Easy Horizontal Scrolling: Section
 ****************************/
-[data-ehs-section] {
+body:not(.ehs-vertical) [data-ehs-section] {
   height: calc(100vh - var(--hsp-scrollbar-size)); /* always full-height */
 
   overflow-y: hidden; /* avoid vertical overflow */
@@ -43,25 +48,8 @@ body {
 /****************************
  * Easy Horizontal Scrolling: vertical scroll
 ****************************/
-body:not(.ehs-destroyed) [data-ehs-vertical-scroll] {
+body:not(.ehs-vertical) [data-ehs-vertical-scroll] {
   max-height: 100%; /* to allow overflow */
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-
-/****************************
- * Easy Horizontal Scrolling: destroy
-****************************/
-body.ehs-destroyed {
-  overflow: auto;
-}
-
-body.ehs-destroyed [data-ehs] {
-  display: block;
-}
-
-body.ehs-destroyed [data-ehs-section] {
-  height: auto;
-  overflow: auto;
 }

@@ -3,6 +3,7 @@ import {initScrollerSync} from "./scroller-sync";
 import {LenisSmoothScroll} from "./lenis-smooth-scroll";
 import {initResizeWatcher} from "./responsive";
 import {ScrollTo} from "./scroll-to";
+import {ATTR, CLASS} from "./constant";
 
 
 /**
@@ -28,13 +29,18 @@ class EasyHorizontalScrolling{
             return;
         }
 
+        // add body class
+        document.body.classList.add(CLASS.hasEHS);
+
         // vertical scroll content
-        this.verticalScroller = this.wrapper.querySelectorAll('[data-ehs-vertical-scroll]');
+        this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTR.verticalScroller}]`);
 
 
         /** SCROLL **/
         this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined';
         if(this.isSmoothScroll){
+            this.wrapper.classList.add(CLASS.hasSmoothScroll);
+
             this.lenis = new LenisSmoothScroll(this);
         }else{
             initScrollerSync(this.wrapper);
