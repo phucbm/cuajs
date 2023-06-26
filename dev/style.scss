@@ -4,7 +4,18 @@
   background: #9CD4FF;
   background: linear-gradient(270deg, #9CD4FF, #B4E137);
   padding: 5vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+@media only screen and (max-width: 1024px) {
+  [data-ehs-section] {
+    display: block;
+  }
+}
+
 
 /* Grid */
 .sample-grid {
@@ -24,9 +35,21 @@
   color: #000;
 }
 
+@media only screen and (max-width: 1024px) {
+  .sample-grid {
+    flex-wrap: wrap;
+  }
+  .sample-grid div {
+    width: calc(50% - 10px);
+  }
+}
+
+
 /* Vertical scroll */
-.vertical-scroll {
-  width: 500px;
-  max-width: 100%;
-  height: 500px;
+@media only screen and (min-width: 1025px) {
+  .vertical-scroll {
+    width: 500px;
+    max-width: 100%;
+    height: 500px;
+  }
 }

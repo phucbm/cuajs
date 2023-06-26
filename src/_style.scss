@@ -43,8 +43,25 @@ body {
 /****************************
  * Easy Horizontal Scrolling: vertical scroll
 ****************************/
-[data-ehs-vertical-scroll] {
+body:not(.ehs-destroyed) [data-ehs-vertical-scroll] {
   max-height: 100%; /* to allow overflow */
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+
+/****************************
+ * Easy Horizontal Scrolling: destroy
+****************************/
+body.ehs-destroyed {
+  overflow: auto;
+}
+
+body.ehs-destroyed [data-ehs] {
+  display: block;
+}
+
+body.ehs-destroyed [data-ehs-section] {
+  height: auto;
+  overflow: auto;
 }

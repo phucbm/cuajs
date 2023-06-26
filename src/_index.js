@@ -1,6 +1,7 @@
 import {initDragToScroll} from "./drag-to-sroll";
 import {initScrollerSync} from "./scroller-sync";
 import {LenisSmoothScroll} from "./lenis-smooth-scroll";
+import {initResizeWatcher} from "./responsive";
 
 
 /**
@@ -10,6 +11,7 @@ class EasyHorizontalScrolling{
     constructor(options){
         this.options = {
             wrapper: undefined,
+            verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
             ...options
         };
         this.wrapper = this.options.wrapper;
@@ -18,18 +20,19 @@ class EasyHorizontalScrolling{
             return;
         }
 
+        // vertical scroll content
+        this.verticalScroller = this.wrapper.querySelectorAll('[data-ehs-vertical-scroll]');
 
-        // init scrolling
+
+        /** SCROLL **/
         this.isSmoothScroll = typeof Lenis !== 'undefined';
         if(this.isSmoothScroll){
-            this.lenis = new LenisSmoothScroll(this.wrapper);
+            this.lenis = new LenisSmoothScroll(this);
         }else{
             initScrollerSync(this.wrapper);
         }
 
-        // init drag
-        this.verticalScroller = this.wrapper.querySelectorAll('[data-ehs-vertical-scroll]');
-
+        /** DRAG **/
         // drag wrapper
         initDragToScroll({element: this.wrapper});
 
@@ -41,6 +44,9 @@ class EasyHorizontalScrolling{
                 orientation: 'y'
             });
         });
+
+        /** RESPONSIVE **/
+        initResizeWatcher(this);
     }
 }
 
