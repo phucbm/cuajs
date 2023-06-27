@@ -28,7 +28,7 @@ function setHorizontalModeCSS(context){
 
     // sections
     setCSS(context.sections, {
-        height: `calc(100vh - var(--hsp-scrollbar-size))`, /* always full-height */
+        height: `calc(100vh - ${getScrollBarHeight(context)}px)`, /* always full-height */
         maxHeight: ``,
         overflowX: '', /* avoid vertical overflow */
         overflowY: 'hidden', /* avoid vertical overflow */
@@ -57,4 +57,10 @@ function setVerticalModeCSS(context){
         overflowY: 'auto',
         flexShrink: '',
     });
+}
+
+// get scrollbar height in px
+function getScrollBarHeight(context){
+    const section = context.sections[0];
+    return context.wrapper.offsetHeight - section.offsetHeight;
 }

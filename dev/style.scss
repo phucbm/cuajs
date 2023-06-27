@@ -1,26 +1,26 @@
 /****************************
- * CuonNgang: Wrapper
+ * CuonNgang: Scroll bar
 ****************************/
 [data-cn] {
-  --hsp-scrollbar-size: 10px;
-  --hsp-scrollbar-track-color: #eee;
-  --hsp-scrollbar-thumb-color: #7e7e7e;
+  --scrollbar-size: 10px;
+  --scrollbar-track-color: #eee;
+  --scrollbar-thumb-color: #7e7e7e;
 }
 
 /* custom scrollbar */
 /* Works on Chrome, Edge, and Safari */
 /* scrollbar size should be controlled so we can manage the height of inner sections */
 [data-cn]::-webkit-scrollbar, [data-cn] *::-webkit-scrollbar {
-  width: var(--hsp-scrollbar-size);
-  height: var(--hsp-scrollbar-size);
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
 }
 
 [data-cn]::-webkit-scrollbar-track, [data-cn] *::-webkit-scrollbar-track {
-  background: var(--hsp-scrollbar-track-color);
+  background: var(--scrollbar-track-color);
 }
 
 [data-cn]::-webkit-scrollbar-thumb, [data-cn] *::-webkit-scrollbar-thumb {
-  background-color: var(--hsp-scrollbar-thumb-color);
+  background-color: var(--scrollbar-thumb-color);
 }
 
 
