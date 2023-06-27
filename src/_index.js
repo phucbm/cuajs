@@ -1,83 +1,83 @@
-import {initDragToScroll} from "./drag-to-sroll";
-import {initScrollerSync} from "./scroller-sync";
-import {LenisSmoothScroll} from "./lenis-smooth-scroll";
-import {initResizeWatcher, isVerticalMode} from "./responsive";
-import {ScrollTo} from "./scroll-to";
-import {ATTR, CLASS} from "./constant";
-import {Styling} from "./styling";
+import {initDragToScroll} from './drag-to-sroll'
+import {initScrollerSync} from './scroller-sync'
+import {LenisSmoothScroll} from './lenis-smooth-scroll'
+import {initResizeWatcher, isVerticalMode} from './responsive'
+import {ScrollTo} from './scroll-to'
+import {ATTR, CLASS} from './constant'
+import {Styling} from './styling'
 
 
 /**
  * Private class
  */
 class CuaJsClass{
-  constructor(options){
-    this.options = {
-      wrapper: undefined,
+    constructor(options){
+        this.options = {
+            wrapper: undefined,
 
-      // smooth scroll
-      smoothScroll: true,
+            // smooth scroll
+            smoothScroll: true,
 
-      // responsive
-      verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
-      smoothVerticalScroll: true, // smooth scroll for vertical mode
+            // responsive
+            verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
+            smoothVerticalScroll: true, // smooth scroll for vertical mode
 
-            ...options
-        };
-        this.wrapper = this.options.wrapper;
+            ...options,
+        }
+        this.wrapper = this.options.wrapper
         if(!this.wrapper){
-            console.warn(`Wrapper element is not defined`);
-            return;
+            console.warn(`Wrapper element is not defined`)
+            return
         }
 
         // add body class
-    document.body.classList.add(CLASS.hasCuaJs)
+        document.body.classList.add(CLASS.hasCuaJs)
 
         // vertical scroll content
-        this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTR.verticalScroller}]`);
+        this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTR.verticalScroller}]`)
 
         // sections
-        this.sections = this.wrapper.querySelectorAll(`[${ATTR.section}]`);
+        this.sections = this.wrapper.querySelectorAll(`[${ATTR.section}]`)
 
         /** RESPONSIVE **/
-        initResizeWatcher(this);
-        this.isVerticalMode = () => isVerticalMode(this.options.verticalBreakpoint);
+        initResizeWatcher(this)
+        this.isVerticalMode = () => isVerticalMode(this.options.verticalBreakpoint)
 
         /** STYLING **/
-        this.style = new Styling(this);
+        this.style = new Styling(this)
 
         /** SCROLL **/
-        this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined';
+        this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined'
         if(this.isSmoothScroll){
-            this.wrapper.classList.add(CLASS.hasSmoothScroll);
+            this.wrapper.classList.add(CLASS.hasSmoothScroll)
 
-            this.lenis = new LenisSmoothScroll(this);
+            this.lenis = new LenisSmoothScroll(this)
         }else{
-            initScrollerSync(this.wrapper);
+            initScrollerSync(this.wrapper)
         }
 
         /** DRAG **/
         // drag wrapper
-        initDragToScroll({element: this.wrapper});
+        initDragToScroll({element: this.wrapper})
 
         // drag vertical content
         this.verticalScroller.forEach(item => {
             initDragToScroll({
                 element: item,
                 releaseCursor: 'ns-resize',
-                orientation: 'y'
-            });
-        });
+                orientation: 'y',
+            })
+        })
 
 
         /** NAVIGATE **/
-        new ScrollTo(this);
+        new ScrollTo(this)
     }
 }
 
 window.CuaJs = {
-  init: options => new CuaJsClass(options),
+    init: options => new CuaJsClass(options),
 }
 
 // init with attribute
-document.querySelectorAll('[data-cua]').forEach(wrapper => CuaJs.init({ wrapper }))
+document.querySelectorAll('[data-cua]').forEach(wrapper => CuaJs.init({wrapper}))
