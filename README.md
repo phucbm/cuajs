@@ -1,4 +1,4 @@
-# CuonNgang
+# CuaJs
 
 ## Deployment
 
@@ -15,6 +15,6 @@ npm run prod
 
 ## License
 
-[MIT License](https://github.com/phucbm/cuon-ngang/blob/main/LICENSE)
+[MIT License](https://github.com/phucbm/cuajs/blob/main/LICENSE)
 
-Copyright (c) 2023 ViiVue
+Copyright (c) 2023 PHUCBM

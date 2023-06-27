@@ -1,14 +1,14 @@
 {
-  "name": "cuon-ngang",
-  "outputFilename": "cuon-ngang",
-  "prettyName": "CuonNgang",
-  "codeName": "CuonNgang",
+  "name": "cuajs",
+  "outputFilename": "cua",
+  "prettyName": "CuaJs",
+  "codeName": "CuaJs",
   "version": "0.0.1",
   "description": "Horizontal scrolling page",
-  "homepage": "https://github.com/phucbm/cuon-ngang",
+  "homepage": "https://github.com/phucbm/cuajs",
   "repository": {
     "type": "git",
-    "url": "git@github.com:phucbm/cuon-ngang"
+    "url": "git@github.com:phucbm/cuajs"
   },
   "author": {
     "name": "phucbm",
@@ -17,9 +17,12 @@
   "keywords": [
     "phucbm",
     "javascript",
-    "es6"
+    "es6",
+    "scroll",
+    "horizontal-scroll",
+    "lenis"
   ],
-  "main": "./dist/cuon-ngang.module.js",
+  "main": "./dist/cuajs.module.js",
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve --config config/webpack.dev.js",

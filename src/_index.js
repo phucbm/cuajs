@@ -10,17 +10,17 @@ import {Styling} from "./styling";
 /**
  * Private class
  */
-class CuonNgang{
-    constructor(options){
-        this.options = {
-            wrapper: undefined,
+class CuaJsClass{
+  constructor(options){
+    this.options = {
+      wrapper: undefined,
 
-            // smooth scroll
-            smoothScroll: true,
+      // smooth scroll
+      smoothScroll: true,
 
-            // responsive
-            verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
-            smoothVerticalScroll: true, // smooth scroll for vertical mode
+      // responsive
+      verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
+      smoothVerticalScroll: true, // smooth scroll for vertical mode
 
             ...options
         };
@@ -31,7 +31,7 @@ class CuonNgang{
         }
 
         // add body class
-        document.body.classList.add(CLASS.hasEHS);
+    document.body.classList.add(CLASS.hasCuaJs)
 
         // vertical scroll content
         this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTR.verticalScroller}]`);
@@ -75,9 +75,9 @@ class CuonNgang{
     }
 }
 
-window.EHS = {
-    init: options => new CuonNgang(options)
-};
+window.CuaJs = {
+  init: options => new CuaJsClass(options),
+}
 
 // init with attribute
-document.querySelectorAll("[data-cn]").forEach(wrapper => EHS.init({wrapper}));
+document.querySelectorAll('[data-cua]').forEach(wrapper => CuaJs.init({ wrapper }))

@@ -1,5 +1,5 @@
 /* Stylesheet */
-[data-cn-section] {
+[data-cua-section] {
   text-align: center;
   background: #9CD4FF;
   background: linear-gradient(270deg, #9CD4FF, #B4E137);
@@ -11,7 +11,7 @@
 }
 
 @media only screen and (max-width: 1024px) {
-  [data-cn-section] {
+  [data-cua-section] {
     display: block;
   }
 }
@@ -57,9 +57,9 @@
 
 
 /****************************
- * CuonNgang: Scroll bar
+ * CuaJs: Scroll bar
 ****************************/
-//[data-cn] {
+//[data-cua] {
 //  --scrollbar-size: 10px;
 //  --scrollbar-track-color: #eee;
 //  --scrollbar-thumb-color: #7e7e7e;
@@ -68,15 +68,15 @@
 ///* custom scrollbar */
 ///* Works on Chrome, Edge, and Safari */
 ///* scrollbar size should be controlled so we can manage the height of inner sections */
-//[data-cn]::-webkit-scrollbar, [data-cn] *::-webkit-scrollbar {
+//[data-cua]::-webkit-scrollbar, [data-cua] *::-webkit-scrollbar {
 //  width: var(--scrollbar-size);
 //  height: var(--scrollbar-size);
 //}
 //
-//[data-cn]::-webkit-scrollbar-track, [data-cn] *::-webkit-scrollbar-track {
+//[data-cua]::-webkit-scrollbar-track, [data-cua] *::-webkit-scrollbar-track {
 //  background: var(--scrollbar-track-color);
 //}
 //
-//[data-cn]::-webkit-scrollbar-thumb, [data-cn] *::-webkit-scrollbar-thumb {
+//[data-cua]::-webkit-scrollbar-thumb, [data-cua] *::-webkit-scrollbar-thumb {
 //  background-color: var(--scrollbar-thumb-color);
 //}
