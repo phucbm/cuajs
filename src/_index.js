@@ -78,3 +78,6 @@ class CuonNgang{
 window.EHS = {
     init: options => new CuonNgang(options)
 };
+
+// init with attribute
+document.querySelectorAll("[data-cn]").forEach(wrapper => EHS.init({wrapper}));
