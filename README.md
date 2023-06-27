@@ -2,14 +2,14 @@
 
 # CuaJs
 
-<img src="https://github.com/phucbm/cuajs/assets/14942380/253cbedc-0641-473e-9260-363159b19335" width="150">
+<p><img src="https://github.com/phucbm/cuajs/assets/14942380/253cbedc-0641-473e-9260-363159b19335" width="150"></p>
 
 [![release](https://badgen.net/github/release/phucbm/cuajs/)](https://github.com/phucbm/cuajs/releases/latest)
 [![minified](https://badgen.net/badge/minified/9KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/phucbm/cuajs/badge?style=rounded)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/84c6ed49-b3f3-450b-857a-ec904db724b7/deploy-status)](https://app.netlify.com/sites/easy-select/deploys)
 
-#### A holy *cua* library to create a horizontal scrolling page.
+A holy *cua* library to create a horizontal scrolling page.
 
 _(Cua is a Vietnamese word for crab)_
 
