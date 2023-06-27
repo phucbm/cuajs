@@ -1,7 +1,7 @@
+import {ATTR} from "./constant";
+
 // sync vertical scroll with horizontal scroll
 // ref: https://alvarotrigo.com/blog/scroll-horizontally-with-mouse-wheel-vanilla-java/
-
-import {ATTR} from "@/constant";
 
 export function initScrollerSync(element){
     // watch wheel event on wrapper element
