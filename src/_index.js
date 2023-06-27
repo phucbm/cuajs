@@ -1,9 +1,10 @@
 import {initDragToScroll} from "./drag-to-sroll";
 import {initScrollerSync} from "./scroller-sync";
 import {LenisSmoothScroll} from "./lenis-smooth-scroll";
-import {initResizeWatcher} from "./responsive";
+import {initResizeWatcher, isVerticalMode} from "./responsive";
 import {ScrollTo} from "./scroll-to";
 import {ATTR, CLASS} from "./constant";
+import {Styling} from "./styling";
 
 
 /**
@@ -35,6 +36,15 @@ class CuonNgang{
         // vertical scroll content
         this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTR.verticalScroller}]`);
 
+        // sections
+        this.sections = this.wrapper.querySelectorAll(`[${ATTR.section}]`);
+
+        /** RESPONSIVE **/
+        initResizeWatcher(this);
+        this.isVerticalMode = () => isVerticalMode(this.options.verticalBreakpoint);
+
+        /** STYLING **/
+        this.style = new Styling(this);
 
         /** SCROLL **/
         this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined';
@@ -58,9 +68,6 @@ class CuonNgang{
                 orientation: 'y'
             });
         });
-
-        /** RESPONSIVE **/
-        initResizeWatcher(this);
 
 
         /** NAVIGATE **/

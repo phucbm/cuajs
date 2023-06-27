@@ -71,7 +71,11 @@ export function arraySortInteger(array, asc = true){
  * @param props
  */
 export function setCSS(target, props){
-    Object.assign(target.style, props);
+    const items = target.length ? target : [target];
+
+    items.forEach(item => {
+        Object.assign(item.style, props);
+    });
 }
 
 

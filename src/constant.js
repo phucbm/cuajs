@@ -1,5 +1,6 @@
 export const ATTR = {
     to: 'data-cn-to',
+    section: 'data-cn-section',
     verticalScroller: 'data-cn-vertical-scroll'
 };
 

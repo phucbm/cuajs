@@ -2,9 +2,6 @@
 import '@viivue/atomic-css';
 import 'honcau';
 
-// core style
-import '@/_style.scss';
-
 // dev style
 import './style.scss';
 

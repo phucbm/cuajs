@@ -4,7 +4,10 @@ import {CLASS} from "./constant";
 
 export function initResizeWatcher(context){
     const handle = () => {
-        if(isDestroy(context.options.verticalBreakpoint)){
+        // update CSS
+        context.style.update();
+
+        if(isVerticalMode(context.options.verticalBreakpoint)){
             // add destroy class to wrapper
             document.body.classList.add(CLASS.verticalEnabled);
 
@@ -24,7 +27,7 @@ export function initResizeWatcher(context){
 }
 
 
-function isDestroy(verticalBreakpoint){
+export function isVerticalMode(verticalBreakpoint){
     if(typeof verticalBreakpoint === 'number'){
         // compare with window.width
         if(window.innerWidth <= verticalBreakpoint){
