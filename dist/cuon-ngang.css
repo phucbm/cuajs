@@ -1,5 +1,5 @@
 /****************************
- * Easy Horizontal Scrolling: Wrapper
+ * CuonNgang: Wrapper
 ****************************/
 body:not(.ehs-vertical) {
   overflow: hidden; /* avoid elastic scroll on Mac devices */
@@ -35,7 +35,7 @@ body.ehs-vertical [data-ehs] {
 }
 
 /****************************
- * Easy Horizontal Scrolling: Section
+ * CuonNgang: Section
 ****************************/
 body:not(.ehs-vertical) [data-ehs-section] {
   height: calc(100vh - var(--hsp-scrollbar-size)); /* always full-height */
@@ -44,7 +44,7 @@ body:not(.ehs-vertical) [data-ehs-section] {
 }
 
 /****************************
- * Easy Horizontal Scrolling: vertical scroll
+ * CuonNgang: vertical scroll
 ****************************/
 body:not(.ehs-vertical) [data-ehs-vertical-scroll] {
   max-height: 100%; /* to allow overflow */

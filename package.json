@@ -1,14 +1,14 @@
 {
-  "name": "easy-horizontal-scrolling",
-  "outputFilename": "easy-horizontal-scrolling",
-  "prettyName": "Easy Horizontal Scrolling",
-  "codeName": "EasyHorizontalScrolling",
+  "name": "cuon-ngang",
+  "outputFilename": "cuon-ngang",
+  "prettyName": "CuonNgang",
+  "codeName": "CuonNgang",
   "version": "0.0.1",
   "description": "Horizontal scrolling page",
-  "homepage": "https://github.com/viivue/easy-horizontal-scrolling",
+  "homepage": "https://github.com/phucbm/cuon-ngang",
   "repository": {
     "type": "git",
-    "url": "git@github.com:viivue/easy-horizontal-scrolling"
+    "url": "git@github.com:phucbm/cuon-ngang"
   },
   "author": {
     "name": "phucbm",
@@ -19,12 +19,12 @@
     "javascript",
     "es6"
   ],
-  "main": "./dist/easy-horizontal-scrolling.module.js",
+  "main": "./dist/cuon-ngang.module.js",
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve --config config/webpack.dev.js",
-    "sass:compressed": "sass src/_style.scss:dist/easy-horizontal-scrolling.css --no-source-map",
-    "optimize": "csso dist/easy-horizontal-scrolling.css --output dist/easy-horizontal-scrolling.min.css --stat",
+    "sass:compressed": "sass src/_style.scss:dist/cuon-ngang.css --no-source-map",
+    "optimize": "csso dist/cuon-ngang.css --output dist/cuon-ngang.min.css --stat",
     "output-css": "npm run sass:compressed && npm run optimize",
     "build": "cross-env ENTRY=dev webpack --config config/webpack.build.js",
     "prod-umd": "cross-env TARGET=umd webpack --config config/webpack.prod.js",

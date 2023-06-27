@@ -9,7 +9,7 @@ import {ATTR, CLASS} from "./constant";
 /**
  * Private class
  */
-class EasyHorizontalScrolling{
+class CuonNgang{
     constructor(options){
         this.options = {
             wrapper: undefined,
@@ -69,5 +69,5 @@ class EasyHorizontalScrolling{
 }
 
 window.EHS = {
-    init: options => new EasyHorizontalScrolling(options)
+    init: options => new CuonNgang(options)
 };

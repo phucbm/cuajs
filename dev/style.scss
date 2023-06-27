@@ -1,5 +1,5 @@
 /* Stylesheet */
-[data-ehs-section] {
+[data-cn-section] {
   text-align: center;
   background: #9CD4FF;
   background: linear-gradient(270deg, #9CD4FF, #B4E137);
@@ -11,7 +11,7 @@
 }
 
 @media only screen and (max-width: 1024px) {
-  [data-ehs-section] {
+  [data-cn-section] {
     display: block;
   }
 }

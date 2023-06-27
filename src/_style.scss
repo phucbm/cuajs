@@ -1,11 +1,11 @@
 /****************************
- * Easy Horizontal Scrolling: Wrapper
+ * CuonNgang: Wrapper
 ****************************/
-body:not(.ehs-vertical) {
+body:not(.cn-vertical) {
   overflow: hidden; /* avoid elastic scroll on Mac devices */
 }
 
-[data-ehs] {
+[data-cn] {
   --hsp-scrollbar-size: 10px;
   --hsp-scrollbar-track-color: #eee;
   --hsp-scrollbar-thumb-color: #7e7e7e;
@@ -15,30 +15,30 @@ body:not(.ehs-vertical) {
 }
 
 /* vertical */
-body.ehs-vertical [data-ehs] {
+body.cn-vertical [data-cn] {
   display: block;
 }
 
 /* custom scrollbar */
 /* Works on Chrome, Edge, and Safari */
 /* scrollbar size should be controlled so we can manage the height of inner sections */
-[data-ehs]::-webkit-scrollbar, [data-ehs] *::-webkit-scrollbar {
+[data-cn]::-webkit-scrollbar, [data-cn] *::-webkit-scrollbar {
   width: var(--hsp-scrollbar-size);
   height: var(--hsp-scrollbar-size);
 }
 
-[data-ehs]::-webkit-scrollbar-track, [data-ehs] *::-webkit-scrollbar-track {
+[data-cn]::-webkit-scrollbar-track, [data-cn] *::-webkit-scrollbar-track {
   background: var(--hsp-scrollbar-track-color);
 }
 
-[data-ehs]::-webkit-scrollbar-thumb, [data-ehs] *::-webkit-scrollbar-thumb {
+[data-cn]::-webkit-scrollbar-thumb, [data-cn] *::-webkit-scrollbar-thumb {
   background-color: var(--hsp-scrollbar-thumb-color);
 }
 
 /****************************
- * Easy Horizontal Scrolling: Section
+ * CuonNgang: Section
 ****************************/
-body:not(.ehs-vertical) [data-ehs-section] {
+body:not(.cn-vertical) [data-cn-section] {
   height: calc(100vh - var(--hsp-scrollbar-size)); /* always full-height */
 
   overflow-y: hidden; /* avoid vertical overflow */
@@ -46,9 +46,9 @@ body:not(.ehs-vertical) [data-ehs-section] {
 }
 
 /****************************
- * Easy Horizontal Scrolling: vertical scroll
+ * CuonNgang: vertical scroll
 ****************************/
-body:not(.ehs-vertical) [data-ehs-vertical-scroll] {
+body:not(.cn-vertical) [data-cn-vertical-scroll] {
   max-height: 100%; /* to allow overflow */
   overflow-y: auto;
   overflow-x: hidden;

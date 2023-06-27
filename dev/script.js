@@ -26,6 +26,6 @@ document.querySelector('[data-description]').innerHTML = packageInfo.description
 /**
  * Lib usage
  */
-document.querySelectorAll("[data-ehs]").forEach(wrapper => {
+document.querySelectorAll("[data-cn]").forEach(wrapper => {
     EHS.init({wrapper});
 });

@@ -1,4 +1,4 @@
-# Easy Horizontal Scrolling
+# CuonNgang
 
 ## Deployment
 
@@ -15,6 +15,6 @@ npm run prod
 
 ## License
 
-[MIT License](https://github.com/viivue/easy-horizontal-scrolling/blob/main/LICENSE)
+[MIT License](https://github.com/phucbm/cuon-ngang/blob/main/LICENSE)
 
 Copyright (c) 2023 ViiVue
