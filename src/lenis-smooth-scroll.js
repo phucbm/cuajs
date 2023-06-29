@@ -1,4 +1,6 @@
 // https://github.com/studio-freight/lenis
+import {fireEvent} from "./utils";
+
 export class LenisSmoothScroll{
     constructor(context){
         if(!Lenis) return;
@@ -38,9 +40,14 @@ export class LenisSmoothScroll{
             }
         })
 
-        // lenis.on('scroll', (e) => {
-        //     console.log(e)
-        // })
+        // on horizontally scroll
+        lenis.on('scroll', event => {
+            fireEvent(this.context, 'onScroll', {
+                event,
+                axis: 'horizontal',
+                progress: getScrollProgress(this.context, event)
+            });
+        });
 
         function raf(time){
             lenis.raf(time)
@@ -65,6 +72,15 @@ export class LenisSmoothScroll{
 
         // init
         const lenis = new Lenis({...this.lenisOptions});
+
+        // on vertically scroll
+        lenis.on('scroll', event => {
+            fireEvent(this.context, 'onScroll', {
+                event,
+                axis: 'vertical',
+                progress: getScrollProgress(this.context, event)
+            });
+        });
 
         function raf(time){
             lenis.raf(time)
@@ -96,4 +112,13 @@ export class LenisSmoothScroll{
         // save status
         this.isInit = false;
     }
+}
+
+// get scroll progress based on the current scroll axis
+function getScrollProgress(context, scrollEvent){
+    const wrapper = context.wrapper;
+    const maxScroll = context.isVerticalMode()
+        ? document.documentElement.scrollHeight - document.documentElement.clientHeight
+        : wrapper.scrollWidth - wrapper.clientWidth;
+    return scrollEvent.animatedScroll * 100 / maxScroll;
 }

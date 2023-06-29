@@ -19,3 +19,8 @@ const title = `${packageInfo.prettyName} v${packageInfo.version}`;
 document.title = `[DEV] ${title} - ${packageInfo.description}`;
 document.querySelector('[data-title]').innerHTML = title;
 document.querySelector('[data-description]').innerHTML = packageInfo.description;
+
+
+CuaJsData.on('onScroll', (data) => {
+    console.log(data.axis, data.progress)
+});

@@ -99,3 +99,31 @@ export function uniqueId(prefix = ''){
     return prefix + (+new Date()).toString(16) +
         (Math.random() * 100000000 | 0).toString(16);
 }
+
+
+/**
+ * Fire an event
+ * @param context
+ * @param eventName
+ * @param data
+ */
+export function fireEvent(context, eventName, data){
+    // only when event exists
+    if(!context.eventNames.includes(eventName)){
+        console.warn(`Event "${eventName}" is not recognized!`);
+        return;
+    }
+    const response = {instance: context, eventName, ...data};
+
+    // fire event from option
+    const eventFromOption = context.options[eventName];
+    if(typeof eventFromOption === 'function') eventFromOption(response);
+
+    // fire event from late-assign list
+    const eventFromList = context.eventList[eventName];
+    if(!!eventFromList?.length){
+        eventFromList.forEach(callback => {
+            if(typeof callback === 'function') callback(response);
+        });
+    }
+}

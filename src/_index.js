@@ -30,6 +30,10 @@ class CuaJsClass{
             return
         }
 
+        // save late-assign events
+        this.eventList = [];
+        this.eventNames = ['onScroll'];
+
         // add body class
         document.body.classList.add(CLASS.hasCuaJs)
 
@@ -71,12 +75,32 @@ class CuaJsClass{
 
 
         /** NAVIGATE **/
-        new ScrollTo(this)
+        new ScrollTo(this);
+    }
+
+    /**
+     * Assign late-events
+     */
+    on(eventName, callback){
+        if(this.eventNames.includes(eventName)){
+            // initial array
+            if(typeof this.eventList[eventName] === 'undefined') this.eventList[eventName] = [];
+
+            // save callback
+            this.eventList[eventName].push(callback);
+        }else{
+            console.warn(`Event "${eventName}" is not recognized!`);
+        }
     }
 }
 
+// only one instance of CuaJs on a page
+window.CuaJsData = undefined;
 window.CuaJs = {
-    init: options => new CuaJsClass(options),
+    init: options => {
+        window.CuaJsData = new CuaJsClass(options)
+    },
+    get: () => window.CuaJsData
 }
 
 // init with attribute

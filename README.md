@@ -87,6 +87,19 @@ CuaJs.init({
 });
 ```
 
+## Events
+
+Assign `onScroll` event:
+
+```js
+CuaJsData.on('onScroll', (data) => {
+    console.log(data.axis, data.progress);
+
+    // more info
+    console.log(data);
+});
+```
+
 ## Deployment
 
 ```shell
