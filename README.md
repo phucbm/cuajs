@@ -13,21 +13,34 @@ A holy *cua* library to create a horizontal scrolling page.
 
 _(Cua is a Vietnamese word for crab)_
 
-Demo at https://cuajs.netlify.app
-
 </div>
 
-## Getting started
+## Introduction
+
+See [Demo](https://cuajs.netlify.app).
+
+- Respect the native behavior of the browser's scrollbar, which means accessibility is ensured. 
+- Default scrolling events are remained. No DOM manipulation.
+- Keyboard, trackpad, mouse wheel, and touch screens are tested.
+- Able to switch to vertical scrolling on mobile devices.
+- Smooth scrolling experience with Lenis.
+
+## Installation
+
+CuaJs has no dependency. However, it is recommended to install [Lenis](https://github.com/studio-freight/lenis) 
+to enable smooth scrolling and gain a better experience.
 
 ### Download
 
 Using a package manager:
 
 ```shell
+npm i @studio-freight/lenis
 npm i cuajs
 ```
 
 ```js
+import Lenis from '@studio-freight/lenis'
 import "cuajs";
 ```
 
@@ -43,7 +56,7 @@ Using CDN:
 
 ### Init
 
-Setup HTML with these data attributes, the script will then look for this setup to init after library loaded.
+HTML setup:
 
 ```html
 <!-- [data-cua] must be defined -->
