@@ -38,7 +38,7 @@ Using CDN:
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
 
 <!-- CuaJs -->
-<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.1/dist/cua.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.2/dist/cua.min.js"></script>
 ```
 
 ### Init

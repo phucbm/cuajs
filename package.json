@@ -3,7 +3,7 @@
   "outputFilename": "cua",
   "prettyName": "CuaJs",
   "codeName": "CuaJs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Horizontal scrolling page",
   "homepage": "https://github.com/phucbm/cuajs",
   "repository": {
