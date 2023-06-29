@@ -41,13 +41,7 @@ export class LenisSmoothScroll{
         })
 
         // on horizontally scroll
-        lenis.on('scroll', event => {
-            fireEvent(this.context, 'onScroll', {
-                event,
-                axis: 'horizontal',
-                progress: getScrollProgress(this.context, event)
-            });
-        });
+        lenis.on('scroll', event => handleOnScroll(event, this.context, 'horizontal'));
 
         function raf(time){
             lenis.raf(time)
@@ -74,13 +68,7 @@ export class LenisSmoothScroll{
         const lenis = new Lenis({...this.lenisOptions});
 
         // on vertically scroll
-        lenis.on('scroll', event => {
-            fireEvent(this.context, 'onScroll', {
-                event,
-                axis: 'vertical',
-                progress: getScrollProgress(this.context, event)
-            });
-        });
+        lenis.on('scroll', event => handleOnScroll(event, this.context, 'vertical'));
 
         function raf(time){
             lenis.raf(time)
@@ -120,5 +108,42 @@ function getScrollProgress(context, scrollEvent){
     const maxScroll = context.isVerticalMode()
         ? document.documentElement.scrollHeight - document.documentElement.clientHeight
         : wrapper.scrollWidth - wrapper.clientWidth;
-    return scrollEvent.animatedScroll * 100 / maxScroll;
+
+    const total = context.isVerticalMode() ? document.documentElement.scrollHeight : context.wrapper.scrollWidth;
+    const progress = scrollEvent.animatedScroll / maxScroll;
+    const pixel = total * progress;
+
+    return {progress, pixel, total};
+}
+
+
+function getActiveSectionIndex(context, progress){
+    let index = 0, fromSize = 0;
+    for(const section of context.sections){
+        const size = context.isVerticalMode() ? section.offsetHeight : section.offsetWidth;
+        const toSize = fromSize + size;
+
+        // console.log(fromSize, toSize, size)
+        // if in range
+        if(progress.pixel >= fromSize && progress.pixel <= toSize){
+            return index;
+        }
+
+        index += 1;
+        fromSize += size;
+    }
+
+    return -1;
+}
+
+// handle on scroll both vertical and horizontal
+function handleOnScroll(event, context, axis){
+    const progress = getScrollProgress(context, event);
+
+    fireEvent(context, 'onScroll', {
+        event,
+        axis,
+        progress,
+        activeIndex: getActiveSectionIndex(context, progress)
+    });
 }

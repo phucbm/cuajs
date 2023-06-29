@@ -22,5 +22,5 @@ document.querySelector('[data-description]').innerHTML = packageInfo.description
 
 
 CuaJsData.on('onScroll', (data) => {
-    console.log(data.axis, data.progress)
+    console.log(data.activeIndex, data.progress)
 });
