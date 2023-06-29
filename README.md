@@ -4,7 +4,7 @@
 
 <p><img src="https://github.com/phucbm/cuajs/assets/14942380/321169e6-c33f-4e0c-9c71-67992b347ed4" width="150"></p>
 
-[![release](https://badgen.net/github/release/phucbm/cuajs/)](https://github.com/phucbm/cuajs/releases/latest)
+[![npm](https://badgen.net/npm/v/cuajs)](https://www.npmjs.com/package/cuajs?activeTab=versions)
 [![minified](https://badgen.net/badge/minified/5KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/phucbm/cuajs/badge?style=rounded)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/315eb0d1-7cd6-420c-abca-08ac09fde584/deploy-status)](https://app.netlify.com/sites/cuajs/deploys)
@@ -24,11 +24,11 @@ Demo at https://cuajs.netlify.app
 Using a package manager:
 
 ```shell
-npm i @phucbm/cuajs
+npm i cuajs
 ```
 
 ```js
-import "@phucbm/cuajs";
+import "cuajs";
 ```
 
 Using CDN:
