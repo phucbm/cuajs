@@ -10,11 +10,10 @@ export class ScrollTo{
         }
 
         this.init(this.context);
-        this.init(this.context);
     }
 
-    init(context){
-        const buttons = context.wrapper.querySelectorAll(`[${ATTR.to}]:not(.${CLASS.scrollToEnabled})`);
+    init(){
+        const buttons = document.querySelectorAll(`[${ATTR.to}]:not(.${CLASS.scrollToEnabled})`);
 
         const handleClick = event => {
             const target = event.target.getAttribute(ATTR.to);
