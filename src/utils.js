@@ -127,3 +127,16 @@ export function fireEvent(context, eventName, data){
         });
     }
 }
+
+export function isScrollable(element){
+    // if(element.scrollTopMax !== undefined)
+    //     return e.scrollTopMax > 0; //All Hail Firefox and it's superior technology!
+    //
+    // if(e == document.scrollingElement) //If what you're checking is BODY (or HTML depending on your css styles)
+    //     return e.scrollHeight > e.clientHeight; //This is a special case.
+
+    const isCSSScrollable = ["scroll", "auto"].indexOf(getComputedStyle(element).overflowY) >= 0;
+    const isContentScrollable = element.scrollHeight > element.clientHeight;
+
+    return isContentScrollable && isCSSScrollable;
+}

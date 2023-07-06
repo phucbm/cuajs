@@ -1,5 +1,6 @@
 // https://github.com/studio-freight/lenis
-import {fireEvent} from "./utils";
+import {fireEvent, isScrollable} from "./utils";
+import {CLASS} from "./constant";
 
 export class LenisSmoothScroll{
     constructor(context){
@@ -23,9 +24,17 @@ export class LenisSmoothScroll{
         // prevent double init
         if(this.isInit) return;
 
+        // todo: make this able to update on window resize
         // set prevent lenis for vertical scroll content
         this.context.verticalScroller?.forEach(item => {
-            item.setAttribute('data-lenis-prevent', '');
+            if(isScrollable(item)){
+                item.setAttribute('data-lenis-prevent', '');
+                item.classList.add(CLASS.isScrollable);
+                item.classList.remove(CLASS.isNotScrollable);
+            }else{
+                item.classList.remove(CLASS.isScrollable);
+                item.classList.add(CLASS.isNotScrollable);
+            }
         });
 
         // init
@@ -61,6 +70,7 @@ export class LenisSmoothScroll{
         // clear prevent lenis from vertical scroll content
         this.context.verticalScroller?.forEach(item => {
             item.removeAttribute('data-lenis-prevent');
+            item.classList.remove(CLASS.isScrollable);
         });
 
 
