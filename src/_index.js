@@ -5,6 +5,7 @@ import {initResizeWatcher, isVerticalMode} from './responsive'
 import {ScrollTo} from './scroll-to'
 import {ATTR, CLASS} from './constant'
 import {Styling} from './styling'
+import {getOptions} from "./helper";
 
 
 /**
@@ -12,23 +13,27 @@ import {Styling} from './styling'
  */
 class CuaJsClass{
     constructor(options){
-        this.options = {
+        this.config = {
             wrapper: undefined,
 
             // smooth scroll
             smoothScroll: true,
 
             // responsive
-            verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
+            verticalBreakpoint: 1024, // (int)number for CSS breakpoint
             smoothVerticalScroll: true, // smooth scroll for vertical mode
 
             ...options,
         }
-        this.wrapper = this.options.wrapper
+
+        this.wrapper = this.config.wrapper;
         if(!this.wrapper){
             console.warn(`Wrapper element is not defined`)
-            return
+            return;
         }
+
+        // validate options
+        this.options = getOptions(this.wrapper, this.config);
 
         // save late-assign events
         this.eventList = [];

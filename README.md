@@ -1,7 +1,6 @@
 <div align="center">
-    
-![banner](https://github.com/phucbm/cuajs/assets/14942380/c68bba3d-cbcc-4a2b-853d-1f898426d29d)
 
+![banner](https://github.com/phucbm/cuajs/assets/14942380/c68bba3d-cbcc-4a2b-853d-1f898426d29d)
 
 [![npm](https://badgen.net/npm/v/cuajs)](https://www.npmjs.com/package/cuajs?activeTab=versions)
 [![minified](https://badgen.net/badge/minified/5KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
@@ -19,7 +18,7 @@ _(Cua is a Vietnamese word for crab)_
 
 See [Demo](https://cuajs.netlify.app).
 
-- Respect the native behavior of the browser's scrollbar, which means accessibility is ensured. 
+- Respect the native behavior of the browser's scrollbar, which means accessibility is ensured.
 - Default scrolling events are remained. No DOM manipulation.
 - Keyboard, trackpad, mouse wheel, and touch screens are tested.
 - Able to switch to vertical scrolling on mobile devices.
@@ -27,7 +26,7 @@ See [Demo](https://cuajs.netlify.app).
 
 ## Installation
 
-CuaJs has no dependency. However, it is recommended to install [Lenis](https://github.com/studio-freight/lenis) 
+CuaJs has no dependency. However, it is recommended to install [Lenis](https://github.com/studio-freight/lenis)
 to enable smooth scrolling and gain a better experience.
 
 ### Download
@@ -98,6 +97,14 @@ HTML setup:
 CuaJs.init({
     wrapper: document.querySelector('.wrapper')
 });
+```
+
+Add options via HTML
+
+```html
+
+<div data-cua='{"verticalBreakpoint":"1024"}'>
+</div>
 ```
 
 ## Events

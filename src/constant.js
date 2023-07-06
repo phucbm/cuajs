@@ -1,4 +1,5 @@
 export const ATTR = {
+    init: 'data-cua',
     to: 'data-cua-to',
     section: 'data-cua-section',
     verticalScroller: 'data-cua-vertical-scroll',

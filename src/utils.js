@@ -128,6 +128,7 @@ export function fireEvent(context, eventName, data){
     }
 }
 
+// https://stackoverflow.com/a/57658945/6453822
 export function isScrollable(element){
     // if(element.scrollTopMax !== undefined)
     //     return e.scrollTopMax > 0; //All Hail Firefox and it's superior technology!
@@ -139,4 +140,19 @@ export function isScrollable(element){
     const isContentScrollable = element.scrollHeight > element.clientHeight;
 
     return isContentScrollable && isCSSScrollable;
+}
+
+
+/**
+ * Is JSON string
+ * https://stackoverflow.com/a/32278428/6453822
+ * @param string
+ * @returns {any|boolean}
+ */
+export function isJSON(string){
+    try{
+        return (JSON.parse(string) && !!string);
+    }catch(e){
+        return false;
+    }
 }
