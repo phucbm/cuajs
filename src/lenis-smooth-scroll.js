@@ -13,7 +13,7 @@ export class LenisSmoothScroll{
 
         this.lenisOptions = {
             smoothWheel: true,
-            smoothTouch: true,
+            //smoothTouch: true,
             lerp: 0.08,
         };
 
