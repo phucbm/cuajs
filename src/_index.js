@@ -5,7 +5,7 @@ import {initResizeWatcher, isVerticalMode} from './responsive'
 import {ScrollTo} from './scroll-to'
 import {ATTR, CLASS} from './constant'
 import {Styling} from './styling'
-import {getOptions} from "./helper";
+import {getOptionsFromAttribute} from "@phucbm/os-util";
 
 
 /**
@@ -33,7 +33,12 @@ class CuaJsClass{
         }
 
         // validate options
-        this.options = getOptions(this.wrapper, this.config);
+        this.options = getOptionsFromAttribute({
+            target: this.wrapper,
+            defaultOptions: this.config,
+            attributeName: ATTR.init,
+            numericValues: ['verticalBreakpoint']
+        });
 
         // save late-assign events
         this.eventList = [];
