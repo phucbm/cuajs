@@ -5,7 +5,7 @@ import {initResizeWatcher, isVerticalMode} from './responsive'
 import {ScrollTo} from './scroll-to'
 import {ATTR, CLASS} from './constant'
 import {Styling} from './styling'
-import {getOptionsFromAttribute} from "@phucbm/os-util";
+import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
 
 
 /**
@@ -40,9 +40,10 @@ class CuaJsClass{
             numericValues: ['verticalBreakpoint']
         });
 
-        // save late-assign events
-        this.eventList = [];
-        this.eventNames = ['onScroll'];
+        // init events manager
+        this.events = new EventsManager(this, {
+            names: ['onScroll']
+        });
 
         // add body class
         document.body.classList.add(CLASS.hasCuaJs)
@@ -88,19 +89,14 @@ class CuaJsClass{
         new ScrollTo(this);
     }
 
+    /******************************
+     * EVENTS
+     ******************************/
     /**
      * Assign late-events
      */
     on(eventName, callback){
-        if(this.eventNames.includes(eventName)){
-            // initial array
-            if(typeof this.eventList[eventName] === 'undefined') this.eventList[eventName] = [];
-
-            // save callback
-            this.eventList[eventName].push(callback);
-        }else{
-            console.warn(`Event "${eventName}" is not recognized!`);
-        }
+        this.events.add(eventName, callback);
     }
 }
 
