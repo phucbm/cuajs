@@ -1,4 +1,4 @@
-import {ATTR} from "./constant";
+import {ATTRS} from "./configs";
 
 // sync vertical scroll with horizontal scroll
 // ref: https://alvarotrigo.com/blog/scroll-horizontally-with-mouse-wheel-vanilla-java/
@@ -26,7 +26,7 @@ export function initScrollerSync(element){
     /**
      * For vertical scrolling inside
      */
-    const verticalScroller = element.querySelectorAll(`[${ATTR.verticalScroller}]`);
+    const verticalScroller = element.querySelectorAll(`[${ATTRS.verticalScroller}]`);
     verticalScroller.forEach(item => {
         // enter -> remove wrapper event
         item.addEventListener('mouseenter', addVerticalScroll);
