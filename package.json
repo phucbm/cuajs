@@ -60,6 +60,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@phucbm/os-util": "^0.0.4"
+    "@phucbm/os-util": "^0.0.2-2"
   }
 }
