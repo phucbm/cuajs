@@ -1,6 +1,6 @@
 // https://github.com/studio-freight/lenis
 import {isScrollable} from "./utils";
-import {CLASS} from "./constant";
+import {CLASSES} from "./configs";
 
 export class LenisSmoothScroll{
     constructor(context){
@@ -29,11 +29,11 @@ export class LenisSmoothScroll{
         this.context.verticalScroller?.forEach(item => {
             if(isScrollable(item)){
                 item.setAttribute('data-lenis-prevent', '');
-                item.classList.add(CLASS.isScrollable);
-                item.classList.remove(CLASS.isNotScrollable);
+                item.classList.add(CLASSES.isScrollable);
+                item.classList.remove(CLASSES.isNotScrollable);
             }else{
-                item.classList.remove(CLASS.isScrollable);
-                item.classList.add(CLASS.isNotScrollable);
+                item.classList.remove(CLASSES.isScrollable);
+                item.classList.add(CLASSES.isNotScrollable);
             }
         });
 
@@ -70,7 +70,7 @@ export class LenisSmoothScroll{
         // clear prevent lenis from vertical scroll content
         this.context.verticalScroller?.forEach(item => {
             item.removeAttribute('data-lenis-prevent');
-            item.classList.remove(CLASS.isScrollable);
+            item.classList.remove(CLASSES.isScrollable);
         });
 
 

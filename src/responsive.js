@@ -1,5 +1,5 @@
 import {debounce} from "./utils";
-import {CLASS} from "./constant";
+import {CLASSES} from "./configs";
 
 
 export function initResizeWatcher(context){
@@ -9,13 +9,13 @@ export function initResizeWatcher(context){
 
         if(isVerticalMode(context.options.verticalBreakpoint)){
             // add destroy class to wrapper
-            document.body.classList.add(CLASS.verticalEnabled);
+            document.body.classList.add(CLASSES.verticalEnabled);
 
             // destroy smooth scroll
             context.lenis?.destroy();
         }else{
             // remove class
-            document.body.classList.remove(CLASS.verticalEnabled);
+            document.body.classList.remove(CLASSES.verticalEnabled);
 
             // init smooth scroll
             context.lenis?.init();

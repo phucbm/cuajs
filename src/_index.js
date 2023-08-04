@@ -3,7 +3,7 @@ import {initScrollerSync} from './scroller-sync'
 import {LenisSmoothScroll} from './lenis-smooth-scroll'
 import {initResizeWatcher, isVerticalMode} from './responsive'
 import {ScrollTo} from './scroll-to'
-import {ATTR, CLASS} from './constant'
+import {ATTRS, CLASSES, DEFAULTS} from './configs'
 import {Styling} from './styling'
 import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
 
@@ -13,18 +13,7 @@ import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
  */
 class CuaJsClass{
     constructor(options){
-        this.config = {
-            wrapper: undefined,
-
-            // smooth scroll
-            smoothScroll: true,
-
-            // responsive
-            verticalBreakpoint: 1024, // (int)number for CSS breakpoint
-            smoothVerticalScroll: true, // smooth scroll for vertical mode
-
-            ...options,
-        }
+        this.config = {...DEFAULTS, ...options}
 
         this.wrapper = this.config.wrapper;
         if(!this.wrapper){
@@ -36,7 +25,7 @@ class CuaJsClass{
         this.options = getOptionsFromAttribute({
             target: this.wrapper,
             defaultOptions: this.config,
-            attributeName: ATTR.init,
+            attributeName: ATTRS.init,
             numericValues: ['verticalBreakpoint']
         });
 
@@ -46,13 +35,13 @@ class CuaJsClass{
         });
 
         // add body class
-        document.body.classList.add(CLASS.hasCuaJs)
+        document.body.classList.add(CLASSES.hasCuaJs)
 
         // vertical scroll content
-        this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTR.verticalScroller}]`)
+        this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTRS.verticalScroller}]`)
 
         // sections
-        this.sections = this.wrapper.querySelectorAll(`[${ATTR.section}]`)
+        this.sections = this.wrapper.querySelectorAll(`[${ATTRS.section}]`)
 
         /** RESPONSIVE **/
         initResizeWatcher(this)
@@ -64,7 +53,7 @@ class CuaJsClass{
         /** SCROLL **/
         this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined'
         if(this.isSmoothScroll){
-            this.wrapper.classList.add(CLASS.hasSmoothScroll)
+            this.wrapper.classList.add(CLASSES.hasSmoothScroll)
 
             this.lenis = new LenisSmoothScroll(this)
         }else{
