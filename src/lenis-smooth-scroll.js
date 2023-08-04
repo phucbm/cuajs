@@ -1,5 +1,5 @@
 // https://github.com/studio-freight/lenis
-import {fireEvent, isScrollable} from "./utils";
+import {isScrollable} from "./utils";
 import {CLASS} from "./constant";
 
 export class LenisSmoothScroll{
@@ -150,7 +150,7 @@ function getActiveSectionIndex(context, progress){
 function handleOnScroll(event, context, axis){
     const progress = getScrollProgress(context, event);
 
-    fireEvent(context, 'onScroll', {
+    context.events.fire('onScroll', {
         event,
         axis,
         progress,
