@@ -9,6 +9,7 @@ export const CLASSES = {
     isScrollable: 'cua-scrollable',
     isNotScrollable: 'cua-not-scrollable',
 };
+
 /**
  * Attributes
  */
@@ -18,6 +19,7 @@ export const ATTRS = {
     section: 'data-cua-section',
     verticalScroller: 'data-cua-vertical-scroll',
 };
+
 /**
  * Defaults
  */
