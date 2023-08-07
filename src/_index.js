@@ -66,11 +66,14 @@ class CuaJsClass{
 
         // drag vertical content
         this.verticalScroller.forEach(item => {
-            initDragToScroll({
-                element: item,
-                releaseCursor: 'ns-resize',
-                orientation: 'y',
-            })
+            // use ns-resize cursor when section have scroll bar
+            if(item.closest(`.${CLASSES.isScrollable}`)){
+                initDragToScroll({
+                    element: item,
+                    releaseCursor: 'ns-resize',
+                    orientation: 'y',
+                })
+            }
         })
 
 
