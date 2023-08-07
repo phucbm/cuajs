@@ -43,10 +43,10 @@ export class LenisSmoothScroll{
             const keyScrollDist = this.context.options.keyScrollDist;
             window.addEventListener("keydown", e => {
                 // enter previous keyboard
-                if(e.key === "ArrowLeft") wrapper.scrollLeft -= keyScrollDist;
+                if(e.code === "ArrowLeft") wrapper.scrollLeft -= keyScrollDist;
 
                 // enter next keyboard
-                if(e.key === "ArrowRight") wrapper.scrollLeft += keyScrollDist;
+                if(e.code === "ArrowRight") wrapper.scrollLeft += keyScrollDist;
 
                 //scroll
                 CuaJsData.lenis.instance.scrollTo(wrapper.scrollLeft, {lock: true});
