@@ -1,6 +1,6 @@
 // https://github.com/studio-freight/lenis
 import {isScrollable} from "./utils";
-import {CLASSES} from "./configs";
+import {CLASSES, ATTRS} from "./configs";
 
 export class LenisSmoothScroll{
     constructor(context){
@@ -18,6 +18,13 @@ export class LenisSmoothScroll{
         };
 
         this.init(this.element);
+
+        //Add has-scroll If found cua-scrollable element in section
+        context.sections.forEach(section => {
+            if(section.querySelector(`.${CLASSES.isScrollable}`)){
+                section.classList.add(`${CLASSES.hasScroll}`);
+            }
+        })
     }
 
     init(element = this.element){

@@ -8,6 +8,7 @@ export const CLASSES = {
     hasSmoothScroll: 'cua-smooth',
     isScrollable: 'cua-scrollable',
     isNotScrollable: 'cua-not-scrollable',
+    hasScroll: 'cua-has-scroll'
 };
 
 /**
