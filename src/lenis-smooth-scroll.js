@@ -37,6 +37,22 @@ export class LenisSmoothScroll{
             }
         });
 
+        // scroll when keypress executed
+        function handlePressKeyboard(wrapper, keyScrollDist){
+            window.addEventListener("keydown", e => {
+                // enter previous keyboard
+                if(e.key === "ArrowLeft") wrapper.scrollLeft -= keyScrollDist;
+
+                // enter next keyboard
+                if(e.key === "ArrowRight") wrapper.scrollLeft += keyScrollDist;
+
+                //scroll
+                CuaJsData.lenis.instance.scrollTo(wrapper.scrollLeft, {lock: true});
+            })
+        }
+
+        handlePressKeyboard(this.element, this.context.options.keyScrollDist);
+
         // init
         const lenis = new Lenis({
             ...this.lenisOptions,
@@ -79,6 +95,8 @@ export class LenisSmoothScroll{
 
         // on vertically scroll
         lenis.on('scroll', event => handleOnScroll(event, this.context, 'vertical'));
+
+
 
         function raf(time){
             lenis.raf(time)
@@ -157,3 +175,4 @@ function handleOnScroll(event, context, axis){
         activeIndex: getActiveSectionIndex(context, progress)
     });
 }
+

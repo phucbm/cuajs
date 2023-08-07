@@ -51,21 +51,6 @@ class CuaJsClass{
         this.style = new Styling(this)
 
         /** SCROLL **/
-        function handlePressKeyboard(wrapper, keyScrollDist){
-            window.addEventListener("keydown", e => {
-                // enter previous keyboard
-                if(e.key === "ArrowLeft") wrapper.scrollLeft -= keyScrollDist;
-
-                // enter next keyboard
-                if(e.key === "ArrowRight") wrapper.scrollLeft += keyScrollDist;
-
-                //scroll
-                CuaJsData.lenis.instance.scrollTo(wrapper.scrollLeft, {lock: true});
-            })
-        }
-
-        handlePressKeyboard(this.wrapper, this.options.keyScrollDist);
-
         this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined'
         if(this.isSmoothScroll){
             this.wrapper.classList.add(CLASSES.hasSmoothScroll)
