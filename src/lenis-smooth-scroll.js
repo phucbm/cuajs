@@ -19,9 +19,10 @@ export class LenisSmoothScroll{
 
         this.init(this.element);
 
+        //Add has-scroll If found cua-scrollable element in section
         document.querySelectorAll("[data-cua-section]").forEach(section => {
             if(section.querySelector(".cua-scrollable")){
-                section.classList.add("has-scroll")
+                section.classList.add("has-scroll");
             }
         })
     }
