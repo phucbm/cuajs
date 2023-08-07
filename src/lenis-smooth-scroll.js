@@ -97,7 +97,6 @@ export class LenisSmoothScroll{
         lenis.on('scroll', event => handleOnScroll(event, this.context, 'vertical'));
 
 
-
         function raf(time){
             lenis.raf(time)
             requestAnimationFrame(raf);
