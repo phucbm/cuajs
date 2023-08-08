@@ -27,22 +27,12 @@ export class LenisSmoothScroll{
         })
     }
 
+
     init(element = this.element){
         // prevent double init
         if(this.isInit) return;
 
-        // todo: make this able to update on window resize
-        // set prevent lenis for vertical scroll content
-        this.context.verticalScroller?.forEach(item => {
-            if(isScrollable(item)){
-                item.setAttribute('data-lenis-prevent', '');
-                item.classList.add(CLASSES.isScrollable);
-                item.classList.remove(CLASSES.isNotScrollable);
-            }else{
-                item.classList.remove(CLASSES.isScrollable);
-                item.classList.add(CLASSES.isNotScrollable);
-            }
-        });
+        this.updateVerticalScroller();
 
         // scroll when keypress executed
         if(this.context.options.keyScroll){
@@ -56,7 +46,7 @@ export class LenisSmoothScroll{
                 if(event.code === "ArrowRight" || event.code === "ArrowDown") scrollOffset += keyScrollDistance;
 
                 // smooth scroll
-                CuaJsData.lenis.instance.scrollTo(scrollOffset, {lock: false});
+                CuaJsInstance.lenis.instance.scrollTo(scrollOffset, {lock: false});
             })
         }
 
@@ -90,12 +80,7 @@ export class LenisSmoothScroll{
     }
 
     initVerticalScroll(){
-        // clear prevent lenis from vertical scroll content
-        this.context.verticalScroller?.forEach(item => {
-            item.removeAttribute('data-lenis-prevent');
-            item.classList.remove(CLASSES.isScrollable);
-        });
-
+        this.updateVerticalScroller(true);
 
         // init
         const lenis = new Lenis({...this.lenisOptions});
@@ -132,6 +117,40 @@ export class LenisSmoothScroll{
 
         // save status
         this.isInit = false;
+    }
+
+
+    updateVerticalScroller(forceVertical = false){
+        // todo: make this able to update on window resize
+        this.context.verticalScroller?.forEach(item => {
+            const isItemScrollable = isScrollable(item);
+
+            if(forceVertical){
+                // clear prevent lenis from vertical scroll content
+                item.removeAttribute('data-lenis-prevent');
+
+                // all vertical scroller will be destroyed as the whole page is vertical now
+                item.classList.remove(CLASSES.isScrollable);
+            }else{
+                if(isItemScrollable){
+                    item.setAttribute('data-lenis-prevent', '');
+                    item.classList.add(CLASSES.isScrollable);
+                    item.classList.remove(CLASSES.isNotScrollable);
+                }else{
+                    item.classList.remove(CLASSES.isScrollable);
+                    item.classList.add(CLASSES.isNotScrollable);
+                }
+            }
+
+            // callback
+            if(typeof this.context.options.onScrollableContent === 'function'){
+                this.context.options.onScrollableContent({
+                    item,
+                    isScrollable: isItemScrollable,
+                    forceVertical
+                });
+            }
+        });
     }
 }
 

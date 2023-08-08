@@ -93,10 +93,11 @@ HTML setup:
 | `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                   |
 | `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
 | `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
+| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                             |
 
 ```js
 // init with options
-CuaJs.init({
+const instance = CuaJs.init({
     wrapper: document.querySelector('.wrapper')
 });
 ```
@@ -114,7 +115,7 @@ Add options via HTML
 Assign `onScroll` event:
 
 ```js
-CuaJsData.on('onScroll', (data) => {
+CuaJsInstance.on('onScroll', (data) => {
     console.log(data.axis, data.progress);
 
     // more info

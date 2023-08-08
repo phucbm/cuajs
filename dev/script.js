@@ -19,6 +19,14 @@ const title = `${packageInfo.prettyName} v${packageInfo.version}`;
 document.title = `${title} - ${packageInfo.description}`;
 document.querySelector('[data-title]').innerHTML = title;
 
-// CuaJsData.on('onScroll', (data) => {
+
+const instance = CuaJs.init({
+    wrapper: document.querySelector('[data-cua-custom]'),
+    onScrollableContent: (data) => {
+        console.log(data)
+    }
+});
+
+// CuaJsInstance.on('onScroll', (data) => {
 //     console.log(data.activeIndex, data.progress)
 // });

@@ -92,12 +92,12 @@ class CuaJsClass{
 }
 
 // only one instance of CuaJs on a page
-window.CuaJsData = undefined;
+window.CuaJsInstance = undefined;
 window.CuaJs = {
     init: options => {
-        window.CuaJsData = new CuaJsClass(options)
+        window.CuaJsInstance = new CuaJsClass(options);
+        return window.CuaJsInstance;
     },
-    get: () => window.CuaJsData
 }
 
 // init with attribute
