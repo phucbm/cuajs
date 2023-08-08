@@ -1,6 +1,5 @@
 // https://github.com/studio-freight/lenis
-import {isScrollable} from "./utils";
-import {CLASSES, ATTRS} from "./configs";
+import {fireEvent} from "./utils";
 
 export class LenisSmoothScroll{
     constructor(context){
@@ -13,42 +12,21 @@ export class LenisSmoothScroll{
 
         this.lenisOptions = {
             smoothWheel: true,
-            //smoothTouch: true,
+            smoothTouch: true,
             lerp: 0.08,
         };
 
         this.init(this.element);
-
-        //Add has-scroll If found cua-scrollable element in section
-        context.sections.forEach(section => {
-            if(section.querySelector(`.${CLASSES.isScrollable}`)){
-                section.classList.add(`${CLASSES.hasScroll}`);
-            }
-        })
     }
-
 
     init(element = this.element){
         // prevent double init
         if(this.isInit) return;
 
-        this.updateVerticalScroller();
-
-        // scroll when keypress executed
-        if(this.context.options.keyScroll){
-            const keyScrollDistance = this.context.options.keyScrollDistance;
-            let scrollOffset = element.scrollLeft;
-            window.addEventListener("keydown", event => {
-                // left/up arrow key => go backward
-                if(event.code === "ArrowLeft" || event.code === "ArrowUp") scrollOffset -= keyScrollDistance;
-
-                // right/down arrow key => go forward
-                if(event.code === "ArrowRight" || event.code === "ArrowDown") scrollOffset += keyScrollDistance;
-
-                // smooth scroll
-                CuaInstance.lenis.instance.scrollTo(scrollOffset, {lock: false});
-            })
-        }
+        // set prevent lenis for vertical scroll content
+        this.context.verticalScroller?.forEach(item => {
+            item.setAttribute('data-lenis-prevent', '');
+        });
 
         // init
         const lenis = new Lenis({
@@ -80,7 +58,11 @@ export class LenisSmoothScroll{
     }
 
     initVerticalScroll(){
-        this.updateVerticalScroller(true);
+        // clear prevent lenis from vertical scroll content
+        this.context.verticalScroller?.forEach(item => {
+            item.removeAttribute('data-lenis-prevent');
+        });
+
 
         // init
         const lenis = new Lenis({...this.lenisOptions});
@@ -117,40 +99,6 @@ export class LenisSmoothScroll{
 
         // save status
         this.isInit = false;
-    }
-
-
-    updateVerticalScroller(forceVertical = false){
-        // todo: make this able to update on window resize
-        this.context.verticalScroller?.forEach(item => {
-            const isItemScrollable = isScrollable(item);
-
-            if(forceVertical){
-                // clear prevent lenis from vertical scroll content
-                item.removeAttribute('data-lenis-prevent');
-
-                // all vertical scroller will be destroyed as the whole page is vertical now
-                item.classList.remove(CLASSES.isScrollable);
-            }else{
-                if(isItemScrollable){
-                    item.setAttribute('data-lenis-prevent', '');
-                    item.classList.add(CLASSES.isScrollable);
-                    item.classList.remove(CLASSES.isNotScrollable);
-                }else{
-                    item.classList.remove(CLASSES.isScrollable);
-                    item.classList.add(CLASSES.isNotScrollable);
-                }
-            }
-
-            // callback
-            if(typeof this.context.options.onScrollableContent === 'function'){
-                this.context.options.onScrollableContent({
-                    item,
-                    isScrollable: isItemScrollable,
-                    forceVertical
-                });
-            }
-        });
     }
 }
 
@@ -192,7 +140,7 @@ function getActiveSectionIndex(context, progress){
 function handleOnScroll(event, context, axis){
     const progress = getScrollProgress(context, event);
 
-    context.events.fire('onScroll', {
+    fireEvent(context, 'onScroll', {
         event,
         axis,
         progress,

@@ -18,15 +18,9 @@ const packageInfo = require('../package.json');
 const title = `${packageInfo.prettyName} v${packageInfo.version}`;
 document.title = `${title} - ${packageInfo.description}`;
 document.querySelector('[data-title]').innerHTML = title;
+document.querySelector('[data-description]').innerHTML = packageInfo.description;
 
 
-const instance = CuaJs.init({
-    wrapper: document.querySelector('[data-cua-custom]'),
-    onScrollableContent: (data) => {
-        console.log(data)
-    }
+CuaJsData.on('onScroll', (data) => {
+    console.log(data.activeIndex, data.progress)
 });
-
-// CuaInstance.on('onScroll', (data) => {
-//     console.log(data.activeIndex, data.progress)
-// });
