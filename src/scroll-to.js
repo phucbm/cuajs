@@ -1,4 +1,4 @@
-import {ATTR, CLASS} from "./constant";
+import {ATTRS, CLASSES} from "./configs";
 
 export class ScrollTo{
     constructor(context){
@@ -13,15 +13,15 @@ export class ScrollTo{
     }
 
     init(){
-        const buttons = document.querySelectorAll(`[${ATTR.to}]:not(.${CLASS.scrollToEnabled})`);
+        const buttons = document.querySelectorAll(`[${ATTRS.to}]:not(.${CLASSES.scrollToEnabled})`);
 
         const handleClick = event => {
-            const target = event.target.getAttribute(ATTR.to);
+            const target = event.target.getAttribute(ATTRS.to);
             this.scrollTo(target);
         }
 
         buttons.forEach(btn => {
-            btn.classList.add(CLASS.scrollToEnabled);
+            btn.classList.add(CLASSES.scrollToEnabled);
 
             btn.addEventListener('click', handleClick);
         });

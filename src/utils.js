@@ -100,30 +100,31 @@ export function uniqueId(prefix = ''){
         (Math.random() * 100000000 | 0).toString(16);
 }
 
+// https://stackoverflow.com/a/57658945/6453822
+export function isScrollable(element){
+    // if(element.scrollTopMax !== undefined)
+    //     return e.scrollTopMax > 0; //All Hail Firefox and it's superior technology!
+    //
+    // if(e == document.scrollingElement) //If what you're checking is BODY (or HTML depending on your css styles)
+    //     return e.scrollHeight > e.clientHeight; //This is a special case.
+
+    const isCSSScrollable = ["scroll", "auto"].indexOf(getComputedStyle(element).overflowY) >= 0;
+    const isContentScrollable = element.scrollHeight > element.clientHeight;
+
+    return isContentScrollable && isCSSScrollable;
+}
+
 
 /**
- * Fire an event
- * @param context
- * @param eventName
- * @param data
+ * Is JSON string
+ * https://stackoverflow.com/a/32278428/6453822
+ * @param string
+ * @returns {any|boolean}
  */
-export function fireEvent(context, eventName, data){
-    // only when event exists
-    if(!context.eventNames.includes(eventName)){
-        console.warn(`Event "${eventName}" is not recognized!`);
-        return;
-    }
-    const response = {instance: context, eventName, ...data};
-
-    // fire event from option
-    const eventFromOption = context.options[eventName];
-    if(typeof eventFromOption === 'function') eventFromOption(response);
-
-    // fire event from late-assign list
-    const eventFromList = context.eventList[eventName];
-    if(!!eventFromList?.length){
-        eventFromList.forEach(callback => {
-            if(typeof callback === 'function') callback(response);
-        });
+export function isJSON(string){
+    try{
+        return (JSON.parse(string) && !!string);
+    }catch(e){
+        return false;
     }
 }

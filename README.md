@@ -1,10 +1,9 @@
 <div align="center">
-    
+
 ![banner](https://github.com/phucbm/cuajs/assets/14942380/c68bba3d-cbcc-4a2b-853d-1f898426d29d)
 
-
 [![npm](https://badgen.net/npm/v/cuajs)](https://www.npmjs.com/package/cuajs?activeTab=versions)
-[![minified](https://badgen.net/badge/minified/5KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
+[![minified](https://badgen.net/badge/minified/7KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/phucbm/cuajs/badge?style=rounded)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/315eb0d1-7cd6-420c-abca-08ac09fde584/deploy-status)](https://app.netlify.com/sites/cuajs/deploys)
 
@@ -19,7 +18,7 @@ _(Cua is a Vietnamese word for crab)_
 
 See [Demo](https://cuajs.netlify.app).
 
-- Respect the native behavior of the browser's scrollbar, which means accessibility is ensured. 
+- Respect the native behavior of the browser's scrollbar, which means accessibility is ensured.
 - Default scrolling events are remained. No DOM manipulation.
 - Keyboard, trackpad, mouse wheel, and touch screens are tested.
 - Able to switch to vertical scrolling on mobile devices.
@@ -27,7 +26,7 @@ See [Demo](https://cuajs.netlify.app).
 
 ## Installation
 
-CuaJs has no dependency. However, it is recommended to install [Lenis](https://github.com/studio-freight/lenis) 
+CuaJs has no dependency. However, it is recommended to install [Lenis](https://github.com/studio-freight/lenis)
 to enable smooth scrolling and gain a better experience.
 
 ### Download
@@ -51,7 +50,7 @@ Using CDN:
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
 
 <!-- CuaJs -->
-<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.2/dist/cua.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.3/dist/cua.min.js"></script>
 ```
 
 ### Init
@@ -86,18 +85,29 @@ HTML setup:
 
 ## Options
 
-| Attribute | Type | Default | Description |
-|------------------------|--|-------------------|-----------------------------------------------|
-| `wrapper`              | DOM element | `undefined` | Required. Wrapper element. |
-| `smoothScroll`         | boolean | `true`           | Enable smooth scroll |
-| `verticalBreakpoint`   | number | `1024`          | Switch to vertical layout mode when `window.innerWidth <= 1024` |
-| `smoothVerticalScroll` | boolean | `true`            | Enable smooth scroll for vertical layout mode |
+| Attribute              | Type        | Default     | Description                                                     |
+|------------------------|-------------|-------------|-----------------------------------------------------------------|
+| `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                      |
+| `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                            |
+| `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024` |
+| `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                   |
+| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
+| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
+| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                             |
 
 ```js
 // init with options
-CuaJs.init({
+const instance = CuaJs.init({
     wrapper: document.querySelector('.wrapper')
 });
+```
+
+Add options via HTML
+
+```html
+
+<div data-cua='{"verticalBreakpoint":"1024"}'>
+</div>
 ```
 
 ## Events
@@ -105,7 +115,7 @@ CuaJs.init({
 Assign `onScroll` event:
 
 ```js
-CuaJsData.on('onScroll', (data) => {
+CuaInstance.on('onScroll', (data) => {
     console.log(data.axis, data.progress);
 
     // more info
