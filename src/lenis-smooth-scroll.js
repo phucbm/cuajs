@@ -44,6 +44,22 @@ export class LenisSmoothScroll{
             }
         });
 
+        // scroll when keypress executed
+        if(this.context.options.keyScroll){
+            const keyScrollDistance = this.context.options.keyScrollDistance;
+            let scrollOffset = element.scrollLeft;
+            window.addEventListener("keydown", event => {
+                // left/up arrow key => go backward
+                if(event.code === "ArrowLeft" || event.code === "ArrowUp") scrollOffset -= keyScrollDistance;
+
+                // right/down arrow key => go forward
+                if(event.code === "ArrowRight" || event.code === "ArrowDown") scrollOffset += keyScrollDistance;
+
+                // smooth scroll
+                CuaJsData.lenis.instance.scrollTo(scrollOffset, {lock: false});
+            })
+        }
+
         // init
         const lenis = new Lenis({
             ...this.lenisOptions,
