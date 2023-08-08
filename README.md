@@ -85,14 +85,14 @@ HTML setup:
 
 ## Options
 
-| Attribute | Type        | Default     | Description                                                     |
+| Attribute              | Type        | Default     | Description                                                     |
 |------------------------|-------------|-------------|-----------------------------------------------------------------|
 | `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                      |
 | `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                            |
 | `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024` |
 | `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                   |
-| `keyScrollDistance` | number      | `200`       | Distance to scroll on each key press (px)                       |
-| `keyScroll` | boolean     | `true`      | Enable navigate by a arrow key                                  |
+| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
+| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
 
 ```js
 // init with options
