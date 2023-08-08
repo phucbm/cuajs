@@ -6,6 +6,7 @@ import {ScrollTo} from './scroll-to'
 import {ATTRS, CLASSES, DEFAULTS} from './configs'
 import {Styling} from './styling'
 import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
+import {isScrollable} from "./utils";
 
 
 /**
@@ -68,7 +69,8 @@ class CuaJsClass{
         this.verticalScroller.forEach(item => {
             initDragToScroll({
                 element: item,
-                releaseCursor: 'ns-resize',
+                // set cursor
+                releaseCursor: isScrollable(item) ? 'ns-resize' : 'default',
                 orientation: 'y',
             })
         })
