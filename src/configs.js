@@ -29,7 +29,7 @@ export const DEFAULTS = {
     // smooth scroll
     smoothScroll: true,
     keyScrollDistance: 200, // px
-    keyScroll: true,
+    keyScroll: true, // enable navigate by a scroll key
 
     // responsive
     verticalBreakpoint: 1024, // (int)number for CSS breakpoint
