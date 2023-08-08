@@ -28,7 +28,7 @@ export const DEFAULTS = {
 
     // smooth scroll
     smoothScroll: true,
-    keyScrollDist: 200, // px
+    keyScrollDistance: 200, // px
     keyScroll: true,
 
     // responsive
