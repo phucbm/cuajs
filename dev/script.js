@@ -27,6 +27,6 @@ const instance = CuaJs.init({
     }
 });
 
-// CuaInstance.on('onScroll', (data) => {
-//     console.log(data.activeIndex, data.progress)
-// });
+CuaInstance.on('scroll', (data) => {
+    console.log(data.instance.wrapper.offsetLeft)
+});

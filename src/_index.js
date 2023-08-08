@@ -32,7 +32,7 @@ class CuaJsClass{
 
         // init events manager
         this.events = new EventsManager(this, {
-            names: ['onScroll']
+            names: ['onScroll', 'onInit']
         });
 
         // add body class
@@ -78,6 +78,9 @@ class CuaJsClass{
 
         /** NAVIGATE **/
         new ScrollTo(this);
+
+        // event: init
+        this.events.fire('onInit');
     }
 
     /******************************
