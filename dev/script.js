@@ -27,6 +27,6 @@ const instance = CuaJs.init({
     }
 });
 
-// CuaJsInstance.on('onScroll', (data) => {
+// CuaInstance.on('onScroll', (data) => {
 //     console.log(data.activeIndex, data.progress)
 // });

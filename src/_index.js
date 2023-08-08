@@ -14,9 +14,9 @@ import {isScrollable} from "./utils";
  */
 class CuaJsClass{
     constructor(options){
-        this.config = {...DEFAULTS, ...options}
+        const config = {...DEFAULTS, ...options};
 
-        this.wrapper = this.config.wrapper;
+        this.wrapper = config.wrapper;
         if(!this.wrapper){
             console.warn(`Wrapper element is not defined`)
             return;
@@ -25,7 +25,7 @@ class CuaJsClass{
         // validate options
         this.options = getOptionsFromAttribute({
             target: this.wrapper,
-            defaultOptions: this.config,
+            defaultOptions: config,
             attributeName: ATTRS.init,
             numericValues: ['verticalBreakpoint']
         });
@@ -92,11 +92,11 @@ class CuaJsClass{
 }
 
 // only one instance of CuaJs on a page
-window.CuaJsInstance = undefined;
+window.CuaInstance = undefined;
 window.CuaJs = {
     init: options => {
-        window.CuaJsInstance = new CuaJsClass(options);
-        return window.CuaJsInstance;
+        window.CuaInstance = new CuaJsClass(options);
+        return window.CuaInstance;
     },
 }
 

@@ -46,7 +46,7 @@ export class LenisSmoothScroll{
                 if(event.code === "ArrowRight" || event.code === "ArrowDown") scrollOffset += keyScrollDistance;
 
                 // smooth scroll
-                CuaJsInstance.lenis.instance.scrollTo(scrollOffset, {lock: false});
+                CuaInstance.lenis.instance.scrollTo(scrollOffset, {lock: false});
             })
         }
 

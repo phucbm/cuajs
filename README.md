@@ -115,7 +115,7 @@ Add options via HTML
 Assign `onScroll` event:
 
 ```js
-CuaJsInstance.on('onScroll', (data) => {
+CuaInstance.on('onScroll', (data) => {
     console.log(data.axis, data.progress);
 
     // more info
