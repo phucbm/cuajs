@@ -1,6 +1,6 @@
 // https://github.com/studio-freight/lenis
 import {isScrollable} from "./utils";
-import {CLASSES, ATTRS} from "./configs";
+import {CLASSES} from "./configs";
 
 export class LenisSmoothScroll{
     constructor(context){
@@ -33,22 +33,7 @@ export class LenisSmoothScroll{
         if(this.isInit) return;
 
         this.updateVerticalScroller();
-
-        // scroll when keypress executed
-        if(this.context.options.keyScroll){
-            const keyScrollDistance = this.context.options.keyScrollDistance;
-            let scrollOffset = element.scrollLeft;
-            window.addEventListener("keydown", event => {
-                // left/up arrow key => go backward
-                if(event.code === "ArrowLeft" || event.code === "ArrowUp") scrollOffset -= keyScrollDistance;
-
-                // right/down arrow key => go forward
-                if(event.code === "ArrowRight" || event.code === "ArrowDown") scrollOffset += keyScrollDistance;
-
-                // smooth scroll
-                CuaInstance.lenis.instance.scrollTo(scrollOffset, {lock: false});
-            })
-        }
+        this.initKeyScroll();
 
         // init
         const lenis = new Lenis({
@@ -77,6 +62,32 @@ export class LenisSmoothScroll{
 
         // save status
         this.isInit = true;
+    }
+
+    /**
+     * Scroll with arrow keys
+     */
+    initKeyScroll(){
+        if(!this.context.options.keyScroll) return;
+
+        // run after init to get Lenis instance
+        this.context.on('init', () => {
+            const keyScrollDistance = this.context.options.keyScrollDistance;
+
+            // on key press
+            window.addEventListener("keydown", event => {
+                let scrollOffset = this.instance.scroll;
+
+                // left/up arrow key => go backward
+                if(event.code === "ArrowLeft" || event.code === "ArrowUp") scrollOffset -= keyScrollDistance;
+
+                // right/down arrow key => go forward
+                if(event.code === "ArrowRight" || event.code === "ArrowDown") scrollOffset += keyScrollDistance;
+
+                // smooth scroll
+                this.instance.scrollTo(scrollOffset, {lock: false});
+            })
+        });
     }
 
     initVerticalScroll(){
