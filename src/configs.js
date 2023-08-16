@@ -35,6 +35,9 @@ export const DEFAULTS = {
     keyScrollDistance: 200, // distance to scroll on each key press (px)
     keyScroll: true, // enable to navigate by a arrow key
 
+    // active section
+    spacingToActive: "30%", // px or %(of width window)
+
     // responsive
     verticalBreakpoint: 1024, // (int)number for CSS breakpoint
     smoothVerticalScroll: true, // smooth scroll for vertical mode

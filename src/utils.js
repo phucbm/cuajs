@@ -128,3 +128,14 @@ export function isJSON(string){
         return false;
     }
 }
+
+/**
+ * Get spacing from string
+ * @param string
+ * @returns number
+ * example: "200px" => 200/1920 = 0.104 (if window width = 1920); "40%" => .4
+ */
+export function getSpacing(string){
+    const number = parseInt(string);
+    return string[string.length - 1] === '%' ?  number/100 : number/window.innerWidth;
+}

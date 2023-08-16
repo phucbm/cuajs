@@ -1,5 +1,5 @@
 // https://github.com/studio-freight/lenis
-import {isScrollable} from "./utils";
+import { getSpacing, isScrollable } from './utils'
 import {CLASSES} from "./configs";
 
 export class LenisSmoothScroll{
@@ -10,6 +10,8 @@ export class LenisSmoothScroll{
         this.element = context.wrapper;
         this.isInit = false;
         this.instance = undefined; // assign in init()
+        this.currentScroll = 0;
+        this.scrollLeft = false;
 
         this.lenisOptions = {
             smoothWheel: true,
@@ -17,7 +19,9 @@ export class LenisSmoothScroll{
             lerp: 0.08,
         };
 
+
         this.init(this.element);
+        console.log(this);
 
         //Add has-scroll If found cua-scrollable element in section
         context.sections.forEach(section => {
@@ -34,6 +38,7 @@ export class LenisSmoothScroll{
 
         this.updateVerticalScroller();
         this.initKeyScroll();
+
 
         // init
         const lenis = new Lenis({
@@ -130,7 +135,6 @@ export class LenisSmoothScroll{
         this.isInit = false;
     }
 
-
     updateVerticalScroller(forceVertical = false){
         // todo: make this able to update on window resize
         this.context.verticalScroller?.forEach(item => {
@@ -167,41 +171,85 @@ export class LenisSmoothScroll{
 
 // get scroll progress based on the current scroll axis
 function getScrollProgress(context, scrollEvent){
-    const wrapper = context.wrapper;
+    const wrapper = context.wrapper
     const maxScroll = context.isVerticalMode()
-        ? document.documentElement.scrollHeight - document.documentElement.clientHeight
-        : wrapper.scrollWidth - wrapper.clientWidth;
+      ? document.documentElement.scrollHeight - document.documentElement.clientHeight
+      : wrapper.scrollWidth - wrapper.clientWidth
 
-    const total = context.isVerticalMode() ? document.documentElement.scrollHeight : context.wrapper.scrollWidth;
-    const progress = scrollEvent.animatedScroll / maxScroll;
-    const pixel = total * progress;
+    const total = context.isVerticalMode() ? document.documentElement.scrollHeight : context.wrapper.scrollWidth
+    const progress = scrollEvent.animatedScroll / maxScroll
+    const pixel = maxScroll * progress
 
-    return {progress, pixel, total};
+    return { progress, pixel, total }
 }
 
+// get range scroll in item index
+function getRangeActive(context, index){
+    let totalSpacing = { x: 0, y: 0 }
+    const spacing = getSpacing(context.options.spacingToActive)
 
-function getActiveSectionIndex(context, progress){
-    let index = 0, fromSize = 0;
-    for(const section of context.sections){
-        const size = context.isVerticalMode() ? section.offsetHeight : section.offsetWidth;
-        const toSize = fromSize + size;
-
-        // console.log(fromSize, toSize, size)
-        // if in range
-        if(progress.pixel >= fromSize && progress.pixel <= toSize){
-            return index;
-        }
-
-        index += 1;
-        fromSize += size;
+    for(let i = 0; i <= index; i++){
+        totalSpacing.x += i === 0 ? 0 : context.sections[i].clientWidth
+        totalSpacing.y += context.sections[i].clientHeight
     }
 
-    return -1;
+    return {
+        from: {
+            horizontal: index === 0 ? 0 : totalSpacing.x - context.sections[index].clientWidth + spacing,
+            vertical: totalSpacing.y - context.sections[index].clientHeight,
+        },
+        to: {
+            horizontal: index === 0 ? spacing : (index === context.sections.length - 1 ? totalSpacing.x : totalSpacing.x + spacing),
+            vertical: totalSpacing.y,
+        },
+    }
+}
+function getActiveSectionIndex(context, progress){
+    let result = 0,
+      currentActiveIndex = 0;
+    const spacingActive = getSpacing(context.options.spacingToActive);
+    const threshold = context.isScrollLeft ? spacingActive : 1 - spacingActive;
+    const precision = 0.01;
+
+    let array = [];
+
+    // active section
+    const active = index => {
+        for(const section of context.sections) section.classList.remove('active');
+        context.sections[index].classList.add('active')
+    }
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (Math.abs(entry.intersectionRatio - spacingActive) <= precision
+              || Math.abs(entry.intersectionRatio + spacingActive - 1) <= precision
+            ) {
+                array.push(index);
+            }
+        });
+    }, {
+        root: null,
+        threshold: 1,
+    });
+
+    context.sections.forEach((section, index) => {
+        observer.observe(section);
+        if (section.classList.contains('active')) result = index;
+    });
+
+    // find max index in array = active section
+    console.log(array);
+
+    return result;
 }
 
 // handle on scroll both vertical and horizontal
 function handleOnScroll(event, context, axis){
     const progress = getScrollProgress(context, event);
+
+    // check scroll left/right
+    context.isScrollLeft = context.currentScroll >= progress.pixel;
+    context.currentScroll = progress.pixel;
 
     context.events.fire('onScroll', {
         event,
