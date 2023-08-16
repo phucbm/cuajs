@@ -7,6 +7,7 @@ import {ATTRS, CLASSES, DEFAULTS} from './configs'
 import {Styling} from './styling'
 import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
 import {isScrollable} from "./utils";
+import {initAutoScroll} from "./auto-scroll";
 
 
 /**
@@ -42,7 +43,8 @@ class CuaJsClass{
         this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTRS.verticalScroller}]`)
 
         // sections
-        this.sections = this.wrapper.querySelectorAll(`[${ATTRS.section}]`)
+        this.sections = this.wrapper.querySelectorAll(`[${ATTRS.section}]`);
+        this.activeSectionIndex = undefined;
 
         /** RESPONSIVE **/
         initResizeWatcher(this)
@@ -61,6 +63,9 @@ class CuaJsClass{
             initScrollerSync(this.wrapper)
         }
 
+        // auto scroll
+        initAutoScroll(this);
+
         /** DRAG **/
         // drag wrapper
         initDragToScroll({element: this.wrapper})
@@ -77,7 +82,7 @@ class CuaJsClass{
 
 
         /** NAVIGATE **/
-        new ScrollTo(this);
+        this.navigate = new ScrollTo(this);
 
         // event: init
         this.events.fire('onInit');

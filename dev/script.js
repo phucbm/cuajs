@@ -23,10 +23,7 @@ document.querySelector('[data-title]').innerHTML = title;
 const instance = CuaJs.init({
     wrapper: document.querySelector('[data-cua-custom]'),
     onScrollableContent: (data) => {
-        console.log(data)
-    }
-});
-
-CuaInstance.on('scroll', (data) => {
-    console.log(data.instance.wrapper.offsetLeft)
+        //console.log(data)
+    },
+    autoScroll: true
 });
