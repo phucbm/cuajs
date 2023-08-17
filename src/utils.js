@@ -129,7 +129,7 @@ export function isJSON(string){
     }
 }
 
-
+// todo: move to utils package
 /**
  * Get element offsets
  * https://github.com/jquery/jquery/blob/d0ce00cdfa680f1f0c38460bc51ea14079ae8b07/src/offset.js#L87

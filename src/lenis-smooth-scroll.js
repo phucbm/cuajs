@@ -1,5 +1,5 @@
 // https://github.com/studio-freight/lenis
-import {isScrollable} from "./utils";
+import {getTheMostVisible, isScrollable} from "./utils";
 import {CLASSES} from "./configs";
 
 export class LenisSmoothScroll{
@@ -180,33 +180,30 @@ function getScrollProgress(context, scrollEvent){
 }
 
 
-function getActiveSectionIndex(context, progress){
-    let index = 0, fromSize = 0;
-    for(const section of context.sections){
-        const size = context.isVerticalMode() ? section.offsetHeight : section.offsetWidth;
-        const toSize = fromSize + size;
-
-        // console.log(fromSize, toSize, size)
-        // if in range
-        if(progress.pixel >= fromSize && progress.pixel <= toSize){
-            return index;
-        }
-
-        index += 1;
-        fromSize += size;
-    }
-
-    return -1;
-}
-
 // handle on scroll both vertical and horizontal
 function handleOnScroll(event, context, axis){
     const progress = getScrollProgress(context, event);
+    const visibleSection = getTheMostVisible(context.sections, 0, axis === 'horizontal');
 
+    // fire custom event
     context.events.fire('onScroll', {
         event,
         axis,
         progress,
-        activeIndex: getActiveSectionIndex(context, progress)
+        activeIndex: context.activeSectionIndex,
+        visibleSection
     });
+
+    // when active section changes
+    if(context.activeSectionIndex !== visibleSection.index){
+        // update active index
+        context.activeSectionIndex = visibleSection.index;
+
+        // fire event on each section changes
+        context.events.fire('onSectionChange', {
+            event,
+            section: visibleSection.el,
+            index: context.activeSectionIndex
+        });
+    }
 }

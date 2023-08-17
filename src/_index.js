@@ -33,7 +33,11 @@ class CuaJsClass{
 
         // init events manager
         this.events = new EventsManager(this, {
-            names: ['onScroll', 'onInit']
+            names: [
+                'onScroll', 'onInit',
+                'onSectionChange',
+                'onBreakpointChange'
+            ]
         });
 
         // add body class
@@ -45,6 +49,7 @@ class CuaJsClass{
         // sections
         this.sections = this.wrapper.querySelectorAll(`[${ATTRS.section}]`);
         this.activeSectionIndex = undefined;
+        this.orientation = undefined;
 
         /** RESPONSIVE **/
         initResizeWatcher(this)

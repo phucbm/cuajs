@@ -6,8 +6,10 @@ export function initResizeWatcher(context){
     const handle = () => {
         // update CSS
         context.style.update();
+        const isVerticalLayout = isVerticalMode(context.options.verticalBreakpoint);
+        const orientation = isVerticalLayout ? 'vertical' : 'horizontal';
 
-        if(isVerticalMode(context.options.verticalBreakpoint)){
+        if(isVerticalLayout){
             // add destroy class to wrapper
             document.body.classList.add(CLASSES.verticalEnabled);
 
@@ -20,6 +22,11 @@ export function initResizeWatcher(context){
             // init smooth scroll
             context.lenis?.init();
         }
+
+        context.orientation = orientation;
+
+        // fire
+        context.events.fire('onBreakpointChange', {orientation});
     };
 
     window.addEventListener('load', handle);
