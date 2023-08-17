@@ -11,6 +11,9 @@ export function initAutoScroll(context){
         // not when vertical mode on
         if(context.orientation === 'vertical') return;
 
+        // not when is scrollTo (via data-cua-to)
+        if(context.isScrollTo) return;
+
         const section = data.section;
 
         // not scroll on the section that is narrower than viewport

@@ -36,7 +36,10 @@ class CuaJsClass{
             names: [
                 'onScroll', 'onInit',
                 'onSectionChange',
-                'onBreakpointChange'
+                'onBreakpointChange',
+
+                // data-cua-to
+                'onScrollToClick', 'onScrollToComplete'
             ]
         });
 

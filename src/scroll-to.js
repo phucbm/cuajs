@@ -3,6 +3,7 @@ import {ATTRS, CLASSES} from "./configs";
 export class ScrollTo{
     constructor(context){
         this.context = context;
+        this.context.isScrollTo = false;
 
         if(!context.isSmoothScroll){
             console.warn(`ScrollTo only works with Lenis for now.`);
@@ -12,12 +13,23 @@ export class ScrollTo{
         this.init(this.context);
     }
 
-    init(){
+    init(context){
         const buttons = document.querySelectorAll(`[${ATTRS.to}]:not(.${CLASSES.scrollToEnabled})`);
 
         const handleClick = event => {
+            if(context.options.scrollToClickPreventDefault) event.preventDefault();
+
             const target = event.target.getAttribute(ATTRS.to);
-            this.scrollTo(target);
+            this.scrollTo(target, {
+                lock: true,
+                onComplete: () => {
+                    this.context.isScrollTo = false;
+
+                    this.context.events.fire('onScrollToComplete', {target, triggerEl: event.target});
+                }
+            });
+
+            this.context.events.fire('onScrollToClick', {target, triggerEl: event.target});
         }
 
         buttons.forEach(btn => {
@@ -31,8 +43,9 @@ export class ScrollTo{
     scrollTo(target, options = {}){
         const context = this.context;
 
-
         if(context.isSmoothScroll){
+            this.context.isScrollTo = true;
+
             // has smooth scroll
             const lenis = context.lenis.instance;
 
