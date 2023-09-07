@@ -1,25 +1,32 @@
 import {debounce} from "./utils";
-import {CLASS} from "./constant";
+import {CLASSES} from "./configs";
 
 
 export function initResizeWatcher(context){
     const handle = () => {
         // update CSS
         context.style.update();
+        const isVerticalLayout = isVerticalMode(context.options.verticalBreakpoint);
+        const orientation = isVerticalLayout ? 'vertical' : 'horizontal';
 
-        if(isVerticalMode(context.options.verticalBreakpoint)){
+        if(isVerticalLayout){
             // add destroy class to wrapper
-            document.body.classList.add(CLASS.verticalEnabled);
+            document.body.classList.add(CLASSES.verticalEnabled);
 
             // destroy smooth scroll
             context.lenis?.destroy();
         }else{
             // remove class
-            document.body.classList.remove(CLASS.verticalEnabled);
+            document.body.classList.remove(CLASSES.verticalEnabled);
 
             // init smooth scroll
             context.lenis?.init();
         }
+
+        context.orientation = orientation;
+
+        // fire
+        context.events.fire('onBreakpointChange', {orientation});
     };
 
     window.addEventListener('load', handle);

@@ -3,8 +3,11 @@ import {initScrollerSync} from './scroller-sync'
 import {LenisSmoothScroll} from './lenis-smooth-scroll'
 import {initResizeWatcher, isVerticalMode} from './responsive'
 import {ScrollTo} from './scroll-to'
-import {ATTR, CLASS} from './constant'
+import {ATTRS, CLASSES, DEFAULTS} from './configs'
 import {Styling} from './styling'
+import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
+import {isScrollable} from "./utils";
+import {initAutoScroll} from "./auto-scroll";
 
 
 /**
@@ -12,36 +15,44 @@ import {Styling} from './styling'
  */
 class CuaJsClass{
     constructor(options){
-        this.options = {
-            wrapper: undefined,
+        const config = {...DEFAULTS, ...options};
 
-            // smooth scroll
-            smoothScroll: true,
-
-            // responsive
-            verticalBreakpoint: 1024, // (int)number for CSS breakpoint, function for boolean condition
-            smoothVerticalScroll: true, // smooth scroll for vertical mode
-
-            ...options,
-        }
-        this.wrapper = this.options.wrapper
+        this.wrapper = config.wrapper;
         if(!this.wrapper){
             console.warn(`Wrapper element is not defined`)
-            return
+            return;
         }
 
-        // save late-assign events
-        this.eventList = [];
-        this.eventNames = ['onScroll'];
+        // validate options
+        this.options = getOptionsFromAttribute({
+            target: this.wrapper,
+            defaultOptions: config,
+            attributeName: ATTRS.init,
+            numericValues: ['verticalBreakpoint']
+        });
+
+        // init events manager
+        this.events = new EventsManager(this, {
+            names: [
+                'onScroll', 'onInit',
+                'onSectionChange',
+                'onBreakpointChange',
+
+                // data-cua-to
+                'onScrollToClick', 'onScrollToComplete'
+            ]
+        });
 
         // add body class
-        document.body.classList.add(CLASS.hasCuaJs)
+        document.body.classList.add(CLASSES.hasCuaJs)
 
         // vertical scroll content
-        this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTR.verticalScroller}]`)
+        this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTRS.verticalScroller}]`)
 
         // sections
-        this.sections = this.wrapper.querySelectorAll(`[${ATTR.section}]`)
+        this.sections = this.wrapper.querySelectorAll(`[${ATTRS.section}]`);
+        this.activeSectionIndex = undefined;
+        this.orientation = undefined;
 
         /** RESPONSIVE **/
         initResizeWatcher(this)
@@ -53,12 +64,15 @@ class CuaJsClass{
         /** SCROLL **/
         this.isSmoothScroll = this.options.smoothScroll && typeof Lenis !== 'undefined'
         if(this.isSmoothScroll){
-            this.wrapper.classList.add(CLASS.hasSmoothScroll)
+            this.wrapper.classList.add(CLASSES.hasSmoothScroll)
 
             this.lenis = new LenisSmoothScroll(this)
         }else{
             initScrollerSync(this.wrapper)
         }
+
+        // auto scroll
+        initAutoScroll(this);
 
         /** DRAG **/
         // drag wrapper
@@ -68,39 +82,38 @@ class CuaJsClass{
         this.verticalScroller.forEach(item => {
             initDragToScroll({
                 element: item,
-                releaseCursor: 'ns-resize',
+                // set cursor
+                releaseCursor: isScrollable(item) ? 'ns-resize' : 'default',
                 orientation: 'y',
             })
         })
 
 
         /** NAVIGATE **/
-        new ScrollTo(this);
+        this.navigate = new ScrollTo(this);
+
+        // event: init
+        this.events.fire('onInit');
     }
 
+    /******************************
+     * EVENTS
+     ******************************/
     /**
      * Assign late-events
      */
     on(eventName, callback){
-        if(this.eventNames.includes(eventName)){
-            // initial array
-            if(typeof this.eventList[eventName] === 'undefined') this.eventList[eventName] = [];
-
-            // save callback
-            this.eventList[eventName].push(callback);
-        }else{
-            console.warn(`Event "${eventName}" is not recognized!`);
-        }
+        this.events.add(eventName, callback);
     }
 }
 
 // only one instance of CuaJs on a page
-window.CuaJsData = undefined;
+window.CuaInstance = undefined;
 window.CuaJs = {
     init: options => {
-        window.CuaJsData = new CuaJsClass(options)
+        window.CuaInstance = new CuaJsClass(options);
+        return window.CuaInstance;
     },
-    get: () => window.CuaJsData
 }
 
 // init with attribute
