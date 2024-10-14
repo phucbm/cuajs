@@ -89,9 +89,13 @@ class CuaJsClass{
             })
         })
 
-        /** OBSERVE ELEMENT **/
-        initObserveElement(this);
+        this.observer = null; // Array to store active observers
 
+        /** OBSERVE ELEMENT **/
+        this.on('onBreakpointChange', () => {
+            if(this.observer) this.observer.disconnect();
+            initObserveElement(this); // Array to store active observers
+        });
         /** NAVIGATE **/
         this.navigate = new ScrollTo(this);
 

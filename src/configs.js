@@ -45,5 +45,5 @@ export const DEFAULTS = {
 
     // scroll observer
     scrollObserver: true,
-    once: true,
+    once: false,
 }
