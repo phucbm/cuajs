@@ -27,21 +27,3 @@ const instance = CuaJs.init({
     },
     autoScroll: true
 });
-
-document.querySelectorAll(`[data-horizontal-target]`).forEach(targetElement => {
-    instance.observeElement({
-        element: targetElement,
-        options: {
-            root: document.querySelector('[data-cua-custom]'),
-            rootMargin: "0px",
-            threshold: 0.8
-        },
-        enter: (target) => {
-            target.classList.add('visible-animation');
-        },
-        leave: (target) => {
-            target.classList.remove('visible-animation');
-        }
-    });
-})
-

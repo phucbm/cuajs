@@ -89,13 +89,10 @@ class CuaJsClass{
             })
         })
 
-        this.observer = null; // Array to store active observers
 
         /** OBSERVE ELEMENT **/
-        this.on('onBreakpointChange', () => {
-            if(this.observer) this.observer.disconnect();
-            initObserveElement(this); // Array to store active observers
-        });
+        initObserveElement(this);
+
         /** NAVIGATE **/
         this.navigate = new ScrollTo(this);
 
@@ -114,18 +111,33 @@ class CuaJsClass{
     }
 
     observeElement({element, options, enter, leave}){
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting){
-                    if(typeof enter === 'function') enter(entry.target);
-                }else{
-                    if(this.options.once) return;
-                    if(typeof leave === 'function') leave(entry.target);
-                }
-            });
-        }, options);
+        const tempOptions = {
+            root: this.isVerticalMode() ? null : this.wrapper,
 
-        observer.observe(element);
+            ...options
+        };
+
+
+        // save to disconnect later
+        let observer;
+        this.on('onBreakpointChange', ({orientation}) => {
+            if(observer){
+                observer?.disconnect();
+            }
+
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting){
+                        if(typeof enter === 'function') enter(entry);
+                    }else{
+                        if(this.options.once) return;
+                        if(typeof leave === 'function') leave(entry);
+                    }
+                });
+            }, tempOptions);
+
+            observer.observe(element);
+        });
     }
 }
 

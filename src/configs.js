@@ -46,4 +46,6 @@ export const DEFAULTS = {
     // scroll observer
     scrollObserver: true,
     once: false,
+    rootMargin: "0px",
+    threshold: 0.1,
 }
