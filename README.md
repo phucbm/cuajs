@@ -123,6 +123,12 @@ CuaInstance.on('onScroll', (data) => {
 });
 ```
 
+```js
+CuaInstance.on('onSectionChange', ({index, instance, section}) => {
+    console.log(`Active index`, index);
+});
+```
+
 ## Deployment
 
 ```shell
