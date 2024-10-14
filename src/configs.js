@@ -8,7 +8,8 @@ export const CLASSES = {
     hasSmoothScroll: 'cua-smooth',
     isScrollable: 'cua-scrollable',
     isNotScrollable: 'cua-not-scrollable',
-    hasScroll: 'cua-has-scroll'
+    hasScroll: 'cua-has-scroll',
+    isVisible: 'visible-animation',
 };
 
 /**
@@ -19,6 +20,7 @@ export const ATTRS = {
     to: 'data-cua-to',
     section: 'data-cua-section',
     verticalScroller: 'data-cua-vertical-scroll',
+    horizontalScrollObserver: 'data-horizontal-target',
 };
 
 /**
@@ -40,4 +42,8 @@ export const DEFAULTS = {
     // responsive
     verticalBreakpoint: 1024, // (int)number for CSS breakpoint
     smoothVerticalScroll: true, // smooth scroll for vertical mode
+
+    // scroll observer
+    scrollObserver: true,
+    once: true,
 }

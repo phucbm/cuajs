@@ -139,3 +139,14 @@ body {
 [data-cua]::-webkit-scrollbar-thumb, [data-cua] *::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-color);
 }
+
+
+
+[data-horizontal-target] {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+[data-horizontal-target].visible-animation {
+  opacity: 1;
+}

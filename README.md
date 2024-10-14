@@ -94,19 +94,39 @@ HTML setup:
 | `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
 | `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
 | `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                             |
+| `scrollObserver`       | boolean     | `true`      | Enable to handle with the visible element                       |
+| `once`                 | boolean     | `true`      | Enable to make the visible element appear once                  |
 
 ```js
 // init with options
 const instance = CuaJs.init({
     wrapper: document.querySelector('.wrapper')
 });
+
+// custom scroll observer
+document.querySelectorAll(`[data-horizontal-target]`).forEach(targetElement => {
+    instance.observeElement({
+        element: targetElement,
+        options: {
+            root: document.querySelector('[data-cua-custom]'),
+            rootMargin: "0px",
+            threshold: 0.8
+        },
+        enter: (target) => {
+            target.classList.add('visible-animation');
+        },
+        leave: (target) => {
+            target.classList.remove('visible-animation');
+        }
+    });
+})
 ```
 
 Add options via HTML
 
 ```html
 
-<div data-cua='{"verticalBreakpoint":"1024"}'>
+<div data-cua='{"verticalBreakpoint":"1024"}' data-horizontal-target>
 </div>
 ```
 

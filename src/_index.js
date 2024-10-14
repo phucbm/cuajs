@@ -8,6 +8,7 @@ import {Styling} from './styling'
 import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
 import {isScrollable} from "./utils";
 import {initAutoScroll} from "./auto-scroll";
+import {initObserveElement} from "@/observe-element";
 
 
 /**
@@ -88,6 +89,8 @@ class CuaJsClass{
             })
         })
 
+        /** OBSERVE ELEMENT **/
+        initObserveElement(this);
 
         /** NAVIGATE **/
         this.navigate = new ScrollTo(this);
@@ -104,6 +107,21 @@ class CuaJsClass{
      */
     on(eventName, callback){
         this.events.add(eventName, callback);
+    }
+
+    observeElement({element, options, enter, leave}){
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    if(typeof enter === 'function') enter(entry.target);
+                }else{
+                    if(this.options.once) return;
+                    if(typeof leave === 'function') leave(entry.target);
+                }
+            });
+        }, options);
+
+        observer.observe(element);
     }
 }
 
