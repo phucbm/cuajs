@@ -7,6 +7,7 @@ import './style.scss';
 
 // source script
 import '@/_index';
+import {ATTRS} from "@/configs";
 
 // import package info
 const packageInfo = require('../package.json');
@@ -25,5 +26,17 @@ const instance = CuaJs.init({
     onScrollableContent: (data) => {
         //console.log(data)
     },
-    autoScroll: true
+    autoScroll: true,
+});
+
+document.querySelectorAll(`.sample-grid`).forEach(element => {
+    instance.observeElement({
+        element: element,
+        enter: () => {
+            console.log('enter');
+        },
+        leave: () => {
+            console.log('leave');
+        }
+    });
 });
