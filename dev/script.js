@@ -22,21 +22,13 @@ document.querySelector('[data-title]').innerHTML = title;
 
 
 const instance = CuaJs.init({
-    wrapper: document.querySelector('[data-cua-custom]'),
+    wrapper: document.querySelector('#my-horizontal-scroll'),
     onScrollableContent: (data) => {
         //console.log(data)
     },
     autoScroll: true,
 });
 
-document.querySelectorAll(`.sample-grid`).forEach(element => {
-    instance.observeElement({
-        element: element,
-        enter: () => {
-            console.log('enter');
-        },
-        leave: () => {
-            console.log('leave');
-        }
-    });
+document.querySelectorAll(`.btn-group button, .sample-grid > div`).forEach(element => {
+    instance.assignScrollObserver({element});
 });

@@ -141,12 +141,14 @@ body {
 }
 
 
-
-[data-horizontal-target] {
+/****************************
+ * CuaJs: Scroll Observer
+****************************/
+.cua-has-observer {
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
 
-[data-horizontal-target].visible-animation {
+.cua-has-observer.cua-intersecting {
   opacity: 1;
 }
