@@ -49,5 +49,5 @@ export const DEFAULTS = {
     // scroll observer
     once: false, // run the enter callback only once
     rootMargin: "0px", // root margin for IntersectionObserver
-    threshold: 0.1, // threshold for IntersectionObserver
+    threshold: 0.3, // threshold for IntersectionObserver
 }

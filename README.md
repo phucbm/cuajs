@@ -104,29 +104,16 @@ const instance = CuaJs.init({
 });
 
 // custom scroll observer
-document.querySelectorAll(`[data-horizontal-target]`).forEach(targetElement => {
-    instance.observeElement({
-        element: targetElement,
-        options: {
-            root: document.querySelector('[data-cua-custom]'),
-            rootMargin: "0px",
-            threshold: 0.8
-        },
-        enter: (target) => {
-            target.classList.add('visible-animation');
-        },
-        leave: (target) => {
-            target.classList.remove('visible-animation');
-        }
-    });
-})
+document.querySelectorAll(`.item`).forEach(element => {
+    instance.assignScrollObserver({element});
+});
 ```
 
 Add options via HTML
 
 ```html
 
-<div data-cua='{"verticalBreakpoint":"1024"}' data-horizontal-target>
+<div data-cua='{"verticalBreakpoint":"1024"}' data-cua-observe>
 </div>
 ```
 
