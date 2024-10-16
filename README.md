@@ -55,7 +55,7 @@ Using CDN:
 
 ### Quick start
 
-1. HTML setup
+#### 1. HTML setup
 
 ```html
 <!-- [data-cua] must be defined -->
@@ -79,7 +79,14 @@ Using CDN:
 </div>
 ```
 
-2. JavaScript setup
+Setting options via HTML
+
+```html
+<div data-cua='{"verticalBreakpoint":"1024"}'>
+</div>
+```
+
+#### 2. JavaScript setup
 
 ```js
 const instance = CuaJs.init({
@@ -87,56 +94,72 @@ const instance = CuaJs.init({
 });
 ```
 
+
 ## Options
 
-| Attribute              | Type        | Default     | Description                                                    |
-|------------------------|-------------|-------------|----------------------------------------------------------------|
-| `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                     |
-| `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                           |
-| `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024`|
-| `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                  |
-| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                      |
-| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                 |
-| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                            |
-| `once`                 | boolean     | `true`      | Trigger the enter callback only once per element               |
-| `rootMargin`           | string      | `0px`       | Margin around the viewport for intersection calculations       |      |
-| `threshold`            | number      | `0.1`       | Percentage of element visibility to trigger intersection       |
+| Attribute              | Type        | Default     | Description                                                     |
+|------------------------|-------------|-------------|-----------------------------------------------------------------|
+| `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                      |
+| `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                            |
+| `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024` |
+| `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                   |
+| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
+| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
+| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                             |
+| `once`                 | boolean     | `true`      | Trigger the enter callback only once per element                |
+| `rootMargin`           | string      | `0px`       | Margin around the viewport for intersection calculations        |      |
+| `threshold`            | number      | `0.1`       | Percentage of element visibility to trigger intersection        |
 
+## Methods
 
-## Setting options via HTML
+| Name                   | Usage                                                                 | Description                                    | 
+|------------------------|-----------------------------------------------------------------------|------------------------------------------------|
+| `assignScrollObserver` | `instance.assignScrollObserver({element, options, enter,leave,once})` | Assign a scroll observer to a specific element |
+| `on`                   | `instance.on()`                                                       | Assign events                                  |
+
+### assignScrollObserver
+Add `data-cua-observe` to enable default scroll observer
 
 ```html
+
 <div data-cua='{"verticalBreakpoint":"1024"}'>
+    <section data-cua-section>
+        Your content
+        <button data-cua-to="start">To the start</button>
+        <button data-cua-to="end">To the end</button>
+        <button data-cua-to="#second-section">To the long-section</button>
+    </section>
+
+    <section data-cua-section id="second-section" data-cua-observe>
+        <div data-cua-vertical-scroll>
+            Content with vertical scroll
+        </div>
+    </section>
 </div>
 ```
 
-## Advanced usage
-
-### Custom scroll observer
 
 Custom scroll observer
+
 ```js
-document.querySelectorAll('.item').forEach(element => {
-    instance.assignScrollObserver({element});
+instance.assignScrollObserver({
+    element: document.querySelector('.my-element'),
+    options: {
+        rootMargin: '0px',
+        threshold: 0.5,
+        once: true
+    },
+    enter: (entry) => {
+        console.log('Element entered viewport:', entry.target);
+        // Add your enter logic here
+    },
+    leave: (entry) => {
+        console.log('Element left viewport:', entry.target);
+        // Add your leave logic here
+    }
 });
 ```
 
-Add data-cua-observe to enable default scroll observer
-```html
-<div data-cua='{"verticalBreakpoint":"1024"}' data-cua-observe>
-</div>
-```
-
-### Scroll navigation
-
-Use data-cua-to attribute for navigation:
-
-- number: Scroll by pixels
-- string: CSS selector or keyword ("start", "end")
-
-
-> **Note:**
-> See detail at [scrollTo()](https://github.com/studio-freight/lenis#instance-methods)
 
 ## Events
 
