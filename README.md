@@ -53,9 +53,9 @@ Using CDN:
 <script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.3/dist/cua.min.js"></script>
 ```
 
-### Init
+### Quick start
 
-HTML setup:
+1. HTML setup
 
 ```html
 <!-- [data-cua] must be defined -->
@@ -79,43 +79,64 @@ HTML setup:
 </div>
 ```
 
-> **Note**
-> The value of `[data-cua-to]` could be `number` for pixels, `string` for CSS selector or keyword (`start`, `end`,...).
-> See detail at [scrollTo()](https://github.com/studio-freight/lenis#instance-methods)
-
-## Options
-
-| Attribute              | Type        | Default     | Description                                                     |
-|------------------------|-------------|-------------|-----------------------------------------------------------------|
-| `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                      |
-| `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                            |
-| `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024` |
-| `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                   |
-| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
-| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
-| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                             |
-| `scrollObserver`       | boolean     | `true`      | Enable to handle with the visible element                       |
-| `once`                 | boolean     | `true`      | Enable to make the visible element appear once                  |
+2. JavaScript setup
 
 ```js
-// init with options
 const instance = CuaJs.init({
     wrapper: document.querySelector('.wrapper')
 });
+```
 
-// custom scroll observer
-document.querySelectorAll(`.item`).forEach(element => {
+## Options
+
+| Attribute              | Type        | Default     | Description                                                    |
+|------------------------|-------------|-------------|----------------------------------------------------------------|
+| `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                     |
+| `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                           |
+| `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024`|
+| `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                  |
+| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                      |
+| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                 |
+| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                            |
+| `once`                 | boolean     | `true`      | Trigger the enter callback only once per element               |
+| `rootMargin`           | string      | `0px`       | Margin around the viewport for intersection calculations       |      |
+| `threshold`            | number      | `0.1`       | Percentage of element visibility to trigger intersection       |
+
+
+## Setting options via HTML
+
+```html
+<div data-cua='{"verticalBreakpoint":"1024"}'>
+</div>
+```
+
+## Advanced usage
+
+### Custom scroll observer
+
+Custom scroll observer
+```js
+document.querySelectorAll('.item').forEach(element => {
     instance.assignScrollObserver({element});
 });
 ```
 
-Add options via HTML
-
+Add data-cua-observe to enable default scroll observer
 ```html
-
 <div data-cua='{"verticalBreakpoint":"1024"}' data-cua-observe>
 </div>
 ```
+
+### Scroll navigation
+
+Use data-cua-to attribute for navigation:
+
+- number: Scroll by pixels
+- string: CSS selector or keyword ("start", "end")
+
+
+> **Note:**
+> See detail at [scrollTo()](https://github.com/studio-freight/lenis#instance-methods)
 
 ## Events
 
