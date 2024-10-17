@@ -36,7 +36,7 @@ export const DEFAULTS = {
     onScrollableContent: undefined, // callback on each scrollable content
 
     // drag to scroll
-    draggable: true,
+    draggable: false,
 
     // smooth scroll
     smoothScroll: true,
