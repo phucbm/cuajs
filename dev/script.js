@@ -7,7 +7,6 @@ import './style.scss';
 
 // source script
 import '@/_index';
-import {ATTRS} from "@/configs";
 
 // import package info
 const packageInfo = require('../package.json');
@@ -27,6 +26,7 @@ const instance = CuaJs.init({
         //console.log(data)
     },
     autoScroll: true,
+    once: true
 });
 
 document.querySelectorAll(`.btn-group button, .sample-grid > div`).forEach(element => {

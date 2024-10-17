@@ -118,7 +118,7 @@ class CuaJsClass{
      * @param leave
      * @param once
      */
-    assignScrollObserver({element, options = this.options, enter, leave, once = DEFAULTS.once}){
+    assignScrollObserver({element, options = this.options, enter, leave, once = this.options.once}){
         const tempOptions = {
             root: this.isVerticalMode() ? null : this.wrapper,
             rootMargin: options.rootMargin,
