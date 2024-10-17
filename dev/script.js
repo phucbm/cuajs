@@ -26,7 +26,8 @@ const instance = CuaJs.init({
         //console.log(data)
     },
     autoScroll: true,
-    once: true
+    once: true,
+    draggable: false
 });
 
 document.querySelectorAll(`.btn-group button, .sample-grid > div`).forEach(element => {

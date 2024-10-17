@@ -35,6 +35,9 @@ export const DEFAULTS = {
     // vertical scrollable content
     onScrollableContent: undefined, // callback on each scrollable content
 
+    // drag to scroll
+    draggable: true,
+
     // smooth scroll
     smoothScroll: true,
     keyScrollDistance: 200, // distance to scroll on each key press (px)
