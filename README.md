@@ -53,9 +53,9 @@ Using CDN:
 <script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.3/dist/cua.min.js"></script>
 ```
 
-### Init
+### Quick start
 
-HTML setup:
+#### 1. HTML setup
 
 ```html
 <!-- [data-cua] must be defined -->
@@ -79,9 +79,23 @@ HTML setup:
 </div>
 ```
 
-> **Note**
-> The value of `[data-cua-to]` could be `number` for pixels, `string` for CSS selector or keyword (`start`, `end`,...).
-> See detail at [scrollTo()](https://github.com/studio-freight/lenis#instance-methods)
+Setting options via HTML
+
+```html
+<div data-cua='{"verticalBreakpoint":"1024"}'>
+</div>
+```
+
+#### 2. JavaScript setup
+
+```js
+const instance = CuaJs.init({
+    wrapper: document.querySelector('.wrapper')
+});
+```
+
+After `init()`, you can either use `instance` which is returned from the init function, or `CuaInstance` to access methods.
+
 
 ## Options
 
@@ -94,21 +108,54 @@ HTML setup:
 | `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
 | `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
 | `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                             |
+| `once`                 | boolean     | `true`      | *Scroll Observer*: Only run "enter" callback once.                                 |
+| `rootMargin`           | string      | `0px`       | *Scroll Observer*: Margin around the viewport for intersection calculations        |
+| `threshold`            | number      | `0.1`       | *Scroll Observer*: Percentage of element visibility to trigger intersection        |
+
+## Methods
+
+| Name                   | Usage                                                                 | Description                                    | 
+|------------------------|-----------------------------------------------------------------------|------------------------------------------------|
+| `assignScrollObserver` | `CuaInstance.assignScrollObserver({element, options, enter,leave,once})` | Assign a scroll observer to a specific element |
+| `on`                   | `CuaInstance.on()`                                                       | Assign events                                  |
+
+### Scroll Observer
+Scroll Observer is a functionality that utilizes Intersection Observer to monitor a specific element and trigger a callback function when that element enters or exits the viewport. This feature is particularly useful for creating animations that appear as elements come into view.
+
+By default, Scroll Observer adds the class `"cua-intersection"` to an element when it enters the viewport and removes this class when the element leaves. To activate this default behavior, simply add the attribute `data-cua-observe` to the desired element.
+
+```html
+<div data-cua>
+    <section data-cua-section>
+        <div data-cua-observe>
+            Item with scroll observer
+        </div>
+    </section>
+</div>
+```
+
+
+For more customized control, you can define a custom observer using the `assignScrollObserver` function. Here's an example of how to implement this:
 
 ```js
-// init with options
-const instance = CuaJs.init({
-    wrapper: document.querySelector('.wrapper')
+CuaInstance.assignScrollObserver({
+    element: document.querySelector('.my-element'),
+    options: {
+        rootMargin: '0px',
+        threshold: 0.5,
+        once: true
+    },
+    enter: (entry) => {
+        console.log('Element entered viewport:', entry.target);
+        // Add your enter logic here
+    },
+    leave: (entry) => {
+        console.log('Element left viewport:', entry.target);
+        // Add your leave logic here
+    }
 });
 ```
 
-Add options via HTML
-
-```html
-
-<div data-cua='{"verticalBreakpoint":"1024"}'>
-</div>
-```
 
 ## Events
 

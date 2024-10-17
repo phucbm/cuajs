@@ -8,6 +8,7 @@ import {Styling} from './styling'
 import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
 import {isScrollable} from "./utils";
 import {initAutoScroll} from "./auto-scroll";
+import {initScrollObserver} from "./scroll-observer";
 
 
 /**
@@ -89,6 +90,9 @@ class CuaJsClass{
         })
 
 
+        /** SCROLL OBSERVE ELEMENT **/
+        initScrollObserver(this);
+
         /** NAVIGATE **/
         this.navigate = new ScrollTo(this);
 
@@ -104,6 +108,66 @@ class CuaJsClass{
      */
     on(eventName, callback){
         this.events.add(eventName, callback);
+    }
+
+    /**
+     * Assign Scroll Observer
+     * @param element
+     * @param options
+     * @param enter
+     * @param leave
+     * @param once
+     */
+    assignScrollObserver({element, options = this.options, enter, leave, once = this.options.once}){
+        const tempOptions = {
+            root: this.isVerticalMode() ? null : this.wrapper,
+            rootMargin: options.rootMargin,
+            threshold: options.threshold,
+        };
+
+
+        // save to disconnect later
+        let observer;
+        this.on('onBreakpointChange', ({orientation}) => {
+            // disconnect old observer if exists and orientation is changed
+            if(observer) observer?.disconnect();
+
+            // check if element is visible on the screen
+            let isEnter = false;
+
+            // create new Intersection Observer
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // if once is true and isEnter is true, return
+                    if(once && isEnter) return;
+
+                    if(entry.isIntersecting){
+                        // run enter callback
+                        if(typeof enter === 'function') enter(entry);
+
+                        // add class to the element
+                        entry.target.classList.add(CLASSES.isIntersecting);
+
+                        // set isEnter to true
+                        isEnter = true;
+                    }else{
+                        // not run leave callback if not entered
+                        if(!isEnter) return;
+
+                        // run leave callback
+                        if(typeof leave === 'function') leave(entry);
+
+                        // remove class from the element
+                        entry.target.classList.remove(CLASSES.isIntersecting);
+                    }
+                });
+            }, tempOptions);
+
+            observer.observe(element);
+
+            // add class to the element
+            element.classList.add(CLASSES.hasObserver);
+        });
     }
 }
 

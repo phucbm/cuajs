@@ -139,3 +139,16 @@ body {
 [data-cua]::-webkit-scrollbar-thumb, [data-cua] *::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-color);
 }
+
+
+/****************************
+ * CuaJs: Scroll Observer
+****************************/
+.cua-has-observer {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.cua-has-observer.cua-intersecting {
+  opacity: 1;
+}
