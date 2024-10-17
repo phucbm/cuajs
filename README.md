@@ -99,23 +99,24 @@ After `init()`, you can either use `instance` which is returned from the init fu
 
 ## Options
 
-| Attribute              | Type        | Default     | Description                                                     |
-|------------------------|-------------|-------------|-----------------------------------------------------------------|
-| `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                      |
-| `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                            |
-| `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024` |
-| `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                   |
-| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                       |
-| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                  |
-| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                             |
-| `once`                 | boolean     | `true`      | *Scroll Observer*: Only run "enter" callback once.                                 |
-| `rootMargin`           | string      | `0px`       | *Scroll Observer*: Margin around the viewport for intersection calculations        |
-| `threshold`            | number      | `0.1`       | *Scroll Observer*: Percentage of element visibility to trigger intersection        |
+| Attribute              | Type        | Default     | Description                                                                 |
+|------------------------|-------------|-------------|-----------------------------------------------------------------------------|
+| `wrapper`              | DOM element | `undefined` | Required. Wrapper element.                                                  |
+| `smoothScroll`         | boolean     | `true`      | Enable smooth scroll                                                        |
+| `verticalBreakpoint`   | number      | `1024`      | Switch to vertical layout mode when `window.innerWidth <= 1024`             |
+| `smoothVerticalScroll` | boolean     | `true`      | Enable smooth scroll for vertical layout mode                               |
+| `keyScrollDistance`    | number      | `200`       | Distance to scroll on each key press (px)                                   |
+| `keyScroll`            | boolean     | `true`      | Enable navigate by a arrow key                                              |
+| `onScrollableContent`  | function    | `undefined` | Callback on each scrollable content                                         |
+| `once`                 | boolean     | `true`      | *Scroll Observer*: Only run "enter" callback once.                          |
+| `rootMargin`           | string      | `0px`       | *Scroll Observer*: Margin around the viewport for intersection calculations |
+| `threshold`            | number      | `0.1`       | *Scroll Observer*: Percentage of element visibility to trigger intersection |
+| `draggable`            | boolean     | `false`     | Enable drag to scroll                                                       |
 
 ## Methods
 
-| Name                   | Usage                                                                 | Description                                    | 
-|------------------------|-----------------------------------------------------------------------|------------------------------------------------|
+| Name                   | Usage                                                                    | Description                                    | 
+|------------------------|--------------------------------------------------------------------------|------------------------------------------------|
 | `assignScrollObserver` | `CuaInstance.assignScrollObserver({element, options, enter,leave,once})` | Assign a scroll observer to a specific element |
 | `on`                   | `CuaInstance.on()`                                                       | Assign events                                  |
 

@@ -76,18 +76,20 @@ class CuaJsClass{
         initAutoScroll(this);
 
         /** DRAG **/
-        // drag wrapper
-        initDragToScroll({element: this.wrapper})
+        if(this.options.draggable){
+            // drag wrapper
+            initDragToScroll({element: this.wrapper});
 
-        // drag vertical content
-        this.verticalScroller.forEach(item => {
-            initDragToScroll({
-                element: item,
-                // set cursor
-                releaseCursor: isScrollable(item) ? 'ns-resize' : 'default',
-                orientation: 'y',
-            })
-        })
+            // drag vertical content
+            this.verticalScroller.forEach(item => {
+                initDragToScroll({
+                    element: item,
+                    // set cursor
+                    releaseCursor: isScrollable(item) ? 'ns-resize' : 'default',
+                    orientation: 'y',
+                })
+            });
+        }
 
 
         /** SCROLL OBSERVE ELEMENT **/
