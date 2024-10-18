@@ -112,6 +112,7 @@ After `init()`, you can either use `instance` which is returned from the init fu
 | `rootMargin`           | string      | `0px`       | *Scroll Observer*: Margin around the viewport for intersection calculations |
 | `threshold`            | number      | `0.1`       | *Scroll Observer*: Percentage of element visibility to trigger intersection |
 | `draggable`            | boolean     | `false`     | Enable drag to scroll                                                       |
+| `scrollSnap`           | boolean     | `false`     | Snap to the nearest section                                                 |
 
 ## Methods
 

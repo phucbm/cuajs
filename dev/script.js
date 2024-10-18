@@ -25,8 +25,8 @@ const instance = CuaJs.init({
     onScrollableContent: (data) => {
         //console.log(data)
     },
-    autoScroll: true,
-    once: true
+    once: true,
+    // scrollSnap: true,
 });
 
 document.querySelectorAll(`.btn-group button, .sample-grid > div`).forEach(element => {

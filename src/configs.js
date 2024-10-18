@@ -42,7 +42,7 @@ export const DEFAULTS = {
     smoothScroll: true,
     keyScrollDistance: 200, // distance to scroll on each key press (px)
     keyScroll: true, // enable to navigate by an arrow key
-    autoScroll: false,
+    scrollSnap: false, // snap to the nearest section
     scrollToClickPreventDefault: true,
 
     // responsive

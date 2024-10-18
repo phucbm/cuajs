@@ -7,7 +7,7 @@ import {ATTRS, CLASSES, DEFAULTS} from './configs'
 import {Styling} from './styling'
 import {EventsManager, getOptionsFromAttribute} from "@phucbm/os-util";
 import {isScrollable} from "./utils";
-import {initAutoScroll} from "./auto-scroll";
+import {initScrollSnap} from "./scroll-snap";
 import {initScrollObserver} from "./scroll-observer";
 
 
@@ -73,7 +73,7 @@ class CuaJsClass{
         }
 
         // auto scroll
-        initAutoScroll(this);
+        initScrollSnap(this);
 
         /** DRAG **/
         if(this.options.draggable){
