@@ -8,11 +8,11 @@
     <title>CuaJs</title>
 
     <!-- Add Lenis for smooth scroll -->
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
+    <script src="lenis.min.js"></script>
 </head>
 
 <body>
-<div data-cua-custom>
+<div id="my-horizontal-scroll">
 
     <section data-cua-section style='min-width:100vw' class="section-home">
         <div class="home-info">
@@ -21,7 +21,7 @@
             <p><i>(Cua is a Vietnamese word for crab)</i></p>
         </div>
 
-        <div class="home-image d-flex w100">
+        <div class="home-image d-flex w100" data-cua-observe>
             <img class="crab-gif"
                  src="https://user-images.githubusercontent.com/14942380/249210359-321169e6-c33f-4e0c-9c71-67992b347ed4.gif"
                  alt="crab-moving" width="300">
@@ -29,7 +29,7 @@
     </section>
 
     <section data-cua-section style='min-width:100vw'>
-        <div class='ta-left'>
+        <div class='ta-left' data-cua-observe>
             <h2>This is a section that can scroll vertically</h2>
             <div class='vertical-scroll' data-cua-vertical-scroll>
                 <p>Ultricies lectus inceptos scelerisque ut amet quisque ex pretium. Taciti sollicitudin nullam eleifend

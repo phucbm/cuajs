@@ -4,8 +4,8 @@ import {viewport} from "./utils";
  * Auto-scroll to the active section
  * @param context
  */
-export function initAutoScroll(context){
-    if(!context.options.autoScroll) return;
+export function initScrollSnap(context){
+    if(!context.options.scrollSnap) return;
 
     context.on('onSectionChange', data => {
         // not when vertical mode on
