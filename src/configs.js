@@ -2,6 +2,7 @@
  * Classes
  */
 export const CLASSES = {
+    wrapper: 'cua-wrapper',
     hasCuaJs: 'cua-enabled',
     scrollToEnabled: 'cua-scroll-to-enabled',
     verticalEnabled: 'cua-vertical',
