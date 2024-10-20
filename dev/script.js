@@ -1,9 +1,5 @@
-// public styles
-import '@viivue/atomic-css';
-import 'honcau';
-
 // dev style
-import './style.scss';
+import './style.css';
 
 // source script
 import '@/_index';
@@ -21,9 +17,14 @@ document.querySelector('[data-title]').innerHTML = title;
 
 
 const instance = CuaJs.init({
-    wrapper: document.querySelector('[data-cua-custom]'),
+    wrapper: document.querySelector('#my-horizontal-scroll'),
     onScrollableContent: (data) => {
         //console.log(data)
     },
-    autoScroll: true
+    // once: true,
+    // scrollSnap: true,
+});
+
+document.querySelectorAll(`.btn-group button, .sample-grid > div`).forEach(element => {
+    instance.assignScrollObserver({element});
 });
