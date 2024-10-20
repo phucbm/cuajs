@@ -11,7 +11,7 @@
         @apply text-lg font-bold;
     }
     a {
-        @apply underline;
+        /*@apply underline;*/
     }
     p {
         @apply text-base text-cua-black;
@@ -28,7 +28,7 @@
 [data-cua-section] {
     background:#9cd4ff;
 
-    @apply p-20 flex items-center;
+    @apply lg:p-20 px-5 py-12 lg:flex md:items-center;
     @apply bg-gradient-to-br from-red-500 to-amber-50;
 }
 [data-cua-section]:nth-child(2) {
@@ -44,31 +44,19 @@
     background:#6163a2;
     background:linear-gradient(135deg, #6163a2, #64bedc);
 }
-[data-cua-section]:nth-child(5) {/*
-* Created with https://www.css-gradient.com
-* Gradient link: https://www.css-gradient.com/?c1=dc5f59&c2=93eb65&gt=r&gd=dtl
-*/
+[data-cua-section]:nth-child(5) {
     background:#dc5f59;
     background:radial-gradient(at left top, #dc5f59, #93eb65);
 }
-
-@media only screen and (max-width:1024px) {
-    [data-cua-section] {
-        display:block;
-    }
+[data-cua-section]:nth-child(6) {
+    background:#2256bf;
+    background:radial-gradient(at left top, #2256bf, #e21c36);
 }
 
 
 /****************************
  * Section: Home
 ****************************/
-.section-home {
-    flex-direction:column;
-    justify-content:space-between;
-    align-items:flex-start;
-    text-align:left;
-}
-
 .page-title {
     --weight-color:#ff4b4b;
     --shadow-color:rgba(0, 0, 0, 0.12);
@@ -90,16 +78,6 @@
     1px 22px 10px var(--shadow-color),
     1px 25px 35px var(--shadow-color),
     1px 30px 60px var(--shadow-color);
-}
-
-
-
-/* Vertical scroll */
-@media only screen and (min-width:1025px) {
-    .vertical-scroll {
-        height:500px;
-        overflow:auto;
-    }
 }
 
 
