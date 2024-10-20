@@ -1,4 +1,23 @@
 @tailwind base;
+
+@layer base {
+    h1 {
+        @apply text-2xl font-bold;
+    }
+    h2 {
+        @apply text-xl font-bold;
+    }
+    h3 {
+        @apply text-lg font-bold;
+    }
+    a {
+        @apply underline;
+    }
+    p {
+        @apply text-base text-cua-black;
+    }
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -7,20 +26,36 @@
  * Sections
 ****************************/
 [data-cua-section] {
-  text-align: center;
-  background: #9CD4FF;
-  background: linear-gradient(270deg, #ffdbdb, #ff8269);
-  padding: 3em;
+    background:#9cd4ff;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    @apply p-20 flex items-center;
+    @apply bg-gradient-to-br from-red-500 to-amber-50;
+}
+[data-cua-section]:nth-child(2) {
+    background:#6bb59a;
+    background:radial-gradient(at left top, #6bb59a, #f9857a);
 }
 
-@media only screen and (max-width: 1024px) {
-  [data-cua-section] {
-    display: block;
-  }
+[data-cua-section]:nth-child(3) {
+    background:#f9857a;
+    background:radial-gradient(at left top, #f9857a, #6bb59a);
+}
+[data-cua-section]:nth-child(4) {
+    background:#6163a2;
+    background:linear-gradient(135deg, #6163a2, #64bedc);
+}
+[data-cua-section]:nth-child(5) {/*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=dc5f59&c2=93eb65&gt=r&gd=dtl
+*/
+    background:#dc5f59;
+    background:radial-gradient(at left top, #dc5f59, #93eb65);
+}
+
+@media only screen and (max-width:1024px) {
+    [data-cua-section] {
+        display:block;
+    }
 }
 
 
@@ -28,114 +63,69 @@
  * Section: Home
 ****************************/
 .section-home {
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  text-align: left;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:flex-start;
+    text-align:left;
 }
 
 .page-title {
-  --weight-color: #ff4b4b;
-  --shadow-color: rgba(0, 0, 0, 0.12);
-  font-size: clamp(45px, 8vw, 140px);
-  line-height: 1;
-  margin: 0 0 .3em;
-  color: #ffdccd;
-  text-shadow: 1px 1px 1px var(--weight-color),
-  1px 2px 1px var(--weight-color),
-  1px 3px 1px var(--weight-color),
-  1px 4px 1px var(--weight-color),
-  1px 5px 1px var(--weight-color),
-  1px 6px 1px var(--weight-color),
-  1px 7px 1px var(--weight-color),
-  1px 8px 1px var(--weight-color),
-  1px 9px 1px var(--weight-color),
-  1px 10px 1px var(--weight-color),
-  1px 18px 6px var(--shadow-color),
-  1px 22px 10px var(--shadow-color),
-  1px 25px 35px var(--shadow-color),
-  1px 30px 60px var(--shadow-color);
+    --weight-color:#ff4b4b;
+    --shadow-color:rgba(0, 0, 0, 0.12);
+    font-size:clamp(45px, 8vw, 140px);
+    line-height:1;
+    margin:0 0 .3em;
+    color:#ffdccd;
+    text-shadow:1px 1px 1px var(--weight-color),
+    1px 2px 1px var(--weight-color),
+    1px 3px 1px var(--weight-color),
+    1px 4px 1px var(--weight-color),
+    1px 5px 1px var(--weight-color),
+    1px 6px 1px var(--weight-color),
+    1px 7px 1px var(--weight-color),
+    1px 8px 1px var(--weight-color),
+    1px 9px 1px var(--weight-color),
+    1px 10px 1px var(--weight-color),
+    1px 18px 6px var(--shadow-color),
+    1px 22px 10px var(--shadow-color),
+    1px 25px 35px var(--shadow-color),
+    1px 30px 60px var(--shadow-color);
 }
 
-.description {
-  font-size: 2.2em;
-  margin-bottom: 1.7em;
-  color: #000;
-}
-
-.home-image {
-  padding-top: 3em;
-}
-
-.crab-gif {
-  border-radius: 10px;
-}
-
-
-/****************************
- * Grid
-****************************/
-.sample-grid {
-  gap: 20px;
-}
-
-.sample-grid div {
-  flex-shrink: 0;
-  width: 300px;
-  background-color: #000;
-  color: #fff;
-  aspect-ratio: 2/1;
-}
-
-.sample-grid div[tabindex]:focus-visible {
-  background-color: #fff;
-  color: #000;
-}
-
-@media only screen and (max-width: 1024px) {
-  .sample-grid {
-    flex-wrap: wrap;
-  }
-  .sample-grid div {
-    width: calc(50% - 10px);
-  }
-}
 
 
 /* Vertical scroll */
-@media only screen and (min-width: 1025px) {
-  .vertical-scroll {
-    width: 500px;
-    max-width: 100%;
-    height: 500px;
-    overflow: auto;
-  }
+@media only screen and (min-width:1025px) {
+    .vertical-scroll {
+        height:500px;
+        overflow:auto;
+    }
 }
 
 
 /****************************
  * CuaJs: Scroll bar
 ****************************/
-[data-cua] {
-  --scrollbar-size: 7px;
-  --scrollbar-track-color: #eee;
-  --scrollbar-thumb-color: #7e7e7e;
+.cua-wrapper {
+    --scrollbar-size:7px;
+    --scrollbar-track-color:#eee;
+    --scrollbar-thumb-color:#000;
 }
 
 /* custom scrollbar */
 /* Works on Chrome, Edge, and Safari */
 /* scrollbar size should be controlled so we can manage the height of inner sections */
-[data-cua]::-webkit-scrollbar, [data-cua] *::-webkit-scrollbar {
-  width: var(--scrollbar-size);
-  height: var(--scrollbar-size);
+.cua-wrapper::-webkit-scrollbar, .cua-wrapper *::-webkit-scrollbar {
+    width:var(--scrollbar-size);
+    height:var(--scrollbar-size);
 }
 
-[data-cua]::-webkit-scrollbar-track, [data-cua] *::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-color);
+.cua-wrapper::-webkit-scrollbar-track, .cua-wrapper *::-webkit-scrollbar-track {
+    background:var(--scrollbar-track-color);
 }
 
-[data-cua]::-webkit-scrollbar-thumb, [data-cua] *::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-color);
+.cua-wrapper::-webkit-scrollbar-thumb, .cua-wrapper *::-webkit-scrollbar-thumb {
+    background-color:var(--scrollbar-thumb-color);
 }
 
 
@@ -143,10 +133,10 @@
  * CuaJs: Scroll Observer
 ****************************/
 .cua-has-observer {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
 }
 
 .cua-has-observer.cua-intersecting {
-  opacity: 1;
+    opacity:1;
 }

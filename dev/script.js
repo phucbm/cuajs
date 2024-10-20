@@ -21,7 +21,7 @@ const instance = CuaJs.init({
     onScrollableContent: (data) => {
         //console.log(data)
     },
-    once: true,
+    // once: true,
     // scrollSnap: true,
 });
 
