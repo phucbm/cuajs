@@ -7,7 +7,7 @@
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/phucbm/cuajs/badge?style=rounded)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/315eb0d1-7cd6-420c-abca-08ac09fde584/deploy-status)](https://app.netlify.com/sites/cuajs/deploys)
 
-A holy *cua* library to create a horizontal scrolling page.
+**Why scroll down when you can *cua* across?**
 
 _(Cua is a Vietnamese word for crab)_
 <p><img src="https://github.com/phucbm/cuajs/assets/14942380/321169e6-c33f-4e0c-9c71-67992b347ed4" width="150"></p>
@@ -16,13 +16,20 @@ _(Cua is a Vietnamese word for crab)_
 
 ## Introduction
 
+CuaJs is a lightweight, powerful JavaScript library that transforms traditional vertical scrolling into a smooth, intuitive horizontal experience. Named after the Vietnamese word for crab, CuaJs brings a sideways 'crab walk' to web navigation.
 See [Demo](https://cuajs.netlify.app).
 
-- Respect the native behavior of the browser's scrollbar, which means accessibility is ensured.
-- Default scrolling events are remained. No DOM manipulation.
-- Keyboard, trackpad, mouse wheel, and touch screens are tested.
-- Able to switch to vertical scrolling on mobile devices.
-- Smooth scrolling experience with Lenis.
+### Key Features
+
+- 🖱️ **Native Scrollbar Respect**: Maintains browser scrollbar functionality for optimal accessibility.
+- 🔗 **Seamless Integration**: Preserves default scrolling events without DOM manipulation.
+- 📱 **Cross-Device Compatibility**: Fully tested on keyboard, trackpad, mouse wheel, and touch screens.
+- 📐 **Responsive Design**: Automatically switches to vertical scrolling on mobile devices.
+- 🧈 **Smooth Scrolling**: Integrates beautifully with Lenis for a buttery-smooth scroll experience.
+- 🚀 **Easy Implementation**: Simple HTML data attributes for quick setup and customization.
+- 🧭 **Flexible Navigation**: Supports programmatic scrolling to specific sections or positions.
+
+CuaJs offers web developers a unique tool to create engaging, horizontally-scrolling websites without sacrificing usability or accessibility. Whether you're building a portfolio, product showcase, or innovative web experience, CuaJs provides the framework for smooth, intuitive sideways navigation.
 
 ## Installation
 
