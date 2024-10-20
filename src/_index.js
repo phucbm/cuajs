@@ -45,7 +45,8 @@ class CuaJsClass{
         });
 
         // add body class
-        document.body.classList.add(CLASSES.hasCuaJs)
+        document.body.classList.add(CLASSES.hasCuaJs);
+        this.wrapper.classList.add(CLASSES.wrapper);
 
         // vertical scroll content
         this.verticalScroller = this.wrapper.querySelectorAll(`[${ATTRS.verticalScroller}]`)
