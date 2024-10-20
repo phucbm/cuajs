@@ -1,9 +1,5 @@
-// public styles
-import '@viivue/atomic-css';
-import 'honcau';
-
 // dev style
-import './style.scss';
+import './style.css';
 
 // source script
 import '@/_index';
@@ -25,7 +21,7 @@ const instance = CuaJs.init({
     onScrollableContent: (data) => {
         //console.log(data)
     },
-    once: true,
+    // once: true,
     // scrollSnap: true,
 });
 

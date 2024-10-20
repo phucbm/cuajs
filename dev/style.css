@@ -1,0 +1,120 @@
+@tailwind base;
+
+@layer base {
+    h1 {
+        @apply text-2xl font-bold;
+    }
+    h2 {
+        @apply text-xl font-bold;
+    }
+    h3 {
+        @apply text-lg font-bold;
+    }
+    a {
+        /*@apply underline;*/
+    }
+    p {
+        @apply text-base text-cua-black;
+    }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+
+/****************************
+ * Sections
+****************************/
+[data-cua-section] {
+    background:#9cd4ff;
+
+    @apply lg:p-20 px-5 py-12 lg:flex md:items-center;
+    @apply bg-gradient-to-br from-red-500 to-amber-50;
+}
+[data-cua-section]:nth-child(2) {
+    background:#6bb59a;
+    background:radial-gradient(at left top, #6bb59a, #f9857a);
+}
+
+[data-cua-section]:nth-child(3) {
+    background:#f9857a;
+    background:radial-gradient(at left top, #f9857a, #6bb59a);
+}
+[data-cua-section]:nth-child(4) {
+    background:#6163a2;
+    background:linear-gradient(135deg, #6163a2, #64bedc);
+}
+[data-cua-section]:nth-child(5) {
+    background:#dc5f59;
+    background:radial-gradient(at left top, #dc5f59, #93eb65);
+}
+[data-cua-section]:nth-child(6) {
+    background:#2256bf;
+    background:radial-gradient(at left top, #2256bf, #e21c36);
+}
+
+
+/****************************
+ * Section: Home
+****************************/
+.page-title {
+    --weight-color:#ff4b4b;
+    --shadow-color:rgba(0, 0, 0, 0.12);
+    font-size:clamp(45px, 8vw, 140px);
+    line-height:1;
+    margin:0 0 .3em;
+    color:#ffdccd;
+    text-shadow:1px 1px 1px var(--weight-color),
+    1px 2px 1px var(--weight-color),
+    1px 3px 1px var(--weight-color),
+    1px 4px 1px var(--weight-color),
+    1px 5px 1px var(--weight-color),
+    1px 6px 1px var(--weight-color),
+    1px 7px 1px var(--weight-color),
+    1px 8px 1px var(--weight-color),
+    1px 9px 1px var(--weight-color),
+    1px 10px 1px var(--weight-color),
+    1px 18px 6px var(--shadow-color),
+    1px 22px 10px var(--shadow-color),
+    1px 25px 35px var(--shadow-color),
+    1px 30px 60px var(--shadow-color);
+}
+
+
+/****************************
+ * CuaJs: Scroll bar
+****************************/
+.cua-wrapper {
+    --scrollbar-size:7px;
+    --scrollbar-track-color:#eee;
+    --scrollbar-thumb-color:#000;
+}
+
+/* custom scrollbar */
+/* Works on Chrome, Edge, and Safari */
+/* scrollbar size should be controlled so we can manage the height of inner sections */
+.cua-wrapper::-webkit-scrollbar, .cua-wrapper *::-webkit-scrollbar {
+    width:var(--scrollbar-size);
+    height:var(--scrollbar-size);
+}
+
+.cua-wrapper::-webkit-scrollbar-track, .cua-wrapper *::-webkit-scrollbar-track {
+    background:var(--scrollbar-track-color);
+}
+
+.cua-wrapper::-webkit-scrollbar-thumb, .cua-wrapper *::-webkit-scrollbar-thumb {
+    background-color:var(--scrollbar-thumb-color);
+}
+
+
+/****************************
+ * CuaJs: Scroll Observer
+****************************/
+.cua-has-observer {
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+
+.cua-has-observer.cua-intersecting {
+    opacity:1;
+}

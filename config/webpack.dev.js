@@ -2,6 +2,7 @@ const {merge} = require('webpack-merge');
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
 const {paths, packageInfo, server, env} = require("./config");
 
@@ -58,6 +59,17 @@ module.exports = merge(server, {
             filename: 'index.html', // output file
         }),
     ],
+
+    // Determine how modules within the project are treated
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                include: path.resolve(__dirname, 'dev'),
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
+            },
+        ],
+    },
 
     // Spin up a server for quick development
     devServer: {

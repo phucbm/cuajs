@@ -14,24 +14,66 @@
 <body>
 <div id="my-horizontal-scroll">
 
-    <section data-cua-section style='min-width:100vw' class="section-home">
-        <div class="home-info">
+    <section data-cua-section class="section-home lg:min-w-[100vw] lg:!py-32 flex flex-wrap">
+        <div class="max-w-none mb-10 w-full">
             <h1 data-title class="page-title">CuaJs</h1>
-            <p class="description">A holy <i>cua</i> library to create a horizontal scrolling page.</p>
-            <p><i>(Cua is a Vietnamese word for crab)</i></p>
+            <div class="pl-3 py-1 border-l-2 border-cua-white">
+                <p class="font-bold text-2xl mb-2 text-cua-white">A holy <i>"cua"</i> library to create a horizontal
+                    scrolling page.</p>
+                <p class="italic mt-2 text-cua-white">(Cua is a Vietnamese word for crab)</p>
+            </div>
         </div>
 
-        <div class="home-image d-flex w100" data-cua-observe>
-            <img class="crab-gif"
+        <div class="rounded-[10px] overflow-hidden w100">
+            <img class="crab-gif aspect-[300/236]"
                  src="https://user-images.githubusercontent.com/14942380/249210359-321169e6-c33f-4e0c-9c71-67992b347ed4.gif"
                  alt="crab-moving" width="300">
         </div>
     </section>
 
-    <section data-cua-section style='min-width:100vw'>
-        <div class='ta-left' data-cua-observe>
-            <h2>This is a section that can scroll vertically</h2>
-            <div class='vertical-scroll' data-cua-vertical-scroll>
+    <!--    <section data-cua-section style='min-width:100vw'>-->
+    <!--        <div>-->
+    <!--            <h2>Navigate to any section with "Lenis.scrollTo()"</h2>-->
+    <!--            <p class='btn-group'>-->
+    <!--                <button class='btn' data-cua-to='start'>To the start</button>-->
+    <!--                <button class='btn' data-cua-to='end'>To the end</button>-->
+    <!--                <button class='btn' data-cua-to='#long-section'>To the long-section</button>-->
+    <!--                <button class='btn' data-cua-to='#short-section'>To the short-section</button>-->
+    <!--            </p>-->
+    <!--        </div>-->
+    <!--    </section>-->
+
+    <section data-cua-section id='long-section'>
+        <div class="prose max-w-none">
+            <h2 class="lg:text-8xl text-4xl">A section could be loooooonger than the viewport,</h2>
+        </div>
+    </section>
+
+    <section data-cua-section id='short-section'>
+        <div class="prose">
+            <h2 class="lg:text-8xl text-4xl">or shorter.</h2>
+        </div>
+    </section>
+
+    <section data-cua-section class="justify-center min-w-[80vw]">
+        <div class="prose lg:text-center">
+            <h2 class="lg:text-6xl text-4xl">
+                <span data-cua-observe>Enable</span> <span data-cua-observe>scroll-triggered</span> <span
+                    data-cua-observe>animations</span> <span data-cua-observe>by</span> <span
+                    data-cua-observe>applying</span> <span data-cua-observe>the</span> <span data-cua-observe>data-cua-observe</span>
+                <span data-cua-observe>attribute *.</span>
+            </h2>
+            <p data-cua-observe>* CuaJs only toggle the class "cua-intersecting", <br>you should set the CSS to match
+                your need.</p>
+        </div>
+    </section>
+
+
+    <section data-cua-section class="min-w-[80vw] flex justify-center items-center">
+        <div class="prose">
+            <h2>Nested vertical scroll with `data-cua-vertical-scroll` attribute *.</h2>
+            <p>* Also manage the overflow using your CSS.</p>
+            <div class='max-h-[300px] overflow-auto pr-3' data-cua-vertical-scroll>
                 <p>Ultricies lectus inceptos scelerisque ut amet quisque ex pretium. Taciti sollicitudin nullam eleifend
                     malesuada fusce montes letius. Tortor metus netus in sodales suspendisse. Suscipit class morbi
                     venenatis mi platea cras arcu nisi vivamus. Scelerisque hac felis sit ultrices cras dis himenaeos
@@ -62,62 +104,20 @@
                     venenatis letius maximus rhoncus netus. Scelerisque fermentum facilisis mus sed quisque leo felis.
                     Montes aliquet imperdiet interdum vivamus hendrerit velit. Himenaeos eros netus pulvinar consectetur
                     rutrum.</p>
-                <p>
-                    <button class='btn'>Button</button>
-                </p>
             </div>
         </div>
     </section>
 
-    <section data-cua-section style='min-width:100vw'>
-        <div>
-            <h2>Navigate to any section with "Lenis.scrollTo()"</h2>
-            <p class='btn-group'>
-                <button class='btn' data-cua-to='start'>To the start</button>
-                <button class='btn' data-cua-to='end'>To the end</button>
-                <button class='btn' data-cua-to='#long-section'>To the long-section</button>
-                <button class='btn' data-cua-to='#short-section'>To the short-section</button>
-            </p>
+
+    <section data-cua-section class="flex justify-center lg:min-w-[60vw]">
+
+        <div class="prose text-center">
+            <p class="text-cua-white text-xl">Check out CuaJs on</p>
+            <a href="https://github.com/phucbm/cuajs" target="_blank"
+               class="lg:text-8xl text-4xl font-bold text-cua-white no-underline hover:underline">GitHub</a>
+            <p class="text-cua-white text-xl">for detailed documentation.</p>
         </div>
     </section>
-
-    <section data-cua-section id='long-section'>
-        <div class='ta-left'>
-            <h2>This is a very long section</h2>
-            <div class='sample-grid d-flex'>
-                <div class='fl-center' tabindex='0'>1</div>
-                <div class='fl-center' tabindex='0'>2</div>
-                <div class='fl-center' tabindex='0'>3</div>
-                <div class='fl-center' tabindex='0'>4</div>
-                <div class='fl-center' tabindex='0'>5</div>
-                <div class='fl-center' tabindex='0'>6</div>
-                <div class='fl-center' tabindex='0'>7</div>
-                <div class='fl-center' tabindex='0'>8</div>
-            </div>
-            <p>
-                <button class='btn'>Button</button>
-            </p>
-        </div>
-    </section>
-
-    <section data-cua-section id='short-section'>
-        <div>
-            <h2>This is a short section</h2>
-            <div class='sample-grid d-flex'>
-                <div class='fl-center' tabindex='0'>1</div>
-            </div>
-        </div>
-    </section>
-
-    <section data-cua-section style='min-width:100vw'>
-        <div>
-            <h2>This is a full-screen section</h2>
-            <div class='sample-grid d-flex'>
-                <div class='fl-center' tabindex='0'>1</div>
-            </div>
-        </div>
-    </section>
-
 </div>
 </body>
 
