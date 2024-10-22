@@ -30,7 +30,7 @@
 
     <section data-cua-section class="section-home lg:min-w-[100vw] lg:!py-32 flex flex-wrap">
         <div class="max-w-none mb-10 w-full">
-            <h1 data-title class="page-title">CuaJs</h1>
+            <h1 data-title class="page-title velocity-skew">CuaJs</h1>
             <div class="pl-3 py-1 border-l-2 border-cua-white">
                 <p class="font-bold text-2xl mb-2 text-cua-white">A holy <i>"cua"</i> library to create a horizontal
                     scrolling page.</p>
@@ -70,23 +70,65 @@
     </section>
 
     <section data-cua-section class="justify-center min-w-[80vw]">
-        <div class="prose lg:text-center">
-            <h2 class="lg:text-6xl text-4xl">
-                <span data-cua-observe>Enable</span> <span data-cua-observe>scroll-triggered</span> <span
-                    data-cua-observe>animations</span> <span data-cua-observe>by</span> <span
-                    data-cua-observe>applying</span> <span data-cua-observe>the</span> <span data-cua-observe>data-cua-observe</span>
-                <span data-cua-observe>attribute *.</span>
-            </h2>
-            <p data-cua-observe>* CuaJs only toggle the class "cua-intersecting", <br>you should set the CSS to match
-                your need.</p>
+        <div>
+            <div class="prose lg:text-center max-w-none text-center">
+                <h2 class="lg:text-8xl text-4xl" data-cua-observe>
+                    [data-cua-observe]
+                </h2>
+                <h3 class="lg:text-4xl text-4xl max-w-[700px] mx-auto">
+                    <span data-cua-observe>Enable</span> <span data-cua-observe>scroll-triggered</span> <span
+                        data-cua-observe>animations</span> <span data-cua-observe>by</span> <span
+                        data-cua-observe>applying</span> <span data-cua-observe>the</span>
+                    <span data-cua-observe>attribute *.</span>
+                </h3>
+                <p data-cua-observe>* CuaJs only toggle the class "cua-intersecting", <br>you should set the CSS to
+                    match
+                    your need.</p>
+                <p data-cua-observe>
+                    <a href="#">Open CodeSandbox demo</a>
+                </p>
+            </div>
         </div>
+    </section>
+
+
+    <section data-cua-section class="lg:min-w-[80vw] justify-center">
+
+        <div class="prose max-w-none">
+            <h2 class="lg:text-8xl text-4xl text-center velocity-skew">
+                --scroll-velocity
+            </h2>
+            <h3 class="lg:text-4xl text-4xl text-center velocity-skew">
+                Create tilt effect on any element <br>with "--scroll-velocity" CSS variable.
+            </h3>
+        </div>
+
+    </section>
+
+    <section data-cua-section class="lg:min-w-[80vw] justify-center">
+
+        <div class="prose text-center">
+            <img src="https://picsum.photos/id/129/768/480" alt="random pic" width="768" height="480"
+                 class="image-velocity-skew"/>
+            <h3 class="lg:text-4xl text-4xl text-center velocity-skew">
+                Yes, you can apply it to images too.
+            </h3>
+            <p>
+                <a href="#">Open CodeSandbox demo</a>
+            </p>
+        </div>
+
     </section>
 
 
     <section data-cua-section class="min-w-[80vw] flex justify-center items-center">
         <div class="prose">
-            <h2>Nested vertical scroll with `data-cua-vertical-scroll` attribute *.</h2>
-            <p>* Also manage the overflow using your CSS.</p>
+            <h2 class="lg:text-8xl text-4xl text-center !mb-10">
+                [data-cua-vertical-scroll]
+            </h2>
+            <h3 class="lg:text-4xl text-4xl text-center">
+                Nested vertical scroll.
+            </h3>
             <div class='max-h-[300px] overflow-auto pr-3' data-cua-vertical-scroll>
                 <p>Ultricies lectus inceptos scelerisque ut amet quisque ex pretium. Taciti sollicitudin nullam eleifend
                     malesuada fusce montes letius. Tortor metus netus in sodales suspendisse. Suscipit class morbi
@@ -119,6 +161,7 @@
                     Montes aliquet imperdiet interdum vivamus hendrerit velit. Himenaeos eros netus pulvinar consectetur
                     rutrum.</p>
             </div>
+            <p>* Also manage the overflow using your CSS.</p>
         </div>
     </section>
 
