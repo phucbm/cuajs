@@ -62,6 +62,8 @@ export class LenisSmoothScroll{
 
         // save status
         this.isInit = true;
+
+        this.initUpdateCSSVariables();
     }
 
     /**
@@ -160,6 +162,35 @@ export class LenisSmoothScroll{
                     isScrollable: isItemScrollable,
                     forceVertical
                 });
+            }
+        });
+    }
+
+    initUpdateCSSVariables(){
+        // update css variables
+        this.context.on('scroll', ({
+                                       axis,
+                                       event,
+                                       progress
+                                   }) => {
+            if(axis === 'vertical') return;
+
+            const {velocity} = event;
+            const wrapper = this.context.wrapper;
+
+            // update css variables to wrapper
+            // velocity: scroll velocity
+            wrapper.style.setProperty('--scroll-velocity', velocity);
+
+            // progress: scroll progress
+            wrapper.style.setProperty('--scroll-progress', progress.progress);
+        });
+
+        // remove css variables when break point changes
+        this.context.on('breakpointChange', ({orientation}) => {
+            if(orientation === 'vertical'){
+                this.context.wrapper.style.removeProperty('--scroll-velocity');
+                this.context.wrapper.style.removeProperty('--scroll-progress');
             }
         });
     }
