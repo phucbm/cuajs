@@ -24,7 +24,9 @@ function setHorizontalModeCSS(context){
     setCSS(context.wrapper, {
         display: 'flex', /* force into one lines */
         overflow: 'auto', /* allow scrolling */
+        height: `100vh`, /* always full-height */
         minHeight: `100vh`, /* always full-height */
+        maxHeight: `100vh`, /* always full-height */
     });
 
     // sections
@@ -49,6 +51,8 @@ function setVerticalModeCSS(context){
     setCSS(context.wrapper, {
         display: '',
         overflow: '',
+        height: '',
+        maxHeight: '',
         minHeight: '',
     });
 
