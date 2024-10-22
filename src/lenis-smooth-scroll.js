@@ -169,13 +169,13 @@ export class LenisSmoothScroll{
     initUpdateCSSVariables(){
         // update css variables
         this.context.on('scroll', ({
+                                       axis,
                                        event,
                                        progress
                                    }) => {
-            const {velocity} = event;
-            // const {pixel, total, progress} = progress;
-            console.log('scroll', velocity);
+            if(axis === 'vertical') return;
 
+            const {velocity} = event;
             const wrapper = this.context.wrapper;
 
             // update css variables to wrapper
@@ -184,6 +184,14 @@ export class LenisSmoothScroll{
 
             // progress: scroll progress
             wrapper.style.setProperty('--scroll-progress', progress.progress);
+        });
+
+        // remove css variables when break point changes
+        this.context.on('breakpointChange', ({orientation}) => {
+            if(orientation === 'vertical'){
+                this.context.wrapper.style.removeProperty('--scroll-velocity');
+                this.context.wrapper.style.removeProperty('--scroll-progress');
+            }
         });
     }
 }
