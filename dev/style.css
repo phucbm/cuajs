@@ -129,7 +129,7 @@
 
 
 /****************************
- * CuaJs: Parallax x Velocity
+ * CuaJs: Scroll Velocity
 ****************************/
 .cua-wrapper {
     --scroll-velocity:0;
@@ -140,7 +140,7 @@
     transform:skew(var(--skew), 0);
 }
 
-.image-velocity-skew {
+.velocity-clip-path {
     --tilt-range:50px; /* can be 10% or 20px */
     --tilt-direction:-1; /* 1 or -1 to control direction */
     --tilt-max:30; /* maximum tilt angle */
@@ -149,9 +149,9 @@
     --movement-pos:clamp(0, calc(var(--scroll-velocity) * var(--tilt-direction) / 40), var(--tilt-max));
 
     clip-path:polygon(
-        /* Point A: top-left */ calc(0% + (var(--tilt-range) * var(--movement-pos))) 0%,
-            /* Point B: top-right */ calc(100% - (var(--tilt-range) * var(--movement-neg))) 0%,
-            /* Point C: bottom-right */ calc(100% - (var(--tilt-range) * var(--movement-pos))) 100%,
-            /* Point D: bottom-left */ calc(0% + (var(--tilt-range) * var(--movement-neg))) 100%
+        calc(0% + (var(--tilt-range) * var(--movement-pos))) 0%,
+        calc(100% - (var(--tilt-range) * var(--movement-neg))) 0%,
+        calc(100% - (var(--tilt-range) * var(--movement-pos))) 100%,
+        calc(0% + (var(--tilt-range) * var(--movement-neg))) 100%
     );
 }
