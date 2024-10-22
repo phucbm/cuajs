@@ -3,7 +3,7 @@
   "outputFilename": "cua",
   "prettyName": "CuaJs",
   "codeName": "CuaJs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Crab-walk through your website with CuaJs.",
   "homepage": "https://github.com/phucbm/cuajs",
   "repository": {
