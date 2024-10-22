@@ -3,7 +3,7 @@
 ![banner](https://github.com/phucbm/cuajs/assets/14942380/c68bba3d-cbcc-4a2b-853d-1f898426d29d)
 
 [![npm](https://badgen.net/npm/v/cuajs)](https://www.npmjs.com/package/cuajs?activeTab=versions)
-[![minified](https://badgen.net/badge/minified/7KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
+[![minified](https://badgen.net/badge/minified/12KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/phucbm/cuajs/badge?style=rounded)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/315eb0d1-7cd6-420c-abca-08ac09fde584/deploy-status)](https://app.netlify.com/sites/cuajs/deploys)
 
@@ -205,4 +205,4 @@ npm run prod
 
 [MIT License](https://github.com/phucbm/cuajs/blob/main/LICENSE)
 
-Copyright (c) 2023 PHUCBM
+Copyright (c) 2024 PHUCBM
