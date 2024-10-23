@@ -184,6 +184,9 @@ export class LenisSmoothScroll{
 
             // progress: scroll progress
             wrapper.style.setProperty('--scroll-progress', progress.progress);
+
+            // direction: scroll direction
+            wrapper.style.setProperty('--scroll-direction', velocity > 0 ? 1 : -1);
         });
 
         // remove css variables when break point changes
