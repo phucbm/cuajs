@@ -4,7 +4,7 @@
   "prettyName": "CuaJs",
   "codeName": "CuaJs",
   "version": "0.0.5",
-  "description": "Crab-walk through your website with CuaJs.",
+  "description": "CuaJs is a lightweight, powerful JavaScript library that transforms traditional vertical scrolling into a smooth, intuitive horizontal experience.",
   "homepage": "https://github.com/phucbm/cuajs",
   "repository": {
     "type": "git",
