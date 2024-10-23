@@ -194,6 +194,7 @@ export class LenisSmoothScroll{
             if(orientation === 'vertical'){
                 this.context.wrapper.style.removeProperty('--scroll-velocity');
                 this.context.wrapper.style.removeProperty('--scroll-progress');
+                this.context.wrapper.style.removeProperty('--scroll-direction');
             }
         });
     }
