@@ -65,6 +65,9 @@ Using CDN:
 
 <!-- CuaJs -->
 <script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.5/dist/cua.min.js"></script>
+
+<!-- Cua Animate (optional, for animation only) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.5/dist/cua-animate.css">
 ```
 
 ### Quick start
@@ -143,7 +146,7 @@ CuaInstance.on('onSectionChange', ({index, instance, section}) => {
 ```
 
 ## Features
-### Scroll Observer
+### data-cua-observe
 Scroll Observer is a functionality that utilizes Intersection Observer to monitor a specific element and trigger a callback function when that element enters or exits the viewport. This feature is particularly useful for creating animations that appear as elements come into view.
 
 By default, Scroll Observer adds the class `"cua-intersection"` to an element when it enters the viewport and removes this class when the element leaves. To activate this default behavior, simply add the attribute `data-cua-observe` to the desired element.
@@ -180,11 +183,14 @@ CuaInstance.assignScrollObserver({
 });
 ```
 
-### Scroll Velocity
+### data-cua-animate
 
 When Lenis is enabled, CuaJs exposes scroll velocity through the CSS variable `--scroll-velocity` on the wrapper
 element.
 This enables powerful scroll-based animations like parallax effects, scroll-triggered animations, and more.
+
+Add animations using data-cua-animate with values like "mask", "tilt", or "fade-in". 
+Create custom scroll animations using CSS variables `--scroll-velocity`, `--scroll-progress`, and `--scroll-direction`. Check demos at https://cuajs.netlify.app.
 
 ## Deployment
 
