@@ -26,11 +26,11 @@
 </head>
 
 <body>
-<div id="my-horizontal-scroll">
+<div data-cua>
 
     <section data-cua-section class="section-home lg:min-w-[100vw] lg:!py-32 flex flex-wrap">
         <div class="max-w-none mb-10 w-full">
-            <h1 data-title class="page-title velocity-skew">CuaJs</h1>
+            <h1 data-title class="page-title" data-cua-animate="tilt">CuaJs</h1>
             <div class="pl-3 py-1 border-l-2 border-cua-white">
                 <p class="font-bold text-2xl mb-2 text-cua-white">A holy <i>"cua"</i> library to create a horizontal
                     scrolling page.</p>
@@ -57,79 +57,162 @@
     <!--        </div>-->
     <!--    </section>-->
 
-    <section data-cua-section id='long-section'>
-        <div class="prose max-w-none">
-            <h2 class="lg:text-8xl text-4xl">A section could be loooooonger than the viewport,</h2>
-        </div>
-    </section>
+    <!--    <section data-cua-section id='long-section'>-->
+    <!--        <div class="prose max-w-none">-->
+    <!--            <h2 class="lg:text-8xl text-4xl">A section could be loooooonger than the viewport,</h2>-->
+    <!--        </div>-->
+    <!--    </section>-->
 
-    <section data-cua-section id='short-section'>
-        <div class="prose">
-            <h2 class="lg:text-8xl text-4xl">or shorter.</h2>
+    <!--    <section data-cua-section id='short-section'>-->
+    <!--        <div class="prose">-->
+    <!--            <h2 class="lg:text-8xl text-4xl">or shorter.</h2>-->
+    <!--        </div>-->
+    <!--    </section>-->
+
+    <section data-cua-section class="justify-center min-w-[80vw]">
+        <div>
+            <div class="prose lg:text-center text-center">
+                <h2 class="lg:text-7xl text-4xl">
+                    [data-cua-animate]
+                </h2>
+                <p class="lg:text-3xl text-2xl">
+                    Elements with "data-cua-animate" attribute get "cua-intersection" class when visible, enabling
+                    custom animations.
+                </p>
+                <div class="text-left">
+                    <codeblock lang="html">
+                        <div data-cua-animate="my-animation">🦀</div>
+                    </codeblock>
+                    <codeblock lang="css">
+                        /* My animation */
+                        [data-cua-animate="my-animation"] {
+                        /* starting state here */
+                        }
+                        .cua-intersection[data-cua-animate="my-animation"] {
+                        /* ending state here */
+                        }
+                    </codeblock>
+                </div>
+            </div>
         </div>
     </section>
 
     <section data-cua-section class="justify-center min-w-[80vw]">
         <div>
-            <div class="prose lg:text-center max-w-none text-center">
-                <h2 class="lg:text-8xl text-4xl" data-cua-observe>
-                    [data-cua-observe]
+            <div class="prose text-center max-w-[800px]">
+                <h2 class="lg:text-5xl text-4xl" data-cua-animate="fade-in">
+                    [data-cua-animate="fade-in"]
                 </h2>
-                <h3 class="lg:text-4xl text-4xl max-w-[700px] mx-auto">
-                    <span data-cua-observe>Enable</span> <span data-cua-observe>scroll-triggered</span> <span
-                        data-cua-observe>animations</span> <span data-cua-observe>by</span> <span
-                        data-cua-observe>applying</span> <span data-cua-observe>the</span>
-                    <span data-cua-observe>attribute *.</span>
-                </h3>
-                <p data-cua-observe>* CuaJs only toggle the class "cua-intersecting", <br>you should set the CSS to
-                    match
-                    your need.</p>
-                <p data-cua-observe>
-                    <a href="#">Open CodeSandbox demo</a>
-                </p>
+                <div class="text-left" data-cua-animate="fade-in">
+                    <codeblock lang="css">
+                        /** FADE-IN **/
+                        [data-cua-animate="fade-in"] {
+                        opacity: 0;
+                        transition: opacity 1s ease-in-out;
+                        }
+
+                        [data-cua-animate="fade-in"].cua-intersecting {
+                        opacity: 1;
+                        }
+                    </codeblock>
+                </div>
+
+                <p>Available in "cua-animate.css".</p>
             </div>
         </div>
     </section>
 
-
-    <section data-cua-section class="lg:min-w-[80vw] justify-center">
-
-        <div class="prose max-w-none">
-            <h2 class="lg:text-8xl text-4xl text-center velocity-skew">
-                --scroll-velocity
-            </h2>
-            <h3 class="lg:text-4xl text-4xl text-center velocity-skew">
-                Create tilt effect on any element <br>with "--scroll-velocity" CSS variable.
-            </h3>
-        </div>
-
-    </section>
-
-    <section data-cua-section class="lg:min-w-[80vw] justify-center">
+    <section data-cua-section class="lg:min-w-[100vw] justify-center">
 
         <div class="prose text-center">
-            <img src="https://picsum.photos/id/129/768/480" alt="random pic" width="768" height="480"
-                 class="velocity-clip-path"/>
-            <h3 class="lg:text-4xl text-4xl text-center velocity-skew">
-                Yes, you can apply it to images too.
-            </h3>
-            <p>
-                <a href="#">Open CodeSandbox demo</a>
+            <h2 class="lg:text-5xl text-4xl text-center" data-cua-animate="tilt">
+                [data-cua-animate="tilt"]
+            </h2>
+            <p data-cua-animate="tilt">
+                Usage
             </p>
+            <div class="text-left" data-cua-animate="tilt" style="--tilt-sensitivity:0.3">
+                <codeblock lang="html">
+                    <div data-cua-animate="tilt">🦀</div>
+                </codeblock>
+            </div>
+            <p data-cua-animate="tilt">
+                Adjust via inline style.
+            </p>
+            <div class="text-left" data-cua-animate="tilt" style="--tilt-sensitivity:0.3">
+                <codeblock lang="html">
+                    <div data-cua-animate="tilt" style="--tilt-sensitivity:0.3">🦀</div>
+                </codeblock>
+            </div>
+            <p data-cua-animate="tilt">
+                Override via CSS variables.
+            </p>
+            <div class="text-left" data-cua-animate="tilt" style="--tilt-sensitivity:0.3">
+                <codeblock lang="css">
+                    /** TILT (override) **/
+                    [data-cua-animate="tilt"] {
+                    --tilt-max: 30; /* maximum tilt angle in degrees */
+                    --tilt-direction: 1; /* 1 or -1 to control direction */
+                    --tilt-sensitivity: 1; /* higher value = more sensitive to scroll */
+                    }
+                </codeblock>
+            </div>
+            <p>Available in "cua-animate.css".</p>
+        </div>
+
+    </section>
+
+    <section data-cua-section class="lg:min-w-[110vw] justify-center">
+
+        <div class="prose text-center max-w-[800px] mb-10">
+            <h2 class="lg:text-5xl text-4xl text-center" data-cua-animate="tilt">
+                [data-cua-animate="mask"]
+            </h2>
+            <img src="https://picsum.photos/id/129/800/480" alt="random pic" width="800" height="480"
+                 data-cua-animate="mask"/>
+        </div>
+        <div class="prose lg:ml-32 max-w-none">
+            <p>Usage</p>
+            <div class="text-left">
+                <codeblock lang="html">
+                    <img src="https://picsum.photos/id/129/768/480"
+                         data-cua-animate="mask"/>
+                </codeblock>
+            </div>
+            <p>Adjust via inline style.</p>
+            <div class="text-left">
+                <codeblock lang="html">
+                    <img src="https://picsum.photos/id/129/768/480"
+                         data-cua-animate="mask" style="--tilt-range:20px;"/>
+                </codeblock>
+            </div>
+            <p>Override via CSS variables.</p>
+            <div class="text-left">
+                <codeblock lang="css">
+                    /** MASK (override) **/
+                    [data-cua-animate="mask"] {
+                    --tilt-range: 50px; /* can be 10% or 20px */
+                    --tilt-direction: -1; /* 1 or -1 to control direction */
+                    --tilt-max: 30; /* maximum tilt angle */
+                    }
+                </codeblock>
+            </div>
+            <p>Available in "cua-animate.css".</p>
         </div>
 
     </section>
 
 
-    <section data-cua-section class="min-w-[80vw] flex justify-center items-center">
-        <div class="prose">
-            <h2 class="lg:text-8xl text-4xl text-center !mb-10">
+    <section data-cua-section class="min-w-[80vw] flex justify-center items-center text-center">
+        <div class="prose max-w-[800px]">
+            <h2 class="lg:text-6xl text-4xl !mb-10">
                 [data-cua-vertical-scroll]
             </h2>
-            <h3 class="lg:text-4xl text-4xl text-center">
+            <p class="lg:text-4xl text-4xl">
                 Nested vertical scroll.
-            </h3>
-            <div class='max-h-[300px] overflow-auto pr-3' data-cua-vertical-scroll>
+            </p>
+            <p>Make sure you have "overflow:auto".</p>
+            <div class="max-h-[250px] overflow-auto pr-3 text-left" data-cua-vertical-scroll>
                 <p>Ultricies lectus inceptos scelerisque ut amet quisque ex pretium. Taciti sollicitudin nullam eleifend
                     malesuada fusce montes letius. Tortor metus netus in sodales suspendisse. Suscipit class morbi
                     venenatis mi platea cras arcu nisi vivamus. Scelerisque hac felis sit ultrices cras dis himenaeos
@@ -161,7 +244,6 @@
                     Montes aliquet imperdiet interdum vivamus hendrerit velit. Himenaeos eros netus pulvinar consectetur
                     rutrum.</p>
             </div>
-            <p>* Also manage the overflow using your CSS.</p>
         </div>
     </section>
 
