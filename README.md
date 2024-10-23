@@ -16,7 +16,11 @@ _(Cua is a Vietnamese word for crab)_
 
 ## Introduction
 
-CuaJs is a lightweight, powerful JavaScript library that transforms traditional vertical scrolling into a smooth, intuitive horizontal experience. Named after the Vietnamese word for crab, CuaJs brings a sideways 'crab walk' to web navigation.
+CuaJs is a lightweight, powerful JavaScript library that transforms traditional vertical scrolling into a smooth,
+intuitive horizontal experience.
+With Lenis smooth scrolling deeply integrated for fluid animations, it delivers buttery-smooth transitions and
+scroll-based effects.
+Named after the Vietnamese word for crab, CuaJs brings a sideways 'crab walk' to web navigation.
 See [Demo](https://cuajs.netlify.app).
 
 ### Key Features
@@ -29,12 +33,15 @@ See [Demo](https://cuajs.netlify.app).
 - 🚀 **Easy Implementation**: Simple HTML data attributes for quick setup and customization.
 - 🧭 **Flexible Navigation**: Supports programmatic scrolling to specific sections or positions.
 
-CuaJs offers web developers a unique tool to create engaging, horizontally-scrolling websites without sacrificing usability or accessibility. Whether you're building a portfolio, product showcase, or innovative web experience, CuaJs provides the framework for smooth, intuitive sideways navigation.
+CuaJs offers web developers a unique tool to create engaging, horizontally-scrolling websites without sacrificing
+usability or accessibility.
+Whether you're building a portfolio, product showcase, or innovative web experience, CuaJs provides the framework for
+smooth, intuitive sideways navigation.
 
 ## Installation
 
-CuaJs has no dependency. However, it is recommended to install [Lenis](https://github.com/studio-freight/lenis)
-to enable smooth scrolling and gain a better experience.
+CuaJs can run independently, but integrating [Lenis](https://github.com/studio-freight/lenis) unlocks enhanced features
+like butter-smooth animations, optimized scroll transitions, and improved cross-browser scrolling behavior.
 
 ### Download
 
@@ -68,21 +75,8 @@ Using CDN:
 <!-- [data-cua] must be defined -->
 <div data-cua>
     <!-- Each child of wrapper must have [data-cua-section] -->
-    <section data-cua-section>
-        Your content
-
-        <!-- Scroll to specific positions with [data-cua-to] -->
-        <button data-cua-to="start">To the start</button>
-        <button data-cua-to="end">To the end</button>
-        <button data-cua-to="#second-section">To the long-section</button>
-    </section>
-
-    <section data-cua-section id="second-section">
-        <!-- Vertical scrollable div must have [data-cua-vertical-scroll] -->
-        <div data-cua-vertical-scroll>
-            Content with vertical scroll
-        </div>
-    </section>
+    <section data-cua-section></section>
+    <section data-cua-section></section>
 </div>
 ```
 
@@ -103,8 +97,9 @@ const instance = CuaJs.init({
 
 After `init()`, you can either use `instance` which is returned from the init function, or `CuaInstance` to access methods.
 
+## API
 
-## Options
+### Options
 
 | Attribute              | Type        | Default     | Description                                                                 |
 |------------------------|-------------|-------------|-----------------------------------------------------------------------------|
@@ -121,13 +116,33 @@ After `init()`, you can either use `instance` which is returned from the init fu
 | `draggable`            | boolean     | `false`     | Enable drag to scroll                                                       |
 | `scrollSnap`           | boolean     | `false`     | Snap to the nearest section                                                 |
 
-## Methods
+### Methods
 
 | Name                   | Usage                                                                    | Description                                    | 
 |------------------------|--------------------------------------------------------------------------|------------------------------------------------|
 | `assignScrollObserver` | `CuaInstance.assignScrollObserver({element, options, enter,leave,once})` | Assign a scroll observer to a specific element |
 | `on`                   | `CuaInstance.on()`                                                       | Assign events                                  |
 
+### Events
+
+Assign `onScroll` event:
+
+```js
+CuaInstance.on('onScroll', (data) => {
+    console.log(data.axis, data.progress);
+
+    // more info
+    console.log(data);
+});
+```
+
+```js
+CuaInstance.on('onSectionChange', ({index, instance, section}) => {
+    console.log(`Active index`, index);
+});
+```
+
+## Features
 ### Scroll Observer
 Scroll Observer is a functionality that utilizes Intersection Observer to monitor a specific element and trigger a callback function when that element enters or exits the viewport. This feature is particularly useful for creating animations that appear as elements come into view.
 
@@ -165,25 +180,11 @@ CuaInstance.assignScrollObserver({
 });
 ```
 
+### Scroll Velocity
 
-## Events
-
-Assign `onScroll` event:
-
-```js
-CuaInstance.on('onScroll', (data) => {
-    console.log(data.axis, data.progress);
-
-    // more info
-    console.log(data);
-});
-```
-
-```js
-CuaInstance.on('onSectionChange', ({index, instance, section}) => {
-    console.log(`Active index`, index);
-});
-```
+When Lenis is enabled, CuaJs exposes scroll velocity through the CSS variable `--scroll-velocity` on the wrapper
+element.
+This enables powerful scroll-based animations like parallax effects, scroll-triggered animations, and more.
 
 ## Deployment
 
