@@ -32,7 +32,11 @@ export class LenisSmoothScroll{
         // prevent double init
         if(this.isInit) return;
 
-        this.updateVerticalScroller();
+        // init vertical lenis
+        setTimeout(() => {
+            this.updateVerticalScroller();
+        }, 100);
+
         this.initKeyScroll();
 
         // init
