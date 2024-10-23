@@ -1,0 +1,50 @@
+/**!
+ * CuaJs v0.0.5
+ * @author phucbm
+ * @homepage https://github.com/phucbm/cuajs
+ * @license MIT 2024
+ */
+/****************************
+ * Cua Animation: Fade-In
+****************************/
+/** FADE-IN **/
+[data-cua-animate=fade-in] {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+[data-cua-animate=fade-in].cua-intersecting {
+  opacity: 1;
+}
+
+/****************************
+ * Cua Animation: Tilt
+****************************/
+.cua-wrapper {
+  --scroll-velocity: 0; /* will be updated by js */
+}
+
+[data-cua-animate=tilt] {
+  --tilt-max: 30; /* maximum tilt angle in degrees */
+  --tilt-direction: 1; /* 1 or -1 to control direction */
+  --tilt-sensitivity: 1; /* higher value = more sensitive to scroll */
+  --skew: clamp(
+          calc(-1 * var(--tilt-max) * 1deg),
+          calc(var(--scroll-velocity) * var(--tilt-direction) * var(--tilt-sensitivity) * 1deg),
+          calc(var(--tilt-max) * 1deg)
+  );
+  transform: skew(var(--skew), 0);
+}
+
+/****************************
+ * Cua Animation: MASK
+****************************/
+/** MASK (clip-path) **/
+[data-cua-animate=mask] {
+  --tilt-range: 50px; /* can be 10% or 20px */
+  --tilt-direction: -1; /* 1 or -1 to control direction */
+  --tilt-max: 30; /* maximum tilt angle */
+  --movement-neg: clamp(0, calc(-1 * var(--scroll-velocity) * var(--tilt-direction) / 40), var(--tilt-max));
+  --movement-pos: clamp(0, calc(var(--scroll-velocity) * var(--tilt-direction) / 40), var(--tilt-max));
+  clip-path: polygon(calc(0% + var(--tilt-range) * var(--movement-pos)) 0%, calc(100% - var(--tilt-range) * var(--movement-neg)) 0%, calc(100% - var(--tilt-range) * var(--movement-pos)) 100%, calc(0% + var(--tilt-range) * var(--movement-neg)) 100%);
+}

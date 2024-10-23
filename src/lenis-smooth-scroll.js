@@ -32,7 +32,11 @@ export class LenisSmoothScroll{
         // prevent double init
         if(this.isInit) return;
 
-        this.updateVerticalScroller();
+        // init vertical lenis
+        setTimeout(() => {
+            this.updateVerticalScroller();
+        }, 100);
+
         this.initKeyScroll();
 
         // init
@@ -62,6 +66,8 @@ export class LenisSmoothScroll{
 
         // save status
         this.isInit = true;
+
+        this.initUpdateCSSVariables();
     }
 
     /**
@@ -160,6 +166,39 @@ export class LenisSmoothScroll{
                     isScrollable: isItemScrollable,
                     forceVertical
                 });
+            }
+        });
+    }
+
+    initUpdateCSSVariables(){
+        // update css variables
+        this.context.on('scroll', ({
+                                       axis,
+                                       event,
+                                       progress
+                                   }) => {
+            if(axis === 'vertical') return;
+
+            const {velocity} = event;
+            const wrapper = this.context.wrapper;
+
+            // update css variables to wrapper
+            // velocity: scroll velocity
+            wrapper.style.setProperty('--scroll-velocity', velocity);
+
+            // progress: scroll progress
+            wrapper.style.setProperty('--scroll-progress', progress.progress);
+
+            // direction: scroll direction
+            wrapper.style.setProperty('--scroll-direction', velocity > 0 ? 1 : -1);
+        });
+
+        // remove css variables when break point changes
+        this.context.on('breakpointChange', ({orientation}) => {
+            if(orientation === 'vertical'){
+                this.context.wrapper.style.removeProperty('--scroll-velocity');
+                this.context.wrapper.style.removeProperty('--scroll-progress');
+                this.context.wrapper.style.removeProperty('--scroll-direction');
             }
         });
     }

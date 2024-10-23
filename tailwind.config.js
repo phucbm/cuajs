@@ -14,7 +14,14 @@ module.exports = {
                             color: theme('colors.cua-white'),
                         },
                         'p': {
-                            color: theme('colors.cua-black'),
+                            color: theme('colors.cua-white'),
+                        },
+                        'a': {
+                            color: theme('colors.cua-white'),
+                            transition: 'color 0.3s ease-in-out',
+                            '&:hover': {
+                                color: theme('colors.cua-black'),
+                            },
                         },
                     },
                 },
