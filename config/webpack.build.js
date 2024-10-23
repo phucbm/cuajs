@@ -75,7 +75,7 @@ module.exports = merge(server, {
         new HtmlWebpackPlugin({
             inject: true,
             hash: true,
-            title: `${packageInfo.prettyName} - ${packageInfo.description}`,
+            title: `${packageInfo.prettyName} - ${packageInfo.tagline}`,
             favicon: paths.public + '/images/favicon.png',
             template: entryPath + '/index.html', // template file
             filename: 'index.html', // output file
@@ -104,7 +104,7 @@ module.exports = merge(server, {
                 },
                 'og:title': {
                     property: 'og:title',
-                    content: `${packageInfo.prettyName} - ${packageInfo.description}`
+                    content: `${packageInfo.prettyName} - ${packageInfo.tagline}`
                 },
                 'og:description': {
                     property: 'og:description',
@@ -125,7 +125,7 @@ module.exports = merge(server, {
                 },
                 'twitter:title': {
                     property: 'twitter:title',
-                    content: `${packageInfo.prettyName} - ${packageInfo.description}`
+                    content: `${packageInfo.prettyName} - ${packageInfo.tagline}`
                 },
                 'twitter:description': {
                     property: 'twitter:description',
