@@ -13,6 +13,7 @@ const path = require("path");
  */
 const entryFolder = env.ENTRY || 'web';
 const entryPath = path.resolve(__dirname, `../${entryFolder}`);
+const BASE_URL = env.BASE_URL || 'https://cuajs.netlify.app';
 
 module.exports = merge(server, {
     mode: 'production',
@@ -74,10 +75,92 @@ module.exports = merge(server, {
         new HtmlWebpackPlugin({
             inject: true,
             hash: true,
-            title: packageInfo.prettyName,
+            title: `${packageInfo.prettyName} - ${packageInfo.description}`,
             favicon: paths.public + '/images/favicon.png',
             template: entryPath + '/index.html', // template file
             filename: 'index.html', // output file
+            meta: {
+                // Basic metadata
+                'description': {
+                    name: 'description',
+                    content: packageInfo.description
+                },
+                'keywords': {
+                    name: 'keywords',
+                    content: packageInfo.keywords.join(', ')
+                },
+                'author': {
+                    name: 'author',
+                    content: packageInfo.author.name
+                },
+                // OpenGraph metadata
+                'og:type': {
+                    property: 'og:type',
+                    content: 'website'
+                },
+                'og:url': {
+                    property: 'og:url',
+                    content: BASE_URL
+                },
+                'og:title': {
+                    property: 'og:title',
+                    content: `${packageInfo.prettyName} - ${packageInfo.description}`
+                },
+                'og:description': {
+                    property: 'og:description',
+                    content: packageInfo.description
+                },
+                'og:image': {
+                    property: 'og:image',
+                    content: `${BASE_URL}/assets/images/thumbnail.jpg`
+                },
+                // Twitter metadata
+                'twitter:card': {
+                    property: 'twitter:card',
+                    content: 'summary_large_image'
+                },
+                'twitter:url': {
+                    property: 'twitter:url',
+                    content: BASE_URL
+                },
+                'twitter:title': {
+                    property: 'twitter:title',
+                    content: `${packageInfo.prettyName} - ${packageInfo.description}`
+                },
+                'twitter:description': {
+                    property: 'twitter:description',
+                    content: packageInfo.description
+                },
+                'twitter:image': {
+                    property: 'twitter:image',
+                    content: `${BASE_URL}/assets/images/thumbnail.jpg`
+                },
+                // Theme color
+                'theme-color': {
+                    name: 'theme-color',
+                    content: '#f9857a'
+                }
+            },
+            // Add this configuration
+            links: [
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '32x32',
+                    href: '/assets/images/favicon.png'
+                },
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '16x16',
+                    href: '/assets/images/favicon.png'
+                },
+                {
+                    rel: 'apple-touch-icon',
+                    sizes: '180x180',
+                    href: '/assets/images/favicon.png'
+                }
+            ]
         }),
     ],
     optimization: {

@@ -53,7 +53,13 @@ const server = {
             {test: /\.js$/, use: ['babel-loader']},
 
             // Images: Copy image files to build folder
-            {test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource'},
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|ico)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name][ext]' // or 'images/[name].[hash][ext]' if you want hashed filenames
+                }
+            },
 
             // Fonts and SVGs: Inline files
             {test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline'},
