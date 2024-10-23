@@ -31,32 +31,24 @@
     @apply lg:p-20 px-5 py-12 lg:flex md:items-center;
     @apply bg-gradient-to-br from-red-500 to-amber-50;
 }
-[data-cua-section]:nth-child(2) {
-    background:#6bb59a;
-    background:radial-gradient(at left top, #6bb59a, #f9857a);
-}
-
-[data-cua-section]:nth-child(3) {
+.section-green-red {
     background:#f9857a;
     background:radial-gradient(at left top, #f9857a, #6bb59a);
 }
-[data-cua-section]:nth-child(4) {
+.section-animate {
     background:#6163a2;
     background:linear-gradient(135deg, #6163a2, #64bedc);
 }
-[data-cua-section]:nth-child(5) {
+.section-green {
     background:#dc5f59;
     background:radial-gradient(at left top, #dc5f59, #93eb65);
 }
-[data-cua-section]:nth-child(6) {
-    background:#dc5f59;
-    background:radial-gradient(at left top, #dc5f59, #93eb65);
-}
-[data-cua-section]:nth-child(7) {
+.section-blue {
     background:#8f7bf4;
     background:radial-gradient(at left top, #8f7bf4, #3ed412);
 }
-[data-cua-section]:nth-child(8) {
+
+.section-footer {
     background:#2256bf;
     background:radial-gradient(at left top, #2256bf, #e21c36);
 }
