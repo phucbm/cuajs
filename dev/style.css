@@ -105,3 +105,6 @@
 .cua-wrapper::-webkit-scrollbar-thumb, .cua-wrapper *::-webkit-scrollbar-thumb {
     background-color:var(--scrollbar-thumb-color);
 }
+
+/* make the first section full height when cuajs have not enabled yet */
+body:not(.cua-enabled) [data-cua-section] {min-height:100vh;}
