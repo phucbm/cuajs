@@ -2,10 +2,14 @@
 
 ![banner](https://github.com/phucbm/cuajs/assets/14942380/c68bba3d-cbcc-4a2b-853d-1f898426d29d)
 
-[![npm](https://badgen.net/npm/v/cuajs)](https://www.npmjs.com/package/cuajs?activeTab=versions)
-[![npm](https://badgen.net/npm/dt/cuajs)](https://www.npmjs.com/package/cuajs)
-[![minified](https://badgen.net/badge/minified/12KB/cyan)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
-[![jsdelivr](https://data.jsdelivr.com/v1/package/gh/phucbm/cuajs/badge?style=rounded)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
+[![npm version](https://badgen.net/npm/v/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
+[![npm downloads](https://badgen.net/npm/dm/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
+[![npm dependents](https://badgen.net/npm/dependents/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
+[![github stars](https://badgen.net/github/stars/phucbm/cuajs?icon=github)](https://github.com/phucbm/cuajs/)
+[![jsdelivr hits](https://badgen.net/jsdelivr/hits/gh/phucbm/cuajs?icon=jsdelivr)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
+[![jsdelivr npm rank](https://badgen.net/jsdelivr/rank/npm/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
+[![github license](https://badgen.net/github/license/phucbm/cuajs?icon=github)](https://github.com/phucbm/cuajs/blob/main/LICENSE)
+[![Made in Vietnam](https://raw.githubusercontent.com/webuild-community/badge/master/svg/made.svg)](https://webuild.community)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/315eb0d1-7cd6-420c-abca-08ac09fde584/deploy-status)](https://app.netlify.com/sites/cuajs/deploys)
 
 **Why scroll down when you can *cua* across?**
