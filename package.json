@@ -23,7 +23,7 @@
     "horizontal-scroll",
     "lenis"
   ],
-  "main": "./dist/cuajs.module.js",
+  "main": "./dist/cua.module.js",
   "files": [
     "./dist/*"
   ],
@@ -36,8 +36,7 @@
     "build": "cross-env BASE_URL=https://cuajs.netlify.app ENTRY=dev webpack --config config/webpack.build.js",
     "prod-umd": "cross-env TARGET=umd webpack --config config/webpack.prod.js",
     "prod-module": "cross-env TARGET=module webpack --config config/webpack.prod.js",
-    "prod": "npm run prod-umd && npm run prod-module && npm run output-css",
-    "publish": "npm run prod & npm publish"
+    "prod": "npm run prod-umd && npm run prod-module && npm run output-css"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
