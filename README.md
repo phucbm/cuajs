@@ -69,10 +69,10 @@ Using CDN:
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
 
 <!-- CuaJs -->
-<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.6/dist/cua.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.7/dist/cua.min.js"></script>
 
 <!-- Cua Animate (optional, for animation only) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.6/dist/cua-animate.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.7/dist/cua-animate.css">
 ```
 
 ### Quick start
