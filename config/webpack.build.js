@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const {merge} = require('webpack-merge');
+const {mergeWithRules} = require('webpack-merge');
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -15,7 +15,8 @@ const entryFolder = env.ENTRY || 'web';
 const entryPath = path.resolve(__dirname, `../${entryFolder}`);
 const BASE_URL = env.BASE_URL || 'https://phucbm.github.io/cuajs';
 
-module.exports = merge(server, {
+// replace (not append) the shared style rule, so styles go through one loader chain only
+module.exports = mergeWithRules({module: {rules: {test: 'match', use: 'replace'}}})(server, {
     mode: 'production',
     devtool: false,
 
