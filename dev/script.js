@@ -22,3 +22,14 @@ const packageInfo = require('../package.json');
 const title = `${packageInfo.prettyName} v${packageInfo.version}`;
 document.title = `${title} - ${packageInfo.description}`;
 document.querySelector('[data-title]').innerHTML = title;
+
+/**
+ * GitHub star count (keeps "Star" if the API fails or is rate-limited)
+ */
+fetch('https://api.github.com/repos/phucbm/cuajs')
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(({stargazers_count}) => {
+        document.querySelector('[data-github-stars]').textContent =
+            new Intl.NumberFormat('en', {notation: 'compact'}).format(stargazers_count);
+    })
+    .catch(() => {});

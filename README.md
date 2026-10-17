@@ -4,13 +4,13 @@
 
 [![npm version](https://badgen.net/npm/v/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
 [![npm downloads](https://badgen.net/npm/dm/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
-[![npm dependents](https://badgen.net/npm/dependents/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
+[![npm dependents](https://img.shields.io/librariesio/dependents/npm/cuajs?label=dependents&logo=npm)](https://www.npmjs.com/package/cuajs?activeTab=dependents)
 [![github stars](https://badgen.net/github/stars/phucbm/cuajs?icon=github)](https://github.com/phucbm/cuajs/)
 [![jsdelivr hits](https://badgen.net/jsdelivr/hits/gh/phucbm/cuajs?icon=jsdelivr)](https://www.jsdelivr.com/package/gh/phucbm/cuajs)
 [![jsdelivr npm rank](https://badgen.net/jsdelivr/rank/npm/cuajs?icon=npm)](https://www.npmjs.com/package/cuajs)
 [![github license](https://badgen.net/github/license/phucbm/cuajs?icon=github)](https://github.com/phucbm/cuajs/blob/main/LICENSE)
 [![Made in Vietnam](https://raw.githubusercontent.com/webuild-community/badge/master/svg/made.svg)](https://webuild.community)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/315eb0d1-7cd6-420c-abca-08ac09fde584/deploy-status)](https://app.netlify.com/sites/cuajs/deploys)
+[![demo deploy](https://github.com/phucbm/cuajs/actions/workflows/deploy-pages.yml/badge.svg)](https://phucbm.github.io/cuajs/)
 
 **Why scroll down when you can *cua* across?**
 
@@ -26,7 +26,7 @@ intuitive horizontal experience.
 With Lenis smooth scrolling deeply integrated for fluid animations, it delivers buttery-smooth transitions and
 scroll-based effects.
 Named after the Vietnamese word for crab, CuaJs brings a sideways 'crab walk' to web navigation.
-See [Demo](https://cuajs.netlify.app).
+See [Demo](https://phucbm.github.io/cuajs).
 
 ### Key Features
 
@@ -69,10 +69,10 @@ Using CDN:
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
 
 <!-- CuaJs -->
-<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.6/dist/cua.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.7/dist/cua.min.js"></script>
 
 <!-- Cua Animate (optional, for animation only) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.6/dist/cua-animate.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phucbm/cuajs@0.0.7/dist/cua-animate.css">
 ```
 
 ### Quick start
@@ -195,7 +195,7 @@ element.
 This enables powerful scroll-based animations like parallax effects, scroll-triggered animations, and more.
 
 Add animations using data-cua-animate with values like "mask", "tilt", or "fade-in". 
-Create custom scroll animations using CSS variables `--scroll-velocity`, `--scroll-progress`, and `--scroll-direction`. Check demos at https://cuajs.netlify.app.
+Create custom scroll animations using CSS variables `--scroll-velocity`, `--scroll-progress`, and `--scroll-direction`. Check demos at https://phucbm.github.io/cuajs.
 
 ## Deployment
 
@@ -217,4 +217,4 @@ npm run prod
 
 [MIT License](https://github.com/phucbm/cuajs/blob/main/LICENSE)
 
-Copyright (c) 2024 PHUCBM
+Copyright (c) 2026 PHUCBM

@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const {merge} = require('webpack-merge');
+const {mergeWithRules} = require('webpack-merge');
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -13,9 +13,10 @@ const path = require("path");
  */
 const entryFolder = env.ENTRY || 'web';
 const entryPath = path.resolve(__dirname, `../${entryFolder}`);
-const BASE_URL = env.BASE_URL || 'https://cuajs.netlify.app';
+const BASE_URL = env.BASE_URL || 'https://phucbm.github.io/cuajs';
 
-module.exports = merge(server, {
+// replace (not append) the shared style rule, so styles go through one loader chain only
+module.exports = mergeWithRules({module: {rules: {test: 'match', use: 'replace'}}})(server, {
     mode: 'production',
     devtool: false,
 
@@ -24,7 +25,8 @@ module.exports = merge(server, {
 
     output: {
         path: paths.build,
-        publicPath: '/',
+        // 'auto' = relative to the page, so the demo works under a sub-path (GitHub Pages: /cuajs/)
+        publicPath: 'auto',
         filename: 'js/[name].[contenthash].bundle.js',
     },
     module: {
@@ -141,26 +143,6 @@ module.exports = merge(server, {
                     content: '#f9857a'
                 }
             },
-            // Add this configuration
-            links: [
-                {
-                    rel: 'icon',
-                    type: 'image/png',
-                    sizes: '32x32',
-                    href: '/assets/images/favicon.png'
-                },
-                {
-                    rel: 'icon',
-                    type: 'image/png',
-                    sizes: '16x16',
-                    href: '/assets/images/favicon.png'
-                },
-                {
-                    rel: 'apple-touch-icon',
-                    sizes: '180x180',
-                    href: '/assets/images/favicon.png'
-                }
-            ]
         }),
     ],
     optimization: {
