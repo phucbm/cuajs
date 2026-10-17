@@ -33,7 +33,7 @@
   },
   "scripts": {
     "sass:compressed": "sass src/_style.scss:dist/cua-animate.css --no-source-map",
-    "optimize": "csso dist/cua-animate.css --output dist/cua-animate.min.css --stat",
+    "optimize": "node -e \"const fs=require('fs');fs.writeFileSync('dist/cua-animate.min.css',require('csso').minify(fs.readFileSync('dist/cua-animate.css','utf8')).css)\"",
     "output-css": "npm run sass:compressed && npm run optimize",
     "dev": "webpack serve --config config/webpack.dev.js",
     "build": "cross-env BASE_URL=https://phucbm.github.io/cuajs ENTRY=dev webpack --config config/webpack.build.js",
@@ -52,15 +52,13 @@
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.5",
     "css-minimizer-webpack-plugin": "^8.0.0",
-    "csso-cli": "^4.0.2",
+    "csso": "^5.0.5",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.8",
     "mini-css-extract-plugin": "^2.10.2",
     "postcss": "^8.5.30",
     "postcss-loader": "^8.2.1",
-    "postcss-preset-env": "^11.6.1",
     "prettier": "^3.9.10",
-    "prismjs": "^1.30.0",
     "sass": "^1.105.2",
     "sass-loader": "^17.0.1",
     "shiki": "^4.5.0",
@@ -75,5 +73,10 @@
   "dependencies": {
     "@phucbm/os-util": "^0.0.5"
   },
-  "packageManager": "pnpm@10.22.0"
+  "packageManager": "pnpm@10.22.0",
+  "pnpm": {
+    "overrides": {
+      "postcss-selector-parser@<7.1.6": "^7.1.6"
+    }
+  }
 }
