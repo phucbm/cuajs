@@ -1,5 +1,5 @@
 /**!
- * CuaJs v0.0.5
+ * CuaJs v0.0.6
  * @author phucbm
  * @homepage https://github.com/phucbm/cuajs
  * @license MIT 2026
