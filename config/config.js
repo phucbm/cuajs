@@ -54,7 +54,7 @@ const server = {
 
             // Images: Copy image files to build folder
             {
-                test: /\.(png|jpg|jpeg|gif|svg|ico)$/i,
+                test: /\.(png|jpg|jpeg|gif|svg|ico|mp4|webm)$/i,
                 type: 'asset/resource',
                 generator: {
                     filename: 'images/[name][ext]' // or 'images/[name].[hash][ext]' if you want hashed filenames

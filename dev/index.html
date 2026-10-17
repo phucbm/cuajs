@@ -40,9 +40,12 @@
         </div>
 
         <div class="rounded-[10px] overflow-hidden w100">
-            <img class="crab-gif aspect-[300/236]"
-                 src="https://user-images.githubusercontent.com/14942380/249210359-321169e6-c33f-4e0c-9c71-67992b347ed4.gif"
-                 alt="crab-moving" width="300">
+            <!-- video instead of GIF: hardware-decoded, ~70KB vs ~250KB -->
+            <video class="crab-gif aspect-[300/236]" width="300" autoplay muted loop playsinline
+                   aria-label="crab-moving">
+                <source src="../public/images/crab.webm" type="video/webm">
+                <source src="../public/images/crab.mp4" type="video/mp4">
+            </video>
         </div>
     </section>
 

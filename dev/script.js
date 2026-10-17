@@ -4,7 +4,13 @@ import '@/_style.scss';
 
 // dev style
 import './style.css';
-import "./code-highlight";
+
+// code highlight (shiki + prettier) is heavy => load it in a separate chunk once the page is idle
+const loadCodeHighlight = () => import('./code-highlight').then(({initShiki}) => initShiki());
+window.addEventListener('load', () => {
+    if('requestIdleCallback' in window) requestIdleCallback(loadCodeHighlight, {timeout: 2000});
+    else setTimeout(loadCodeHighlight, 200);
+});
 
 // import package info
 const packageInfo = require('../package.json');

@@ -10,6 +10,7 @@ export class LenisSmoothScroll{
         this.element = context.wrapper;
         this.isInit = false;
         this.instance = undefined; // assign in init()
+        this.rafId = undefined; // current raf loop, only one at a time
 
         this.lenisOptions = {
             smoothWheel: true,
@@ -37,10 +38,15 @@ export class LenisSmoothScroll{
             this.updateVerticalScroller();
         }, 100);
 
-        this.initKeyScroll();
+        // key listener and CSS variables listeners are attached once
+        if(!this.isListenersAttached){
+            this.initKeyScroll();
+            this.initUpdateCSSVariables();
+            this.isListenersAttached = true;
+        }
 
         // init
-        const lenis = new Lenis({
+        this.start(new Lenis({
             ...this.lenisOptions,
             ...{
                 wrapper: element,
@@ -49,25 +55,38 @@ export class LenisSmoothScroll{
                 orientation: 'horizontal',
                 gestureOrientation: 'both',
             }
-        })
+        }), 'horizontal');
+    }
 
-        // on horizontally scroll
-        lenis.on('scroll', event => handleOnScroll(event, this.context, 'horizontal'));
+    /**
+     * Replace the current Lenis instance (if any) and run a single raf loop for the new one
+     */
+    start(lenis, axis){
+        this.stop();
 
-        function raf(time){
-            lenis.raf(time)
-            requestAnimationFrame(raf);
-        }
+        lenis.on('scroll', event => handleOnScroll(event, this.context, axis));
 
-        requestAnimationFrame(raf);
+        const raf = time => {
+            lenis.raf(time);
+            this.rafId = requestAnimationFrame(raf);
+        };
+        this.rafId = requestAnimationFrame(raf);
 
         // save instance
         this.instance = lenis;
 
         // save status
         this.isInit = true;
+    }
 
-        this.initUpdateCSSVariables();
+    /**
+     * Destroy the current Lenis instance and its raf loop
+     */
+    stop(){
+        cancelAnimationFrame(this.rafId);
+        this.rafId = undefined;
+        this.instance?.destroy();
+        this.instance = undefined;
     }
 
     /**
@@ -82,6 +101,9 @@ export class LenisSmoothScroll{
 
             // on key press
             window.addEventListener("keydown", event => {
+                // no instance when vertical smooth scroll is disabled
+                if(!this.instance) return;
+
                 let scrollOffset = this.instance.scroll;
 
                 // left/up arrow key => go backward
@@ -100,23 +122,7 @@ export class LenisSmoothScroll{
         this.updateVerticalScroller(true);
 
         // init
-        const lenis = new Lenis({...this.lenisOptions});
-
-        // on vertically scroll
-        lenis.on('scroll', event => handleOnScroll(event, this.context, 'vertical'));
-
-        function raf(time){
-            lenis.raf(time)
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-
-        // save instance
-        this.instance = lenis;
-
-        // save status
-        this.isInit = true;
+        this.start(new Lenis({...this.lenisOptions}), 'vertical');
     }
 
     // https://github.com/studio-freight/lenis#instance-methods
@@ -125,14 +131,14 @@ export class LenisSmoothScroll{
         if(!this.isInit) return;
 
         // destroy previous lenis
-        this.instance?.destroy();
+        this.stop();
 
         // init vertical lenis
         if(this.context.options.smoothVerticalScroll){
             this.initVerticalScroll();
         }
 
-        // save status
+        // save status: horizontal lenis is not running (the vertical one may be)
         this.isInit = false;
     }
 
@@ -171,6 +177,17 @@ export class LenisSmoothScroll{
     }
 
     initUpdateCSSVariables(){
+        const wrapper = this.context.wrapper;
+
+        // custom properties are inherited, so every write on the wrapper restyles the whole wrapper subtree
+        // => only write when the (rounded) value actually changes
+        const cache = {};
+        const setVariable = (name, value) => {
+            if(cache[name] === value) return;
+            cache[name] = value;
+            wrapper.style.setProperty(name, value);
+        };
+
         // update css variables
         this.context.on('scroll', ({
                                        axis,
@@ -180,22 +197,22 @@ export class LenisSmoothScroll{
             if(axis === 'vertical') return;
 
             const {velocity} = event;
-            const wrapper = this.context.wrapper;
 
             // update css variables to wrapper
             // velocity: scroll velocity
-            wrapper.style.setProperty('--scroll-velocity', velocity);
+            setVariable('--scroll-velocity', Math.round(velocity * 10) / 10);
 
             // progress: scroll progress
-            wrapper.style.setProperty('--scroll-progress', progress.progress);
+            setVariable('--scroll-progress', Math.round(progress.progress * 10000) / 10000);
 
             // direction: scroll direction
-            wrapper.style.setProperty('--scroll-direction', velocity > 0 ? 1 : -1);
+            setVariable('--scroll-direction', velocity > 0 ? 1 : -1);
         });
 
         // remove css variables when break point changes
         this.context.on('breakpointChange', ({orientation}) => {
             if(orientation === 'vertical'){
+                Object.keys(cache).forEach(name => delete cache[name]);
                 this.context.wrapper.style.removeProperty('--scroll-velocity');
                 this.context.wrapper.style.removeProperty('--scroll-progress');
                 this.context.wrapper.style.removeProperty('--scroll-direction');
