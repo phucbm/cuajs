@@ -107,7 +107,4 @@ const initShiki = async() => {
     }
 };
 
-// Initialize
-document.addEventListener('DOMContentLoaded', initShiki);
-
 export {initShiki};

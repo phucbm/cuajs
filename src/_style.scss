@@ -37,6 +37,9 @@
   );
 
   transform: skew(var(--skew), 0);
+
+  /* own compositor layer: skew changes every scroll frame, avoid re-rasterizing the element */
+  will-change: transform;
 }
 
 

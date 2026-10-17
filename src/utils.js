@@ -219,21 +219,23 @@ export function getRelativeOffset(element){
 }
 
 
+// runs on every scroll frame => read the layout once per element
 export function getVisibility(element, isHorizontal = false){
-    const offset = getRelativeOffset(element);
+    const rect = element.getBoundingClientRect();
+    const {w, h} = viewport();
     let visible_a, visible_b, pixel, proportion
 
     if(!isHorizontal){
-        visible_a = Math.max(0, Math.min(element.offsetHeight, -1 * offset.top_bottom));
-        visible_b = Math.max(0, Math.min(element.offsetHeight, offset.bottom_top));
-        pixel = Math.min(visible_a, visible_b, viewport().h);
-        proportion = pixel / element.offsetHeight;
+        visible_a = Math.max(0, Math.min(rect.height, h - rect.top));
+        visible_b = Math.max(0, Math.min(rect.height, rect.bottom));
+        pixel = Math.min(visible_a, visible_b, h);
+        proportion = pixel / rect.height;
     }else{
-        visible_a = Math.max(0, Math.min(element.offsetWidth, -1 * offset.left_right));
-        visible_b = Math.max(0, Math.min(element.offsetWidth, offset.right_left));
+        visible_a = Math.max(0, Math.min(rect.width, w - rect.left));
+        visible_b = Math.max(0, Math.min(rect.width, rect.right));
 
-        pixel = Math.min(visible_a, visible_b, viewport().w);
-        proportion = pixel / element.offsetWidth;
+        pixel = Math.min(visible_a, visible_b, w);
+        proportion = pixel / rect.width;
     }
 
     return {pixel, proportion};
