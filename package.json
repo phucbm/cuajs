@@ -28,6 +28,9 @@
     "./dist/*"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "sass:compressed": "sass src/_style.scss:dist/cua-animate.css --no-source-map",
     "optimize": "csso dist/cua-animate.css --output dist/cua-animate.min.css --stat",
@@ -73,5 +76,6 @@
   },
   "dependencies": {
     "@phucbm/os-util": "^0.0.5"
-  }
+  },
+  "packageManager": "pnpm@10.22.0"
 }

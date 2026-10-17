@@ -1,0 +1,35 @@
+name: Publish on Release
+
+# A GitHub release (tag v0.0.6, ...) publishes that version to npm with OIDC trusted publishing
+# (no token; set up once on npmjs.com → cuajs → Settings → Trusted publishing:
+# phucbm/cuajs, workflow publish.yml). The action sets package.json's version from the
+# tag, builds dist/ and commits package.json + dist/ back to main.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: phucbm/publish-npm-action@v1
+        with:
+          node-version: '22'
+          pnpm-version: '10.22.0'
+          install-command: 'pnpm install --frozen-lockfile'
+          # "build" is the demo site; "prod" builds the library into dist/
+          build-command: 'pnpm run prod'
+          # dist/ is kept in git (served by jsDelivr's gh/ CDN), so it is committed back with package.json
+          output-dir: 'dist/'
