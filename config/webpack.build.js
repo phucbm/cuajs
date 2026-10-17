@@ -13,7 +13,7 @@ const path = require("path");
  */
 const entryFolder = env.ENTRY || 'web';
 const entryPath = path.resolve(__dirname, `../${entryFolder}`);
-const BASE_URL = env.BASE_URL || 'https://cuajs.netlify.app';
+const BASE_URL = env.BASE_URL || 'https://phucbm.github.io/cuajs';
 
 module.exports = merge(server, {
     mode: 'production',
@@ -24,7 +24,8 @@ module.exports = merge(server, {
 
     output: {
         path: paths.build,
-        publicPath: '/',
+        // 'auto' = relative to the page, so the demo works under a sub-path (GitHub Pages: /cuajs/)
+        publicPath: 'auto',
         filename: 'js/[name].[contenthash].bundle.js',
     },
     module: {
@@ -141,26 +142,6 @@ module.exports = merge(server, {
                     content: '#f9857a'
                 }
             },
-            // Add this configuration
-            links: [
-                {
-                    rel: 'icon',
-                    type: 'image/png',
-                    sizes: '32x32',
-                    href: '/assets/images/favicon.png'
-                },
-                {
-                    rel: 'icon',
-                    type: 'image/png',
-                    sizes: '16x16',
-                    href: '/assets/images/favicon.png'
-                },
-                {
-                    rel: 'apple-touch-icon',
-                    sizes: '180x180',
-                    href: '/assets/images/favicon.png'
-                }
-            ]
         }),
     ],
     optimization: {

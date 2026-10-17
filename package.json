@@ -6,7 +6,7 @@
   "version": "0.0.6",
   "tagline": "Crab-walk through your website with CuaJs.",
   "description": "CuaJs is a lightweight, powerful JavaScript library that transforms traditional vertical scrolling into a smooth, intuitive horizontal experience.",
-  "homepage": "https://github.com/phucbm/cuajs",
+  "homepage": "https://phucbm.github.io/cuajs",
   "repository": {
     "type": "git",
     "url": "git@github.com:phucbm/cuajs"
@@ -36,7 +36,7 @@
     "optimize": "csso dist/cua-animate.css --output dist/cua-animate.min.css --stat",
     "output-css": "npm run sass:compressed && npm run optimize",
     "dev": "webpack serve --config config/webpack.dev.js",
-    "build": "cross-env BASE_URL=https://cuajs.netlify.app ENTRY=dev webpack --config config/webpack.build.js",
+    "build": "cross-env BASE_URL=https://phucbm.github.io/cuajs ENTRY=dev webpack --config config/webpack.build.js",
     "prod-umd": "cross-env TARGET=umd webpack --config config/webpack.prod.js",
     "prod-module": "cross-env TARGET=module webpack --config config/webpack.prod.js",
     "prod": "npm run prod-umd && npm run prod-module && npm run output-css"
