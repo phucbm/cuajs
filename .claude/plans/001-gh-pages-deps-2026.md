@@ -1,6 +1,6 @@
 # 001 — Demo on GitHub Pages, latest deps, README fixes
 
-Status: **approved, not started.** Written 2026-10-17.
+Status: **done, in review (one PR).** Pages source switched to GitHub Actions on 2026-10-17. UI not checked in a browser yet. Written 2026-10-17.
 
 One branch (`chore/gh-pages-deps-2026` off `main`), one PR, one commit per step. `main` is protected, so everything lands through the PR.
 
